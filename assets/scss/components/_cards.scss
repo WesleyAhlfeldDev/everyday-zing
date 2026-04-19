@@ -1,0 +1,66 @@
+@use '../abstracts/variables' as *;
+
+.post-card {
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: box-shadow $transition-base, transform $transition-base;
+  height: 100%;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(#000, 0.10);
+    transform: translateY(-2px);
+  }
+
+  &__thumb img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 1.5rem;
+  }
+
+  &__category {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $primary;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+
+    a {
+      text-decoration: none;
+      color: $secondary;
+      &:hover { color: $primary; }
+    }
+  }
+
+  &__excerpt {
+    font-size: 0.875rem;
+    color: $color-text-muted;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid $color-border;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: $color-text-muted;
+  }
+}

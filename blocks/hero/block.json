@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "everyday-zing/hero",
+  "title": "Hero",
+  "description": "Full-width hero section with heading, subtext, and CTA.",
+  "category": "everyday-zing",
+  "icon": "cover-image",
+  "keywords": ["hero", "banner", "header"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/hero/render.php"
+  },
+  "supports": {
+    "anchor": true,
+    "align": ["full"],
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

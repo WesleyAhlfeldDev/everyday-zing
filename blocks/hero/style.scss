@@ -1,0 +1,46 @@
+@use '../../assets/scss/abstracts/variables' as *;
+
+.hero-block {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  background-color: $secondary;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    pointer-events: none;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    padding-block: 5rem;
+    max-width: 760px;
+  }
+
+  &__heading {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    color: #fff;
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+  }
+
+  &__subtext {
+    font-size: 1.2rem;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    max-width: 560px;
+  }
+
+  &__cta {
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border-radius: $border-radius-pill;
+  }
+}

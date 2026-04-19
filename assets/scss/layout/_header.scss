@@ -1,0 +1,35 @@
+@use '../abstracts/variables' as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  height: $header-height;
+  background: rgba(#fff, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $color-border;
+
+  .navbar {
+    height: 100%;
+  }
+
+  .navbar-brand {
+    font-family: $font-family-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: $secondary;
+
+    &:hover { color: $primary; }
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $color-text-muted;
+    padding-inline: 0.75rem;
+    transition: color $transition-base;
+
+    &:hover,
+    &.active { color: $secondary; }
+  }
+}

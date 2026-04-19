@@ -1,0 +1,43 @@
+@use '../abstracts/variables' as *;
+
+.site-footer {
+  background: $color-surface;
+  border-top: 1px solid $color-border;
+  padding-block: 3rem;
+
+  &__heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-text-muted;
+    margin-bottom: 1rem;
+  }
+
+  &__nav {
+    list-style: none;
+    padding: 0;
+
+    a {
+      font-size: 0.875rem;
+      color: $color-text-muted;
+      text-decoration: none;
+      transition: color $transition-base;
+
+      &:hover { color: $primary; }
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid $color-border;
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.75rem;
+    color: $color-text-muted;
+
+    a {
+      color: inherit;
+      &:hover { color: $primary; }
+    }
+  }
+}

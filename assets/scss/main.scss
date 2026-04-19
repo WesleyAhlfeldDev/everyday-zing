@@ -1,0 +1,37 @@
+// 1. Override Bootstrap variables FIRST
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+// 2. Import only the Bootstrap modules you need
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/helpers';
+@import 'bootstrap/scss/utilities/api';
+@import 'bootstrap/scss/navbar';
+@import 'bootstrap/scss/nav';
+@import 'bootstrap/scss/card';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/pagination';
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/offcanvas';
+@import 'bootstrap/scss/close';
+
+// 3. Theme layers
+@import 'base/typography';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'components/cards';
+
+// 4. Blocks (add new block SCSS here as you build them)
+// @import '../blocks/hero/style';

@@ -1,0 +1,29 @@
+@use 'sass:math';
+
+// Fluid type scale
+@mixin fluid-type($min-size, $max-size, $min-vw: 375px, $max-vw: 1280px) {
+  font-size: clamp(
+    #{$min-size},
+    calc(#{$min-size} + #{math.div($max-size - $min-size, $max-vw - $min-vw)} * (100vw - #{$min-vw})),
+    #{$max-size}
+  );
+}
+
+// Visually hidden (accessible)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Hover transition shorthand
+@mixin hover-transition($props: color) {
+  transition: $props $transition-base;
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}

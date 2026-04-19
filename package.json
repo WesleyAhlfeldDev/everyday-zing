@@ -1,0 +1,17 @@
+{
+  "name": "everyday-zing-theme",
+  "version": "1.0.0",
+  "description": "Custom WordPress theme for Every Day Zing",
+  "scripts": {
+    "start": "wp-scripts start --webpack-config webpack.config.js",
+    "build": "wp-scripts build --webpack-config webpack.config.js",
+    "lint:js": "wp-scripts lint-js",
+    "lint:scss": "wp-scripts lint-style"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0"
+  }
+}

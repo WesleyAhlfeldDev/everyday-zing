@@ -1,0 +1,69 @@
+// ============================================================
+// Bootstrap Overrides — set BEFORE importing Bootstrap
+// ============================================================
+
+// Colors
+$primary:   #f5a623;
+$secondary: #1a1a1a;
+$light:     #f9f9f7;
+$dark:      #1a1a1a;
+
+$theme-colors: (
+  "primary":   $primary,
+  "secondary": $secondary,
+  "light":     $light,
+  "dark":      $dark,
+);
+
+// Typography
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+$font-family-serif:      'Lora', Georgia, serif;
+$font-size-base:         1rem;
+$line-height-base:       1.7;
+
+$headings-font-family:   $font-family-serif;
+$headings-font-weight:   700;
+$headings-line-height:   1.25;
+
+// Spacing
+$spacer: 1rem;
+
+// Border radius
+$border-radius:    8px;
+$border-radius-lg: 16px;
+$border-radius-pill: 9999px;
+
+// Grid
+$grid-gutter-width: 2rem;
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+);
+
+// Links
+$link-color:            $secondary;
+$link-hover-color:      $primary;
+$link-decoration:       underline;
+$link-underline-offset: 3px;
+
+// Navbar
+$navbar-light-color:          rgba($secondary, 0.7);
+$navbar-light-active-color:   $secondary;
+$navbar-light-hover-color:    $primary;
+$navbar-padding-y:            0;
+
+// Card
+$card-border-radius:  $border-radius-lg;
+$card-border-color:   #e5e5e0;
+
+// ============================================================
+// Custom Theme Tokens (not Bootstrap)
+// ============================================================
+$color-text-muted:  #6b6b6b;
+$color-surface:     #f9f9f7;
+$color-border:      #e5e5e0;
+$header-height:     64px;
+$transition-base:   150ms ease;
