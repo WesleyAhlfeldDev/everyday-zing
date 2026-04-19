@@ -1,18 +1,50 @@
 // ============================================================
+// Every Day Zing — Brand Colors
+// ============================================================
+
+// Primary palette
+$zing-lime:       #C8E050;
+$joy-pink:        #E9558A;
+$bold-purple:     #A668C2;
+$warm-coral:      #F0845C;
+$burgundy-script: #6B1F3A;
+
+// Secondary & neutrals
+$money-teal:  #5DCAA5;
+$rich-black:  #1A1A1A;
+$soft-white:  #F8F7F5;
+$warm-cream:  #F0EDE6;
+
+// ============================================================
 // Bootstrap Overrides — set BEFORE importing Bootstrap
 // ============================================================
 
-// Colors
-$primary:   #f5a623;
-$secondary: #1a1a1a;
-$light:     #f9f9f7;
-$dark:      #1a1a1a;
+$primary:   $joy-pink;
+$secondary: $rich-black;
+$success:   $money-teal;
+$info:      $bold-purple;
+$warning:   $zing-lime;
+$danger:    $warm-coral;
+$light:     $soft-white;
+$dark:      $rich-black;
 
 $theme-colors: (
-  "primary":   $primary,
-  "secondary": $secondary,
-  "light":     $light,
-  "dark":      $dark,
+  "primary":          $primary,
+  "secondary":        $secondary,
+  "success":          $success,
+  "info":             $info,
+  "warning":          $warning,
+  "danger":           $danger,
+  "light":            $light,
+  "dark":             $dark,
+  // Brand aliases available as btn-*, bg-*, text-* utilities
+  "zing-lime":        $zing-lime,
+  "joy-pink":         $joy-pink,
+  "bold-purple":      $bold-purple,
+  "warm-coral":       $warm-coral,
+  "burgundy-script":  $burgundy-script,
+  "money-teal":       $money-teal,
+  "warm-cream":       $warm-cream,
 );
 
 // Typography
@@ -29,8 +61,8 @@ $headings-line-height:   1.25;
 $spacer: 1rem;
 
 // Border radius
-$border-radius:    8px;
-$border-radius-lg: 16px;
+$border-radius:      8px;
+$border-radius-lg:   16px;
 $border-radius-pill: 9999px;
 
 // Grid
@@ -44,26 +76,26 @@ $container-max-widths: (
 );
 
 // Links
-$link-color:            $secondary;
-$link-hover-color:      $primary;
+$link-color:            $rich-black;
+$link-hover-color:      $joy-pink;
 $link-decoration:       underline;
 $link-underline-offset: 3px;
 
 // Navbar
-$navbar-light-color:          rgba($secondary, 0.7);
-$navbar-light-active-color:   $secondary;
-$navbar-light-hover-color:    $primary;
-$navbar-padding-y:            0;
+$navbar-light-color:        rgba($rich-black, 0.7);
+$navbar-light-active-color: $rich-black;
+$navbar-light-hover-color:  $joy-pink;
+$navbar-padding-y:          0;
 
 // Card
-$card-border-radius:  $border-radius-lg;
-$card-border-color:   #e5e5e0;
+$card-border-radius: $border-radius-lg;
+$card-border-color:  #e5e5e0;
 
 // ============================================================
 // Custom Theme Tokens (not Bootstrap)
 // ============================================================
-$color-text-muted:  #6b6b6b;
-$color-surface:     #f9f9f7;
-$color-border:      #e5e5e0;
-$header-height:     64px;
-$transition-base:   150ms ease;
+$color-text-muted: #6b6b6b;
+$color-surface:    $soft-white;
+$color-border:     #e5e5e0;
+$header-height:    64px;
+$transition-base:  150ms ease;
