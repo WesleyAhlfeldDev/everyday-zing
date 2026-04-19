@@ -1,0 +1,138 @@
+{
+    "key": "group_6627a004b5c6a",
+    "title": "Bio Block Fields",
+    "fields": [
+        {
+            "key": "field_6627a040b5c6a",
+            "label": "Eyebrow",
+            "name": "bio_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small uppercase label above the title. e.g. \"A little about me\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "A little about me",
+            "maxlength": 50,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6627a041b5c6a",
+            "label": "Title — before emphasis",
+            "name": "bio_title_prefix",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First part of the heading before the highlighted word.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "I believe everyday life deserves a little",
+            "maxlength": 80,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6627a042b5c6a",
+            "label": "Title — emphasis word",
+            "name": "bio_title_em",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The highlighted lime-green word at the end of the heading.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "zing",
+            "maxlength": 30,
+            "placeholder": "zing",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6627a043b5c6a",
+            "label": "Body Text",
+            "name": "bio_body",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Your bio paragraph. Keep it conversational.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "tabs": "text",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_6627a044b5c6a",
+            "label": "Topic Pills",
+            "name": "bio_pills",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Short topic tags shown as rounded pills. Include an emoji at the start.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 6,
+            "collapsed": "",
+            "button_label": "Add Pill",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6627a045b5c6a",
+                    "label": "Pill Text",
+                    "name": "pill_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "maxlength": 50,
+                    "placeholder": "🍽️ food that feeds you",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6627a044b5c6a"
+                }
+            ]
+        },
+        {
+            "key": "field_6627a046b5c6a",
+            "label": "CTA Button",
+            "name": "bio_cta",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "The outline button below the pills. e.g. \"Read my story\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "everyday-zing/bio"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Fields for the Bio / About section block.",
+    "show_in_rest": 0,
+    "modified": 1745020800
+}

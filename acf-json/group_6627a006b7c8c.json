@@ -1,0 +1,118 @@
+{
+    "key": "group_6627a006b7c8c",
+    "title": "Newsletter Block Fields",
+    "fields": [
+        {
+            "key": "field_6627a060b7c8c",
+            "label": "Eyebrow",
+            "name": "nl_eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small uppercase label. e.g. \"Join the list\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "Join the list",
+            "maxlength": 40,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6627a061b7c8c",
+            "label": "Title — before emphasis",
+            "name": "nl_title_prefix",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First part of the heading. e.g. \"Get your weekly\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "Get your weekly",
+            "maxlength": 60,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6627a062b7c8c",
+            "label": "Title — emphasis word",
+            "name": "nl_title_em",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The burgundy italic word. e.g. \"zing\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "zing",
+            "maxlength": 30,
+            "placeholder": "zing",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6627a063b7c8c",
+            "label": "Subtitle",
+            "name": "nl_subtitle",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Short description beneath the title.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "One email. No fluff. Real tips from Carol's kitchen, travels, and wallet — every week.",
+            "rows": 2,
+            "maxlength": 200,
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_6627a064b7c8c",
+            "label": "Form Action URL",
+            "name": "nl_form_action",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "The POST action URL from your email provider (Mailchimp, ConvertKit, Kit, etc.). Leave blank to disable form submission.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "",
+            "placeholder": "https://..."
+        },
+        {
+            "key": "field_6627a065b7c8c",
+            "label": "Button Label",
+            "name": "nl_button_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text on the submit button. e.g. \"I'm in\"",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "I'm in",
+            "maxlength": 30,
+            "placeholder": "I'm in",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "everyday-zing/newsletter"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Fields for the Newsletter signup block.",
+    "show_in_rest": 0,
+    "modified": 1745020800
+}
