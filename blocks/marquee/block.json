@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "everyday-zing/marquee",
+  "title": "Marquee Ticker",
+  "description": "Scrolling text ticker bar.",
+  "category": "everyday-zing",
+  "icon": "minus",
+  "keywords": ["marquee", "ticker", "scroll"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/marquee/render.php"
+  },
+  "supports": { "align": ["full"], "html": false },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

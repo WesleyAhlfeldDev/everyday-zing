@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "everyday-zing/bio",
+  "title": "Bio / About",
+  "description": "Dark full-width bio section with title, body, topic pills, and CTA.",
+  "category": "everyday-zing",
+  "icon": "admin-users",
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/bio/render.php"
+  },
+  "supports": { "align": ["full"], "html": false },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

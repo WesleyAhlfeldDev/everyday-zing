@@ -1,38 +1,32 @@
 <?php
 /**
- * Hero block render template.
- *
- * ACF fields: hero_heading, hero_subtext, hero_cta_label, hero_cta_url,
- *             hero_background_image, hero_overlay_opacity
+ * Hero block — split layout.
+ * TODO ACF fields: hero_name, hero_greeting, hero_title, hero_title_em,
+ *                  hero_subtitle, hero_cta_primary_label, hero_cta_primary_url,
+ *                  hero_cta_ghost_label, hero_cta_ghost_url, hero_photo
  */
-
-$heading          = get_field( 'hero_heading' );
-$subtext          = get_field( 'hero_subtext' );
-$cta_label        = get_field( 'hero_cta_label' );
-$cta_url          = get_field( 'hero_cta_url' );
-$bg_image         = get_field( 'hero_background_image' );
-$overlay_opacity  = get_field( 'hero_overlay_opacity' ) ?: 50;
-
-$bg_style = $bg_image
-	? 'background-image: url(' . esc_url( $bg_image['url'] ) . ');'
-	: '';
-
 $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( $block['anchor'] ) . '"' : '';
 ?>
 
-<section class="hero-block"<?php echo $anchor; ?> style="<?php echo esc_attr( $bg_style ); ?>">
-	<div class="hero-block__overlay" style="opacity: <?php echo esc_attr( $overlay_opacity / 100 ); ?>;"></div>
-	<div class="container hero-block__inner">
-		<?php if ( $heading ) : ?>
-			<h1 class="hero-block__heading"><?php echo esc_html( $heading ); ?></h1>
-		<?php endif; ?>
-		<?php if ( $subtext ) : ?>
-			<p class="hero-block__subtext"><?php echo esc_html( $subtext ); ?></p>
-		<?php endif; ?>
-		<?php if ( $cta_label && $cta_url ) : ?>
-			<a href="<?php echo esc_url( $cta_url ); ?>" class="btn btn-primary hero-block__cta">
-				<?php echo esc_html( $cta_label ); ?>
-			</a>
-		<?php endif; ?>
+<section class="hero-block"<?php echo $anchor; ?>>
+
+	<div class="hero-block__left">
+		<div class="hero-block__accent hero-block__accent--pink"></div>
+		<div class="hero-block__accent hero-block__accent--purple"></div>
+		<div class="hero-block__accent hero-block__accent--lime"></div>
+		<div class="hero-block__photo">
+			<div class="hero-block__avatar">CJ</div>
+		</div>
 	</div>
+
+	<div class="hero-block__right">
+		<p class="hero-block__greeting">hey hello, I'm</p>
+		<h1 class="hero-block__title"><em>Carol Joy</em> — finding the zing in everyday life</h1>
+		<p class="hero-block__sub">Real recipes, honest money talk, and adventures you can actually afford. Welcome to my corner of the internet.</p>
+		<div class="hero-block__actions">
+			<a href="#" class="hero-block__btn hero-block__btn--primary">Start exploring</a>
+			<a href="#" class="hero-block__btn hero-block__btn--ghost">Read my story</a>
+		</div>
+	</div>
+
 </section>

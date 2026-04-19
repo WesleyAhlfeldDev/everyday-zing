@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "everyday-zing/category-filter",
+  "title": "Category Filter",
+  "description": "Category pill navigation bar.",
+  "category": "everyday-zing",
+  "icon": "tag",
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/category-filter/render.php"
+  },
+  "supports": { "align": ["full"], "html": false },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

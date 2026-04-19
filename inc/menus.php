@@ -5,6 +5,7 @@ function zing_register_menus(): void {
 	register_nav_menus( [
 		'primary' => __( 'Primary Navigation', 'everyday-zing-theme' ),
 		'footer'  => __( 'Footer Navigation', 'everyday-zing-theme' ),
+		'social'  => __( 'Social Links', 'everyday-zing-theme' ),
 	] );
 }
 add_action( 'after_setup_theme', 'zing_register_menus' );

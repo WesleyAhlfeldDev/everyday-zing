@@ -2,7 +2,7 @@
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
 
-// 2. Import only the Bootstrap modules you need
+// 2. Bootstrap modules
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/variables-dark';
@@ -33,5 +33,11 @@
 @import 'layout/footer';
 @import 'components/cards';
 
-// 4. Blocks (add new block SCSS here as you build them)
-// @import '../blocks/hero/style';
+// 4. Blocks
+@import '../../blocks/hero/style';
+@import '../../blocks/marquee/style';
+@import '../../blocks/category-filter/style';
+@import '../../blocks/blog-feed/style';
+@import '../../blocks/bio/style';
+@import '../../blocks/instagram-feed/style';
+@import '../../blocks/newsletter/style';

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "everyday-zing/newsletter",
+  "title": "Newsletter Signup",
+  "description": "Email newsletter signup section.",
+  "category": "everyday-zing",
+  "icon": "email",
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "blocks/newsletter/render.php"
+  },
+  "supports": { "align": ["full"], "html": false },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

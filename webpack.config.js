@@ -8,8 +8,14 @@ module.exports = {
 	devtool: isProduction ? false : 'source-map',
 
 	entry: {
-		main: path.resolve( __dirname, 'assets/js/main.js' ),
-		'blocks/hero/index': path.resolve( __dirname, 'blocks/hero/index.js' ),
+		main:                          path.resolve( __dirname, 'assets/js/main.js' ),
+		'blocks/hero/index':           path.resolve( __dirname, 'blocks/hero/index.js' ),
+		'blocks/marquee/index':        path.resolve( __dirname, 'blocks/marquee/index.js' ),
+		'blocks/category-filter/index': path.resolve( __dirname, 'blocks/category-filter/index.js' ),
+		'blocks/blog-feed/index':      path.resolve( __dirname, 'blocks/blog-feed/index.js' ),
+		'blocks/bio/index':            path.resolve( __dirname, 'blocks/bio/index.js' ),
+		'blocks/instagram-feed/index': path.resolve( __dirname, 'blocks/instagram-feed/index.js' ),
+		'blocks/newsletter/index':     path.resolve( __dirname, 'blocks/newsletter/index.js' ),
 	},
 
 	output: {
@@ -56,7 +62,6 @@ module.exports = {
 		new MiniCssExtractPlugin( { filename: '[name].css' } ),
 	],
 
-	// WordPress provides these globally — don't bundle them
 	externals: {
 		'@wordpress/blocks':       [ 'wp', 'blocks' ],
 		'@wordpress/block-editor': [ 'wp', 'blockEditor' ],

@@ -13,62 +13,39 @@
 <a class="visually-hidden-focusable" href="#main"><?php esc_html_e( 'Skip to content', 'everyday-zing-theme' ); ?></a>
 
 <header class="site-header" role="banner">
-	<div class="container">
-		<nav class="navbar navbar-expand-lg" aria-label="<?php esc_attr_e( 'Primary', 'everyday-zing-theme' ); ?>">
+	<div class="site-header__inner">
 
-			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-				<?php
-				if ( has_custom_logo() ) {
-					the_custom_logo();
-				} else {
-					echo esc_html( get_bloginfo( 'name' ) );
-				}
-				?>
-			</a>
+		<a class="site-header__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+			<?php if ( has_custom_logo() ) : ?>
+				<?php the_custom_logo(); ?>
+			<?php else : ?>
+				<span class="site-header__logo-name"><?php bloginfo( 'name' ); ?></span>
+				<small class="site-header__logo-sub"><?php bloginfo( 'description' ); ?></small>
+			<?php endif; ?>
+		</a>
 
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="offcanvas"
-				data-bs-target="#mobileNav"
-				aria-controls="mobileNav"
-				aria-label="<?php esc_attr_e( 'Toggle navigation', 'everyday-zing-theme' ); ?>">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse justify-content-end" id="primaryNav">
-				<?php
-				wp_nav_menu( [
-					'theme_location' => 'primary',
-					'container'      => false,
-					'menu_class'     => 'navbar-nav',
-					'fallback_cb'    => false,
-					'walker'         => new \Walker_Nav_Menu(),
-					'add_li_class'   => 'nav-item',
-					'link_class'     => 'nav-link',
-					'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-				] );
-				?>
-			</div>
-
+		<nav class="site-header__nav" id="site-nav" aria-label="<?php esc_attr_e( 'Primary', 'everyday-zing-theme' ); ?>">
+			<?php
+			wp_nav_menu( [
+				'theme_location' => 'primary',
+				'container'      => false,
+				'menu_class'     => 'site-header__nav-list',
+				'fallback_cb'    => false,
+				'link_before'    => '',
+				'link_after'     => '',
+			] );
+			?>
 		</nav>
+
+		<a href="#newsletter" class="site-header__cta"><?php esc_html_e( 'Subscribe', 'everyday-zing-theme' ); ?></a>
+
+		<button class="site-header__toggle" aria-controls="site-nav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'everyday-zing-theme' ); ?>">
+			<span class="site-header__toggle-bar"></span>
+			<span class="site-header__toggle-bar"></span>
+			<span class="site-header__toggle-bar"></span>
+		</button>
+
 	</div>
 </header>
-
-<!-- Mobile offcanvas nav -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel">
-	<div class="offcanvas-header">
-		<h5 class="offcanvas-title" id="mobileNavLabel"><?php bloginfo( 'name' ); ?></h5>
-		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="<?php esc_attr_e( 'Close', 'everyday-zing-theme' ); ?>"></button>
-	</div>
-	<div class="offcanvas-body">
-		<?php
-		wp_nav_menu( [
-			'theme_location' => 'primary',
-			'container'      => false,
-			'menu_class'     => 'navbar-nav flex-column',
-			'fallback_cb'    => false,
-		] );
-		?>
-	</div>
-</div>
 
 <main id="main" class="site-main" role="main">

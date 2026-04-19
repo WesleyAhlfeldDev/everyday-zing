@@ -1,42 +1,49 @@
 </main><!-- #main -->
 
 <footer class="site-footer" role="contentinfo">
-	<div class="container">
-		<div class="row g-4 mb-5">
+	<div class="site-footer__inner">
 
-			<div class="col-md-4">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="d-inline-block mb-2">
-					<strong><?php bloginfo( 'name' ); ?></strong>
-				</a>
-				<p class="text-muted small"><?php bloginfo( 'description' ); ?></p>
-			</div>
-
-			<div class="col-md-4">
-				<?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
-					<?php dynamic_sidebar( 'footer-1' ); ?>
-				<?php else : ?>
-					<h3 class="site-footer__heading"><?php esc_html_e( 'Navigate', 'everyday-zing-theme' ); ?></h3>
-					<?php
-					wp_nav_menu( [
-						'theme_location' => 'footer',
-						'container'      => false,
-						'menu_class'     => 'site-footer__nav list-unstyled',
-						'fallback_cb'    => false,
-					] );
-					?>
-				<?php endif; ?>
-			</div>
-
-			<div class="col-md-4">
-			</div>
-
+		<div class="site-footer__brand">
+			<a class="site-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+				<span class="site-footer__logo-name"><?php bloginfo( 'name' ); ?></span>
+				<small class="site-footer__logo-sub"><?php bloginfo( 'description' ); ?></small>
+			</a>
+			<p class="site-footer__tagline"><?php esc_html_e( 'Real food, honest money, and adventures you can afford.', 'everyday-zing-theme' ); ?></p>
 		</div>
 
-		<div class="site-footer__bottom d-flex flex-wrap justify-content-between align-items-center">
-			<span>&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'everyday-zing-theme' ); ?></span>
-			<span class="small"><?php printf( esc_html__( 'Powered by %s', 'everyday-zing-theme' ), '<a href="https://wordpress.org">WordPress</a>' ); ?></span>
+		<div class="site-footer__col">
+			<p class="site-footer__col-label"><?php esc_html_e( 'Explore', 'everyday-zing-theme' ); ?></p>
+			<?php
+			wp_nav_menu( [
+				'theme_location' => 'footer',
+				'container'      => false,
+				'menu_class'     => 'site-footer__links',
+				'fallback_cb'    => false,
+			] );
+			?>
 		</div>
 
+		<div class="site-footer__col">
+			<p class="site-footer__col-label"><?php esc_html_e( 'Connect', 'everyday-zing-theme' ); ?></p>
+			<?php
+			wp_nav_menu( [
+				'theme_location' => 'social',
+				'container'      => false,
+				'menu_class'     => 'site-footer__links',
+				'fallback_cb'    => false,
+			] );
+			?>
+		</div>
+
+	</div>
+
+	<div class="site-footer__bottom">
+		<span>&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></span>
+		<span>
+			<a href="<?php echo esc_url( get_privacy_policy_url() ); ?>"><?php esc_html_e( 'Privacy', 'everyday-zing-theme' ); ?></a>
+			&middot;
+			<a href="#"><?php esc_html_e( 'Terms', 'everyday-zing-theme' ); ?></a>
+		</span>
 	</div>
 </footer>
 

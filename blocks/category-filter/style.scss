@@ -1,0 +1,51 @@
+@use '../../assets/scss/abstracts/variables' as *;
+
+.cat-filter {
+  display: flex;
+  gap: 8px;
+  padding: 18px 28px;
+  flex-wrap: wrap;
+  max-width: 1320px;
+  margin-inline: auto;
+
+  &__pill {
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0.5px solid transparent;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: opacity $transition-base;
+
+    &:hover { opacity: 0.8; }
+
+    &--all,
+    &--all.is-active {
+      background: $rich-black;
+      color: $zing-lime;
+    }
+
+    &--food {
+      background: #FCE4ED;
+      color: #99224E;
+      border-color: #F4C0D1;
+      &.is-active { background: #F4C0D1; }
+    }
+
+    &--finance {
+      background: #D9F3ED;
+      color: #0A5C46;
+      border-color: #9FE1CB;
+      &.is-active { background: #9FE1CB; }
+    }
+
+    &--travel {
+      background: #FAEAE4;
+      color: #993C1D;
+      border-color: #F5C4B3;
+      &.is-active { background: #F5C4B3; }
+    }
+  }
+}

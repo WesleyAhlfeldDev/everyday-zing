@@ -1,46 +1,153 @@
 @use '../../assets/scss/abstracts/variables' as *;
 
 .hero-block {
-  position: relative;
-  min-height: 560px;
-  display: flex;
-  align-items: center;
-  background-color: $secondary;
-  background-size: cover;
-  background-position: center;
-  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 360px;
 
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: #000;
-    pointer-events: none;
+  &__left {
+    background: $rich-black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
   }
 
-  &__inner {
+  &__accent {
+    position: absolute;
+    border-radius: 50%;
+
+    &--pink {
+      top: -20px;
+      left: -20px;
+      width: 160px;
+      height: 50px;
+      background: $joy-pink;
+      opacity: 0.3;
+      transform: rotate(-15deg);
+    }
+
+    &--purple {
+      bottom: 16px;
+      right: -10px;
+      width: 130px;
+      height: 44px;
+      background: $bold-purple;
+      opacity: 0.25;
+      transform: rotate(10deg);
+    }
+
+    &--lime {
+      bottom: 40px;
+      left: 20px;
+      width: 90px;
+      height: 30px;
+      background: $zing-lime;
+      opacity: 0.2;
+      transform: rotate(-8deg);
+    }
+  }
+
+  &__photo {
+    width: 100%;
+    height: 240px;
+    background: #2A2A2A;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid #333;
     position: relative;
     z-index: 1;
-    padding-block: 5rem;
-    max-width: 760px;
   }
 
-  &__heading {
-    font-size: clamp(2rem, 5vw, 3.75rem);
-    color: #fff;
-    margin-bottom: 1.25rem;
-    line-height: 1.15;
+  &__avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: $zing-lime;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-family: $font-family-serif;
+    font-style: italic;
+    color: #3A5010;
   }
 
-  &__subtext {
-    font-size: 1.2rem;
-    opacity: 0.85;
-    margin-bottom: 2rem;
-    max-width: 560px;
+  &__right {
+    background: $soft-white;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
   }
 
-  &__cta {
-    font-size: 1rem;
-    padding: 0.75rem 2rem;
-    border-radius: $border-radius-pill;
+  &__greeting {
+    font-size: 13px;
+    font-family: $font-family-serif;
+    font-style: italic;
+    color: #BBBBBB;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  &__title {
+    font-size: 26px;
+    font-family: $font-family-serif;
+    font-style: italic;
+    color: $rich-black;
+    line-height: 1.25;
+    margin: 0;
+
+    em {
+      color: $burgundy-script;
+      font-style: italic;
+    }
+  }
+
+  &__sub {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__btn {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity $transition-base;
+
+    &--primary {
+      background: $rich-black;
+      color: $zing-lime;
+      &:hover { opacity: 0.85; color: $zing-lime; }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: $rich-black;
+      border: 0.5px solid $rich-black;
+      &:hover { background: $rich-black; color: $zing-lime; }
+    }
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+
+    &__left { min-height: 220px; }
   }
 }
