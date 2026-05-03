@@ -1,0 +1,182 @@
+// ============================================================
+// Buttons
+// ============================================================
+
+// Base overrides applied to every .btn
+.btn {
+  font-weight:     700;
+  letter-spacing:  0.03em;
+  border-radius:   $border-radius;
+  transition:      background-color 150ms ease, border-color 150ms ease,
+                   color 150ms ease, box-shadow 150ms ease, transform 100ms ease;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba($joy-pink, 0.35);
+    outline: none;
+  }
+}
+
+// Size helpers already in Bootstrap (btn-sm / btn-lg) — no overrides needed.
+
+// ============================================================
+// Solid brand buttons — text color overrides
+// Bootstrap's color-contrast() picks dark or white automatically,
+// but we pin specific ones to match brand intent.
+// ============================================================
+
+// Light backgrounds → force dark text
+.btn-zing-lime,
+.btn-warning,        // mapped to zing-lime
+.btn-warm-cream,
+.btn-light {         // mapped to soft-white
+  color: $rich-black !important;
+
+  &:hover,
+  &:focus-visible {
+    color: $rich-black !important;
+  }
+}
+
+// Dark/saturated backgrounds → force white text
+.btn-joy-pink,
+.btn-primary,        // mapped to joy-pink
+.btn-bold-purple,
+.btn-info,           // mapped to bold-purple
+.btn-money-teal,
+.btn-success,        // mapped to money-teal
+.btn-warm-coral,
+.btn-danger,         // mapped to warm-coral
+.btn-burgundy-script,
+.btn-secondary,      // mapped to rich-black
+.btn-dark {
+  color: #fff !important;
+
+  &:hover,
+  &:focus-visible {
+    color: #fff !important;
+  }
+}
+
+// ============================================================
+// Outline variants — ensure border + text colour match the brand
+// Bootstrap generates these, but we override the hover text to white
+// on dark-enough brand colours.
+// ============================================================
+
+.btn-outline-primary,
+.btn-outline-joy-pink {
+  color: $joy-pink;
+  border-color: $joy-pink;
+
+  &:hover,
+  &:active {
+    background-color: $joy-pink;
+    border-color:     $joy-pink;
+    color: #fff;
+  }
+}
+
+.btn-outline-info,
+.btn-outline-bold-purple {
+  color: $bold-purple;
+  border-color: $bold-purple;
+
+  &:hover,
+  &:active {
+    background-color: $bold-purple;
+    border-color:     $bold-purple;
+    color: #fff;
+  }
+}
+
+.btn-outline-success,
+.btn-outline-money-teal {
+  color: $money-teal;
+  border-color: $money-teal;
+
+  &:hover,
+  &:active {
+    background-color: $money-teal;
+    border-color:     $money-teal;
+    color: #fff;
+  }
+}
+
+.btn-outline-danger,
+.btn-outline-warm-coral {
+  color: $warm-coral;
+  border-color: $warm-coral;
+
+  &:hover,
+  &:active {
+    background-color: $warm-coral;
+    border-color:     $warm-coral;
+    color: #fff;
+  }
+}
+
+.btn-outline-warning,
+.btn-outline-zing-lime {
+  color: #94AC1E; // $zing-lime lightness -20%
+  border-color: $zing-lime;
+
+  &:hover,
+  &:active {
+    background-color: $zing-lime;
+    border-color:     $zing-lime;
+    color: $rich-black;
+  }
+}
+
+.btn-outline-secondary,
+.btn-outline-dark {
+  color: $rich-black;
+  border-color: $rich-black;
+
+  &:hover,
+  &:active {
+    background-color: $rich-black;
+    border-color:     $rich-black;
+    color: #fff;
+  }
+}
+
+.btn-outline-burgundy-script {
+  color: $burgundy-script;
+  border-color: $burgundy-script;
+
+  &:hover,
+  &:active {
+    background-color: $burgundy-script;
+    border-color:     $burgundy-script;
+    color: #fff;
+  }
+}
+
+.btn-outline-warm-cream {
+  color: #B6A886; // $warm-cream lightness -30%
+  border-color: $warm-cream;
+
+  &:hover,
+  &:active {
+    background-color: $warm-cream;
+    border-color:     $warm-cream;
+    color: $rich-black;
+  }
+}
+
+.btn-outline-light {
+  color: $rich-black;
+  border-color: $soft-white;
+
+  &:hover,
+  &:active {
+    background-color: $soft-white;
+    border-color:     $soft-white;
+    color: $rich-black;
+  }
+}

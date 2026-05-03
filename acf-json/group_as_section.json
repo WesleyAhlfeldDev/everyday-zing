@@ -1,0 +1,483 @@
+{
+    "key": "group_as_section",
+    "title": "Section Settings",
+    "fields": [
+        {
+            "key": "field_as_sec_tab_layout",
+            "label": "Layout",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_as_sec_tag",
+            "label": "HTML Tag",
+            "name": "section_tag",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Semantic HTML element for this section.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "section": "section",
+                "div": "div",
+                "article": "article",
+                "aside": "aside",
+                "header": "header",
+                "footer": "footer",
+                "main": "main"
+            },
+            "default_value": "section",
+            "allow_in_bindings": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_as_sec_container",
+            "label": "Container",
+            "name": "section_container",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Bootstrap container class wrapping the inner content.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "": "— No container —",
+                "container": "Container",
+                "container-fluid": "Container Fluid",
+                "container-sm": "Container SM",
+                "container-md": "Container MD",
+                "container-lg": "Container LG",
+                "container-xl": "Container XL",
+                "container-xxl": "Container XXL"
+            },
+            "default_value": "container",
+            "allow_in_bindings": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_as_sec_tab_spacing",
+            "label": "Spacing",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_as_sec_use_custom_spacing",
+            "label": "Custom spacing?",
+            "name": "section_use_custom_spacing",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_as_sec_py",
+            "label": "Padding Y (top & bottom)",
+            "name": "section_padding_y",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "": "— None —",
+                "py-0": "PY-0  (0)",
+                "py-1": "PY-1  (0.25 rem)",
+                "py-2": "PY-2  (0.5 rem)",
+                "py-3": "PY-3  (1 rem)",
+                "py-4": "PY-4  (1.5 rem)",
+                "py-5": "PY-5  (3 rem)"
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_as_sec_px",
+            "label": "Padding X (left & right)",
+            "name": "section_padding_x",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "": "— None —",
+                "px-0": "PX-0  (0)",
+                "px-1": "PX-1  (0.25 rem)",
+                "px-2": "PX-2  (0.5 rem)",
+                "px-3": "PX-3  (1 rem)",
+                "px-4": "PX-4  (1.5 rem)",
+                "px-5": "PX-5  (3 rem)"
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_as_sec_my",
+            "label": "Margin Y (top & bottom)",
+            "name": "section_margin_y",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "": "— None —",
+                "my-0": "MY-0  (0)",
+                "my-1": "MY-1  (0.25 rem)",
+                "my-2": "MY-2  (0.5 rem)",
+                "my-3": "MY-3  (1 rem)",
+                "my-4": "MY-4  (1.5 rem)",
+                "my-5": "MY-5  (3 rem)"
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_as_sec_cpt",
+            "label": "Padding Top",
+            "name": "section_custom_padding_top",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. 80px",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_as_sec_cpb",
+            "label": "Padding Bottom",
+            "name": "section_custom_padding_bottom",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. 80px",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_as_sec_cpl",
+            "label": "Padding Left",
+            "name": "section_custom_padding_left",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. 2rem",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_as_sec_cpr",
+            "label": "Padding Right",
+            "name": "section_custom_padding_right",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. 2rem",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_as_sec_cmt",
+            "label": "Margin Top",
+            "name": "section_custom_margin_top",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. 40px",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_as_sec_cmb",
+            "label": "Margin Bottom",
+            "name": "section_custom_margin_bottom",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_as_sec_use_custom_spacing",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. 40px",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_as_sec_tab_style",
+            "label": "Style",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_as_sec_bg",
+            "label": "Background",
+            "name": "section_bg",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "": "— None —",
+                "bg-white": "White",
+                "bg-light": "Light (Soft White)",
+                "bg-dark": "Dark (Rich Black)",
+                "bg-primary": "Primary — Joy Pink",
+                "bg-secondary": "Secondary — Rich Black",
+                "bg-success": "Success — Money Teal",
+                "bg-info": "Info — Bold Purple",
+                "bg-warning": "Warning — Zing Lime",
+                "bg-danger": "Danger — Warm Coral",
+                "bg-zing-lime": "Zing Lime",
+                "bg-joy-pink": "Joy Pink",
+                "bg-bold-purple": "Bold Purple",
+                "bg-warm-coral": "Warm Coral",
+                "bg-money-teal": "Money Teal",
+                "bg-warm-cream": "Warm Cream",
+                "bg-burgundy-script": "Burgundy Script"
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_as_sec_text",
+            "label": "Text Color",
+            "name": "section_text_color",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "50", "class": "", "id": "" },
+            "choices": {
+                "": "— Default —",
+                "text-white": "White",
+                "text-dark": "Dark",
+                "text-muted": "Muted",
+                "text-primary": "Primary"
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_as_sec_tab_adv",
+            "label": "Advanced",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_as_sec_classes",
+            "label": "Extra Classes",
+            "name": "section_extra_classes",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Space-separated Bootstrap or custom classes added to the outer element.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. position-relative overflow-hidden",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "ahlfeld-solutions/section"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Bootstrap layout settings for the Section container block.",
+    "show_in_rest": 0,
+    "modified": 1745539200
+}

@@ -13,46 +13,106 @@
     padding: 36px 28px;
     position: relative;
     overflow: hidden;
+
+    &--bg-mesh {
+      background: linear-gradient(
+        135deg,
+        $rich-black,
+        mix($joy-pink, $rich-black, 50%),
+        mix($bold-purple, $rich-black, 50%),
+        mix($warm-coral, $rich-black, 40%),
+        $rich-black
+      );
+      background-size: 400% 400%;
+      animation: hero-mesh 12s ease infinite;
+    }
   }
 
-  &__accent {
+  // Background effects container (aurora & particles)
+  &__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  // Aurora blobs
+  &__blob {
     position: absolute;
     border-radius: 50%;
+    filter: blur(70px);
 
-    &--pink {
-      top: -20px;
-      left: -20px;
-      width: 160px;
-      height: 50px;
+    &--1 {
+      width: 220px;
+      height: 220px;
       background: $joy-pink;
-      opacity: 0.3;
-      transform: rotate(-15deg);
+      opacity: 0.4;
+      top: -60px;
+      left: -40px;
+      animation: hero-aurora-1 20s ease-in-out infinite;
     }
 
-    &--purple {
-      bottom: 16px;
-      right: -10px;
-      width: 130px;
-      height: 44px;
+    &--2 {
+      width: 200px;
+      height: 200px;
       background: $bold-purple;
-      opacity: 0.25;
-      transform: rotate(10deg);
+      opacity: 0.35;
+      bottom: -50px;
+      right: -40px;
+      animation: hero-aurora-2 25s ease-in-out infinite;
     }
 
-    &--lime {
-      bottom: 40px;
-      left: 20px;
-      width: 90px;
-      height: 30px;
+    &--3 {
+      width: 160px;
+      height: 160px;
       background: $zing-lime;
-      opacity: 0.2;
-      transform: rotate(-8deg);
+      opacity: 0.25;
+      top: 40%;
+      left: 25%;
+      animation: hero-aurora-3 18s ease-in-out infinite;
+    }
+  }
+
+  // Particle system — 12 dots, varied size/color/speed via Sass loop
+  $particle-colors: (
+    $joy-pink, $bold-purple, $zing-lime, $warm-coral,
+    $joy-pink, $bold-purple, $zing-lime, $warm-coral,
+    $joy-pink, $bold-purple, $zing-lime, $warm-coral
+  );
+  $particle-lefts:  (10%, 25%, 40%, 60%, 75%, 88%, 15%, 50%, 70%, 35%, 85%, 5%);
+  $particle-sizes:  (4px, 3px, 6px, 3px, 5px, 3px, 4px, 3px, 5px, 4px, 3px, 5px);
+  $particle-durs:   (8s, 10s, 7s, 9s, 11s, 8s, 12s, 9s, 8s, 10s, 7s, 11s);
+  $particle-delays: (0s, -3s, -5s, -7s, -2s, -8s, -1s, -6s, -4s, -9s, -3.5s, -1.5s);
+
+  &__particle {
+    position: absolute;
+    border-radius: 50%;
+    bottom: -6px;
+    opacity: 0;
+    animation: hero-particle-float linear infinite;
+  }
+
+  @for $i from 1 through 12 {
+    &__particle--#{$i} {
+      background: nth($particle-colors, $i);
+      left: nth($particle-lefts, $i);
+      width: nth($particle-sizes, $i);
+      height: nth($particle-sizes, $i);
+      animation-duration: nth($particle-durs, $i);
+      animation-delay: nth($particle-delays, $i);
     }
   }
 
   &__photo {
     width: 100%;
-    height: 240px;
+    max-width: calc(var(--photo-max-h, 400px) * 4 / 3);
+    aspect-ratio: 4 / 3;
+    max-height: var(--photo-max-h, 400px);
+
+    &--sm { --photo-max-h: 200px; }
+    &--md { --photo-max-h: 280px; }
+    &--lg { --photo-max-h: 400px; }
+    &--xl { --photo-max-h: 520px; }
     background: #2A2A2A;
     border-radius: 12px;
     display: flex;
@@ -61,6 +121,14 @@
     border: 0.5px solid #333;
     position: relative;
     z-index: 1;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
   }
 
   &__avatar {
@@ -71,7 +139,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
+    font-size: 1.692rem;
     font-family: $font-family-serif;
     font-style: italic;
     color: #3A5010;
@@ -79,7 +147,7 @@
 
   &__right {
     background: $soft-white;
-    padding: 36px 28px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,7 +155,7 @@
   }
 
   &__greeting {
-    font-size: 13px;
+    font-size: 1rem;
     font-family: $font-family-serif;
     font-style: italic;
     color: #BBBBBB;
@@ -96,7 +164,7 @@
   }
 
   &__title {
-    font-size: 26px;
+    font-size: 2rem;
     font-family: $font-family-serif;
     font-style: italic;
     color: $rich-black;
@@ -110,7 +178,7 @@
   }
 
   &__sub {
-    font-size: 13px;
+    font-size: 1rem;
     color: #777;
     line-height: 1.75;
     margin: 0;
@@ -118,12 +186,14 @@
 
   &__actions {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     flex-wrap: wrap;
     gap: 10px;
   }
 
   &__btn {
-    font-size: 12px;
+    font-size: 0.923rem;
     font-weight: 500;
     padding: 10px 20px;
     border-radius: 20px;
@@ -149,5 +219,49 @@
     grid-template-columns: 1fr;
 
     &__left { min-height: 220px; }
+    &__right { padding: 20px; }
+  }
+}
+
+// ── Keyframes ────────────────────────────────────────────────
+
+@keyframes hero-aurora-1 {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(40px, 50px); }
+  50%       { transform: translate(70px, 15px); }
+  75%       { transform: translate(25px, -25px); }
+}
+
+@keyframes hero-aurora-2 {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(-50px, -40px); }
+  66%      { transform: translate(-15px, 45px); }
+}
+
+@keyframes hero-aurora-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+  50%      { transform: translate(-35px, 35px) scale(1.4); opacity: 0.15; }
+}
+
+@keyframes hero-particle-float {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.9; }
+  85%  { opacity: 0.7; }
+  100% { transform: translateY(-400px) scale(0.3); opacity: 0; }
+}
+
+@keyframes hero-mesh {
+  0%   { background-position: 0% 0%; }
+  25%  { background-position: 100% 0%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-block__blob,
+  .hero-block__particle,
+  .hero-block__left--bg-mesh {
+    animation: none;
   }
 }

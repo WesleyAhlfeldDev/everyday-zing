@@ -1,0 +1,487 @@
+// ============================================================
+// Every Day Zing — Button Component Library
+// 20 named variants using brand color variables
+// Standalone classes — no Bootstrap .btn required
+// ============================================================
+
+// ─────────────────────────────────────────────────────────────
+// Shared base placeholder
+// ─────────────────────────────────────────────────────────────
+%btn-lib {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             0.5em;
+  padding:         0.65em 1.6em;
+  font-family:     $font-family-sans-serif;
+  font-size:       1rem;
+  font-weight:     700;
+  line-height:     1.25;
+  letter-spacing:  0.03em;
+  text-decoration: none;
+  cursor:          pointer;
+  border:          2px solid transparent;
+  position:        relative;
+  overflow:        hidden;
+  user-select:     none;
+  white-space:     nowrap;
+  -webkit-appearance: none;
+  transition:
+    background-color 200ms ease,
+    border-color     200ms ease,
+    color            200ms ease,
+    box-shadow       200ms ease,
+    transform        130ms ease,
+    opacity          200ms ease,
+    filter           200ms ease;
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity:        0.42;
+    cursor:         not-allowed;
+    pointer-events: none;
+  }
+
+  &:focus-visible {
+    outline:        3px solid rgba($joy-pink, 0.45);
+    outline-offset: 3px;
+  }
+}
+
+// Loading keyframe — shared by .btn-lib-loading
+@keyframes btn-lib-spin {
+  to { transform: rotate(360deg); }
+}
+
+// Sweep keyframe — shared by Editorial
+@keyframes btn-lib-sweep {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 1. Solid Primary
+//    Filled background, main CTA. Lifts + color-matched shadow.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-solid {
+  @extend %btn-lib;
+  background-color: $joy-pink;
+  border-color:     $joy-pink;
+  color:            #fff;
+  border-radius:    $border-radius;
+
+  &:hover {
+    transform:  translateY(-3px);
+    box-shadow: 0 10px 28px rgba($joy-pink, 0.45);
+    filter:     brightness(0.9);
+  }
+
+  &:active {
+    transform:  translateY(-1px);
+    box-shadow: 0 4px 10px rgba($joy-pink, 0.35);
+    filter:     brightness(0.85);
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 2. Pill
+//    Fully rounded, solid fill. Scale + lift on hover.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-pill {
+  @extend %btn-lib;
+  background-color: $joy-pink;
+  border-color:     $joy-pink;
+  color:            #fff;
+  border-radius:    $border-radius-pill;
+
+  &:hover {
+    transform:  translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 24px rgba($joy-pink, 0.4);
+    filter:     brightness(0.92);
+  }
+
+  &:active {
+    transform:  scale(0.98);
+    box-shadow: none;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 3. Ghost / Outline
+//    Transparent background, colored border. Subtle fill on hover.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-ghost {
+  @extend %btn-lib;
+  background-color: transparent;
+  border-color:     $joy-pink;
+  color:            $joy-pink;
+  border-radius:    $border-radius;
+
+  &::before {
+    content:    '';
+    position:   absolute;
+    inset:      0;
+    background: $joy-pink;
+    opacity:    0;
+    transition: opacity 200ms ease;
+  }
+
+  &:hover {
+    color:      #fff;
+    box-shadow: 0 4px 14px rgba($joy-pink, 0.3);
+
+    &::before { opacity: 1; }
+  }
+
+  &:active {
+    color:  #fff;
+    filter: brightness(0.9);
+
+    &::before { opacity: 1; }
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 4. Icon + Label
+//    Text with trailing arrow icon that slides right on hover.
+//    HTML: <button class="btn-lib-icon">Label <i class="bi bi-arrow-right"></i></button>
+// ─────────────────────────────────────────────────────────────
+.btn-lib-icon {
+  @extend %btn-lib;
+  background-color: $joy-pink;
+  border-color:     $joy-pink;
+  color:            #fff;
+  border-radius:    $border-radius;
+  padding-right:    1.2em;
+
+  i,
+  .btn-icon {
+    display:    inline-block;
+    transition: transform 220ms ease;
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+
+    i,
+    .btn-icon { transform: translateX(5px); }
+  }
+
+  &:active { filter: brightness(0.85); }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 5. Brutalist
+//    No border-radius, hard offset box-shadow. Shadow shifts
+//    on hover; button presses into shadow on active.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-brutal {
+  @extend %btn-lib;
+  background-color: $joy-pink;
+  border-color:     $rich-black;
+  color:            #fff;
+  border-radius:    0;
+  border-width:     2px;
+  box-shadow:       4px 4px 0 $rich-black;
+  transition:       box-shadow 100ms ease, transform 100ms ease, background-color 150ms ease;
+
+  &:hover {
+    background-color: $bold-purple;
+    box-shadow:       6px 6px 0 $rich-black;
+    transform:        translate(-2px, -2px);
+  }
+
+  &:active {
+    transform:  translate(4px, 4px);
+    box-shadow: 0 0 0 $rich-black;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 7. Gradient Pill
+//    Fully rounded, linear gradient fill. Lightens on hover
+//    with a matching glow shadow.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-gradient-pill {
+  @extend %btn-lib;
+  background:    linear-gradient(135deg, $joy-pink 0%, $bold-purple 100%);
+  border-color:  transparent;
+  color:         #fff;
+  border-radius: $border-radius-pill;
+
+  &:hover {
+    filter:     brightness(1.1);
+    box-shadow: 0 8px 28px rgba($joy-pink, 0.45);
+    transform:  translateY(-2px);
+  }
+
+  &:active {
+    filter:     brightness(0.95);
+    transform:  translateY(0);
+    box-shadow: none;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 8. Gradient Rounded
+//    Same gradient fill, standard border-radius.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-gradient-rounded {
+  @extend %btn-lib;
+  background:    linear-gradient(135deg, $joy-pink 0%, $bold-purple 100%);
+  border-color:  transparent;
+  color:         #fff;
+  border-radius: $border-radius;
+
+  &:hover {
+    filter:     brightness(1.1);
+    box-shadow: 0 8px 24px rgba($joy-pink, 0.4);
+    transform:  translateY(-2px);
+  }
+
+  &:active {
+    filter:     brightness(0.95);
+    transform:  translateY(0);
+    box-shadow: none;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 8. Editorial / Serif
+//     Italic serif font, top + bottom border only (no sides).
+//     Horizontal fill sweep animation on hover via ::before.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-editorial {
+  @extend %btn-lib;
+  font-family:      Georgia, 'Times New Roman', serif;
+  font-style:       italic;
+  font-weight:      400;
+  font-size:        1.05rem;
+  letter-spacing:   0.04em;
+  background-color: transparent;
+  border:           none;
+  border-top:       2px solid $rich-black;
+  border-bottom:    2px solid $rich-black;
+  color:            $rich-black;
+  border-radius:    0;
+  padding-left:     0.8em;
+  padding-right:    0.8em;
+  overflow:         visible;
+
+  &::before {
+    content:          '';
+    position:         absolute;
+    inset:            0;
+    background-color: $joy-pink;
+    transform:        scaleX(0);
+    transform-origin: left center;
+    transition:       transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index:          0;
+  }
+
+  span,
+  i { position: relative; z-index: 1; }
+
+  &:hover {
+    color:         #fff;
+    border-color:  $joy-pink;
+
+    &::before { transform: scaleX(1); }
+  }
+
+  &:active { filter: brightness(0.85); }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 9. Split / Compound
+//     Main action + joined dropdown arrow. Shared border.
+//     HTML:
+//       <div class="btn-lib-compound">
+//         <button class="btn-lib-compound__main">Action</button>
+//         <button class="btn-lib-compound__split"><i class="bi bi-chevron-down"></i></button>
+//       </div>
+// ─────────────────────────────────────────────────────────────
+.btn-lib-compound {
+  display:        inline-flex;
+  align-items:    stretch;
+  border-radius:  $border-radius;
+  overflow:       hidden;
+  box-shadow:     0 2px 8px rgba(0, 0, 0, 0.12);
+
+  &__main,
+  &__split {
+    @extend %btn-lib;
+    background-color: $joy-pink;
+    border-color:     transparent;
+    color:            #fff;
+    border-radius:    0;
+    overflow:         visible;
+
+    &:hover { filter: brightness(0.9); }
+    &:active { filter: brightness(0.82); }
+  }
+
+  &__main {
+    flex:         1;
+    border-right: 1px solid rgba(#fff, 0.25);
+  }
+
+  &__split {
+    padding-left:  0.8em;
+    padding-right: 0.8em;
+    font-size:     0.85em;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 13. Solid Secondary
+//     Same lift behavior as Solid Primary, secondary brand color.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-solid-secondary {
+  @extend %btn-lib;
+  background-color: $rich-black;
+  border-color:     $rich-black;
+  color:            #fff;
+  border-radius:    $border-radius;
+
+  &:hover {
+    transform:  translateY(-3px);
+    box-shadow: 0 10px 28px rgba($rich-black, 0.35);
+    filter:     brightness(1.2);
+  }
+
+  &:active {
+    transform:  translateY(-1px);
+    box-shadow: 0 4px 10px rgba($rich-black, 0.25);
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 14. Text Underline
+//     No background or border. Underline expands left → right on hover.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-text {
+  @extend %btn-lib;
+  background-color:    transparent;
+  border:              none;
+  color:               $joy-pink;
+  padding-left:        0;
+  padding-right:       0;
+  border-radius:       0;
+  overflow:            visible;
+  background-image:    linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-size:     25% 2px;
+  background-repeat:   no-repeat;
+  transition:          background-size 280ms ease, opacity 150ms ease;
+
+  &:hover {
+    background-size: 100% 2px;
+  }
+
+  &:active { opacity: 0.7; }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 13. Glassmorphism
+//     Frosted-glass: backdrop-blur, semi-transparent bg, light border.
+//     Works best placed over a coloured or image background.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-glass {
+  @extend %btn-lib;
+  background-color: rgba($joy-pink, 0.12);
+  border-color:     rgba($joy-pink, 0.35);
+  color:            $joy-pink;
+  border-radius:    $border-radius;
+  backdrop-filter:  blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:       0 4px 16px rgba(0, 0, 0, 0.08);
+
+  &:hover {
+    background-color: rgba($joy-pink, 0.22);
+    border-color:     rgba($joy-pink, 0.55);
+    box-shadow:       0 8px 28px rgba($joy-pink, 0.2);
+    transform:        translateY(-2px);
+  }
+
+  &:active {
+    background-color: rgba($joy-pink, 0.08);
+    transform:        translateY(0);
+    box-shadow:       none;
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 19. Solid with Accent Bar
+//     Solid fill. A thin accent bar slides in along the bottom on hover.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-accent-bar {
+  @extend %btn-lib;
+  background-color: $rich-black;
+  border:           none;
+  color:            #fff;
+  border-radius:    $border-radius;
+
+  &::after {
+    content:          '';
+    position:         absolute;
+    bottom:           0;
+    left:             0;
+    width:            100%;
+    height:           3px;
+    background-color: $joy-pink;
+    transform:        scaleX(0);
+    transform-origin: left center;
+    transition:       transform 240ms ease;
+  }
+
+  &:hover {
+    filter: brightness(1.15);
+
+    &::after { transform: scaleX(1); }
+  }
+
+  &:active {
+    filter: brightness(0.9);
+  }
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// 20. Outline Pill
+//     Fully rounded, outlined (no fill). Colored border + text.
+//     Soft fill appears on hover.
+// ─────────────────────────────────────────────────────────────
+.btn-lib-outline-pill {
+  @extend %btn-lib;
+  background-color: transparent;
+  border-color:     $joy-pink;
+  color:            $joy-pink;
+  border-radius:    $border-radius-pill;
+
+  &:hover {
+    background-color: $joy-pink;
+    color:            #fff;
+    box-shadow:       0 6px 20px rgba($joy-pink, 0.35);
+    transform:        translateY(-1px);
+  }
+
+  &:active {
+    transform:  translateY(0);
+    box-shadow: none;
+    filter:     brightness(0.9);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ahlfeld-solutions/buttons",
+  "title": "Buttons",
+  "description": "Reusable button group. Registered via acf_register_block_type() — skip auto-registration.",
+  "category": "ahlfeld-solutions",
+  "_acfManaged": true
+}

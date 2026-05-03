@@ -11,7 +11,11 @@
             "instructions": "Each item scrolls across the ticker bar. Add as many as you like.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "layout": "table",
             "pagination": 0,
             "min": 1,
@@ -29,7 +33,11 @@
                     "instructions": "",
                     "required": 1,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
                     "default_value": "",
                     "maxlength": 60,
                     "placeholder": "e.g. Food",
@@ -38,6 +46,54 @@
                     "parent_repeater": "field_6627a020b3c4e"
                 }
             ]
+        },
+        {
+            "key": "field_6627a023b3c4e",
+            "label": "Item Padding (px)",
+            "name": "marquee_item_padding",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Space on each side of every item, and between the dot and the next item. Default: 16.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": 16,
+            "min": 4,
+            "max": 80,
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": "px"
+        },
+        {
+            "key": "field_6627a022b3c4e",
+            "label": "Speed (seconds)",
+            "name": "marquee_speed",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Duration of one full scroll cycle. Lower = faster, higher = slower. Default: 20.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": 20,
+            "min": 5,
+            "max": 120,
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": "s"
         }
     ],
     "location": [
@@ -45,7 +101,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "everyday-zing/marquee"
+                "value": "everyday-zing\/marquee"
             }
         ]
     ],
@@ -58,5 +114,8 @@
     "active": true,
     "description": "Fields for the scrolling marquee ticker block.",
     "show_in_rest": 0,
-    "modified": 1745020800
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1777416643
 }

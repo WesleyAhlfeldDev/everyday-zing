@@ -4,7 +4,9 @@ $title_prefix  = get_field( 'bio_title_prefix' ) ?: 'I believe everyday life des
 $title_em      = get_field( 'bio_title_em' )     ?: 'zing';
 $body          = get_field( 'bio_body' );
 $pills         = get_field( 'bio_pills' );
-$cta           = get_field( 'bio_cta' );
+$ig_handle     = get_field( 'ig_handle' )     ?: 'caroljoyzing';
+$ig_handle_url = get_field( 'ig_handle_url' ) ?: 'https://instagram.com/caroljoyzing';
+$ig_shortcode  = get_field( 'ig_shortcode' )  ?: '[instagram-feed]';
 
 $anchor = ! empty( $block['anchor'] ) ? ' id="' . esc_attr( $block['anchor'] ) . '"' : '';
 
@@ -41,12 +43,46 @@ if ( ! $pills ) $pills = $default_pills;
 		</div>
 	<?php endif; ?>
 
-	<?php if ( $cta ) : ?>
-		<a href="<?php echo esc_url( $cta['url'] ); ?>"
-			class="bio-block__cta"
-			<?php echo $cta['target'] ? 'target="' . esc_attr( $cta['target'] ) . '"' : ''; ?>>
-			<?php echo esc_html( $cta['title'] ); ?>
-		</a>
+	<?php if ( have_rows( 'buttons' ) ) : ?>
+	<div class="bio-block__actions">
+		<?php while ( have_rows( 'buttons' ) ) : the_row();
+			$link         = get_sub_field( 'button_link' );
+			$style        = get_sub_field( 'button_style' );
+			$color        = get_sub_field( 'button_color' );
+			$icon         = get_sub_field( 'button_icon' );
+			$custom_class = get_sub_field( 'button_custom_class' );
+
+			if ( empty( $link['url'] ) ) { continue; }
+
+			if ( $style ) {
+				$classes = implode( ' ', array_filter( [ $style, $custom_class ] ) );
+			} else {
+				$classes = implode( ' ', array_filter( [ 'btn', $color ?: 'btn-joy-pink', $custom_class ] ) );
+			}
+			$target_rel = ! empty( $link['target'] ) ? ' target="_blank" rel="noopener noreferrer"' : '';
+			$icon_html  = $icon ? ' <i class="' . esc_attr( $icon ) . '" aria-hidden="true"></i>' : '';
+			$label      = $style
+				? '<span>' . esc_html( $link['title'] ) . '</span>'
+				: esc_html( $link['title'] );
+		?>
+			<a href="<?php echo esc_url( $link['url'] ); ?>" class="<?php echo esc_attr( $classes ); ?>"<?php echo $target_rel; ?>>
+				<?php echo $label; ?><?php echo $icon_html; ?>
+			</a>
+		<?php endwhile; ?>
+	</div>
 	<?php endif; ?>
+
+
+	<div class="ig-block__header">
+		<h2 class="ig-block__heading"><?php esc_html_e( 'Follow along', 'everyday-zing-theme' ); ?></h2>
+		<a class="ig-block__handle" href="<?php echo esc_url( $ig_handle_url ); ?>" target="_blank" rel="noopener noreferrer">
+			<span class="ig-block__ig-logo"></span>
+			@<?php echo esc_html( ltrim( $ig_handle, '@' ) ); ?>
+		</a>
+	</div>
+
+	<div class="ig-block__feed">
+		<?php echo do_shortcode( $ig_shortcode ); ?>
+	</div>
 
 </section>

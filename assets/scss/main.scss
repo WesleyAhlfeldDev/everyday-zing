@@ -31,6 +31,8 @@
 @import 'base/typography';
 @import 'layout/header';
 @import 'layout/footer';
+@import 'components/buttons';
+@import 'components/button-library';
 @import 'components/cards';
 
 // 4. Blocks
@@ -39,5 +41,4 @@
 @import '../../blocks/category-filter/style';
 @import '../../blocks/blog-feed/style';
 @import '../../blocks/bio/style';
-@import '../../blocks/instagram-feed/style';
 @import '../../blocks/newsletter/style';

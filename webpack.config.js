@@ -14,8 +14,10 @@ module.exports = {
 		'blocks/category-filter/index': path.resolve( __dirname, 'blocks/category-filter/index.js' ),
 		'blocks/blog-feed/index':      path.resolve( __dirname, 'blocks/blog-feed/index.js' ),
 		'blocks/bio/index':            path.resolve( __dirname, 'blocks/bio/index.js' ),
-		'blocks/instagram-feed/index': path.resolve( __dirname, 'blocks/instagram-feed/index.js' ),
 		'blocks/newsletter/index':     path.resolve( __dirname, 'blocks/newsletter/index.js' ),
+		'blocks/section/index':        path.resolve( __dirname, 'blocks/section/index.js' ),
+		'blocks/row/index':            path.resolve( __dirname, 'blocks/row/index.js' ),
+		'blocks/column/index':         path.resolve( __dirname, 'blocks/column/index.js' ),
 	},
 
 	output: {
@@ -65,6 +67,7 @@ module.exports = {
 	externals: {
 		'@wordpress/blocks':       [ 'wp', 'blocks' ],
 		'@wordpress/block-editor': [ 'wp', 'blockEditor' ],
+		'@wordpress/components':   [ 'wp', 'components' ],
 		'@wordpress/element':      [ 'wp', 'element' ],
 		'@wordpress/i18n':         [ 'wp', 'i18n' ],
 		react:                     'React',

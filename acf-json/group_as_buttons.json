@@ -1,110 +1,9 @@
 {
-    "key": "group_6627a004b5c6a",
-    "title": "Bio Block Fields",
+    "key": "group_as_buttons",
+    "title": "Buttons",
     "fields": [
         {
-            "key": "field_6627a040b5c6a",
-            "label": "Eyebrow",
-            "name": "bio_eyebrow",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Small uppercase label above the title. e.g. \"A little about me\"",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
-            "default_value": "A little about me",
-            "maxlength": 50,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6627a041b5c6a",
-            "label": "Title — before emphasis",
-            "name": "bio_title_prefix",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "First part of the heading before the highlighted word.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
-            "default_value": "I believe everyday life deserves a little",
-            "maxlength": 80,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6627a042b5c6a",
-            "label": "Title — emphasis word",
-            "name": "bio_title_em",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "The highlighted lime-green word at the end of the heading.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
-            "default_value": "zing",
-            "maxlength": 30,
-            "placeholder": "zing",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_6627a043b5c6a",
-            "label": "Body Text",
-            "name": "bio_body",
-            "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "Your bio paragraph. Keep it conversational.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
-            "default_value": "",
-            "tabs": "text",
-            "toolbar": "basic",
-            "media_upload": 0,
-            "delay": 0
-        },
-        {
-            "key": "field_6627a044b5c6a",
-            "label": "Topic Pills",
-            "name": "bio_pills",
-            "aria-label": "",
-            "type": "repeater",
-            "instructions": "Short topic tags shown as rounded pills. Include an emoji at the start.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
-            "layout": "table",
-            "pagination": 0,
-            "min": 0,
-            "max": 6,
-            "collapsed": "",
-            "button_label": "Add Pill",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_6627a045b5c6a",
-                    "label": "Pill Text",
-                    "name": "pill_text",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": { "width": "", "class": "", "id": "" },
-                    "default_value": "",
-                    "maxlength": 50,
-                    "placeholder": "🍽️ food that feeds you",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_6627a044b5c6a"
-                }
-            ]
-        },
-        {
-            "key": "field_6627a047b5c6a",
+            "key": "field_as_buttons",
             "label": "Buttons",
             "name": "buttons",
             "aria-label": "",
@@ -112,8 +11,12 @@
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
-            "collapsed": "field_6627a048b5c6a",
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_as_btn_link",
             "min": 0,
             "max": 0,
             "layout": "block",
@@ -121,7 +24,7 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_6627a048b5c6a",
+                    "key": "field_as_btn_link",
                     "label": "Link",
                     "name": "button_link",
                     "aria-label": "",
@@ -129,14 +32,18 @@
                     "instructions": "Sets the button label, URL, and whether it opens in a new tab.",
                     "required": 1,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "100", "class": "", "id": "" },
+                    "wrapper": {
+                        "width": "100",
+                        "class": "",
+                        "id": ""
+                    },
                     "relevanssi_exclude": 0,
                     "return_format": "array",
                     "allow_in_bindings": 1,
-                    "parent_repeater": "field_6627a047b5c6a"
+                    "parent_repeater": "field_as_buttons"
                 },
                 {
-                    "key": "field_6627a049b5c6a",
+                    "key": "field_as_btn_style",
                     "label": "Style",
                     "name": "button_style",
                     "aria-label": "",
@@ -144,7 +51,11 @@
                     "instructions": "Button shape and interaction style. Leave blank to use a standard Bootstrap button with a Color selected below.",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "33.33", "class": "", "id": "" },
+                    "wrapper": {
+                        "width": "33.33",
+                        "class": "",
+                        "id": ""
+                    },
                     "relevanssi_exclude": 0,
                     "choices": {
                         "btn-lib-solid": "Solid — Filled Primary",
@@ -171,18 +82,22 @@
                     "placeholder": "",
                     "create_options": 0,
                     "save_options": 0,
-                    "parent_repeater": "field_6627a047b5c6a"
+                    "parent_repeater": "field_as_buttons"
                 },
                 {
-                    "key": "field_6627a04ab5c6a",
+                    "key": "field_as_btn_color",
                     "label": "Color",
                     "name": "button_color",
                     "aria-label": "",
                     "type": "select",
-                    "instructions": "Brand color. When no Style is selected this sets the full Bootstrap button color.",
+                    "instructions": "Brand color. When no Style is selected this sets the full Bootstrap button color. When a Style is selected this can be left blank (styles have their own built-in colors).",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "33.33", "class": "", "id": "" },
+                    "wrapper": {
+                        "width": "33.33",
+                        "class": "",
+                        "id": ""
+                    },
                     "relevanssi_exclude": 0,
                     "choices": {
                         "btn-joy-pink": "Joy Pink",
@@ -210,18 +125,22 @@
                     "placeholder": "",
                     "create_options": 0,
                     "save_options": 0,
-                    "parent_repeater": "field_6627a047b5c6a"
+                    "parent_repeater": "field_as_buttons"
                 },
                 {
-                    "key": "field_6627a04bb5c6a",
+                    "key": "field_as_btn_icon",
                     "label": "Icon",
                     "name": "button_icon",
                     "aria-label": "",
                     "type": "select",
-                    "instructions": "Bootstrap Icon class appended after the button label.",
+                    "instructions": "Bootstrap Icon class appended after the button label. Requires Bootstrap Icons to be loaded.",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "33.33", "class": "", "id": "" },
+                    "wrapper": {
+                        "width": "33.33",
+                        "class": "",
+                        "id": ""
+                    },
                     "relevanssi_exclude": 0,
                     "choices": {
                         "bi bi-arrow-right": "Arrow Right →",
@@ -251,18 +170,22 @@
                     "placeholder": "",
                     "create_options": 0,
                     "save_options": 0,
-                    "parent_repeater": "field_6627a047b5c6a"
+                    "parent_repeater": "field_as_buttons"
                 },
                 {
-                    "key": "field_6627a04cb5c6a",
+                    "key": "field_as_btn_custom_class",
                     "label": "Custom Class",
                     "name": "button_custom_class",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "Extra CSS classes added to the <a> element.",
+                    "instructions": "Extra CSS classes added to the <a> element, e.g. btn-lg rounded-pill fw-bold.",
                     "required": 0,
                     "conditional_logic": 0,
-                    "wrapper": { "width": "100", "class": "", "id": "" },
+                    "wrapper": {
+                        "width": "100",
+                        "class": "",
+                        "id": ""
+                    },
                     "relevanssi_exclude": 0,
                     "default_value": "",
                     "maxlength": "",
@@ -270,54 +193,9 @@
                     "placeholder": "e.g. btn-lg rounded-pill",
                     "prepend": "",
                     "append": "",
-                    "parent_repeater": "field_6627a047b5c6a"
+                    "parent_repeater": "field_as_buttons"
                 }
             ]
-        },
-        {
-            "key": "field_6627a04db5c6a",
-            "label": "Instagram Handle",
-            "name": "ig_handle",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Username without the @ symbol. e.g. \"caroljoyzing\"",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
-            "default_value": "caroljoyzing",
-            "maxlength": 60,
-            "placeholder": "caroljoyzing",
-            "prepend": "@",
-            "append": ""
-        },
-        {
-            "key": "field_6627a04eb5c6a",
-            "label": "Instagram Profile URL",
-            "name": "ig_handle_url",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Full URL to your Instagram profile.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
-            "default_value": "https:\/\/instagram.com\/caroljoyzing",
-            "placeholder": "https:\/\/instagram.com\/yourhandle"
-        },
-        {
-            "key": "field_6627a04fb5c6a",
-            "label": "Feed Shortcode",
-            "name": "ig_shortcode",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Paste the shortcode from your Instagram feed plugin.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
-            "default_value": "[instagram-feed]",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -325,7 +203,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "everyday-zing/bio"
+                "value": "acf\/buttons"
             }
         ]
     ],
@@ -336,7 +214,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Fields for the Bio / About section block.",
+    "description": "Reusable button repeater. Attach to additional post types or blocks via ACF → Field Groups.",
     "show_in_rest": 0,
-    "modified": 1777852800
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1776883547
 }

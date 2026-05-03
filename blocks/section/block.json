@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ahlfeld-solutions/section",
+  "title": "Section",
+  "description": "Bootstrap section wrapper with configurable container, spacing, and color classes.",
+  "category": "ahlfeld-solutions",
+  "icon": "layout",
+  "keywords": ["section", "container", "layout", "wrapper"],
+  "supports": {
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "tag":            { "type": "string",  "default": "section" },
+    "container":      { "type": "string",  "default": "container" },
+    "paddingY":       { "type": "string",  "default": "" },
+    "paddingX":       { "type": "string",  "default": "" },
+    "marginY":        { "type": "string",  "default": "" },
+    "background":     { "type": "string",  "default": "" },
+    "textColor":      { "type": "string",  "default": "" },
+    "useCustomSpacing":    { "type": "boolean", "default": false },
+    "customPaddingTop":    { "type": "string", "default": "" },
+    "customPaddingRight":  { "type": "string", "default": "" },
+    "customPaddingBottom": { "type": "string", "default": "" },
+    "customPaddingLeft":   { "type": "string", "default": "" },
+    "customMarginTop":     { "type": "string", "default": "" },
+    "customMarginBottom":  { "type": "string", "default": "" },
+    "backgroundImageUrl":  { "type": "string",  "default": "" },
+    "backgroundImageId":   { "type": "integer", "default": 0 },
+    "backgroundSize":      { "type": "string",  "default": "cover" },
+    "backgroundPosition":  { "type": "string",  "default": "center center" },
+    "backgroundRepeat":    { "type": "string",  "default": "no-repeat" },
+    "overlayType":         { "type": "string",  "default": "" },
+    "overlayColor":        { "type": "string",  "default": "" },
+    "overlayGradient":     { "type": "string",  "default": "" },
+    "overlayOpacity":      { "type": "integer", "default": 50 }
+  },
+  "render": "file:./render.php",
+  "editorScript": "file:../../assets/dist/blocks/section/index.js"
+}

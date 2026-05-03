@@ -2,11 +2,11 @@
 
 .bio-block {
   background: $rich-black;
-  padding: 44px 28px;
+  padding: 80px 28px;
   text-align: center;
 
   &__eyebrow {
-    font-size: 10px;
+    font-size: 0.769rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #555;
@@ -16,21 +16,21 @@
   &__title {
     font-family: $font-family-serif;
     font-style: italic;
-    font-size: 22px;
+    font-size: 1.692rem;
     color: #fff;
     line-height: 1.4;
     margin-bottom: 14px;
-    max-width: 460px;
+    max-width: 600px;
     margin-inline: auto;
 
     em { color: $zing-lime; font-style: italic; }
   }
 
   &__body {
-    font-size: 13px;
+    font-size: 1rem;
     color: #888;
     line-height: 1.8;
-    max-width: 420px;
+    max-width: 600px;
     margin: 0 auto 18px;
   }
 
@@ -43,27 +43,65 @@
   }
 
   &__pill {
-    font-size: 11px;
+    font-size: 0.846rem;
     color: #888;
     padding: 5px 13px;
     border: 0.5px solid #333;
     border-radius: 20px;
   }
 
-  &__cta {
-    display: inline-block;
-    background: transparent;
-    color: $zing-lime;
-    font-size: 12px;
-    padding: 9px 22px;
-    border-radius: 20px;
-    border: 0.5px solid $zing-lime;
-    text-decoration: none;
-    transition: background $transition-base, color $transition-base;
+  &__actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
 
-    &:hover {
-      background: $zing-lime;
-      color: #3A5010;
-    }
+.ig-block {
+  background: $rich-black;
+  padding: 30px 0 26px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    max-width: 1320px;
+    margin-inline: auto;
+  }
+
+  &__heading {
+    font-family: $font-family-serif;
+    font-style: italic;
+    font-size: 1.385rem;
+    color: #fff;
+  }
+
+  &__handle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.846rem;
+    color: $zing-lime;
+    text-decoration: none;
+    transition: opacity $transition-base;
+
+    &:hover { opacity: 0.8; color: $zing-lime; }
+  }
+
+  &__ig-logo {
+    display: block;
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    background: $joy-pink;
+    flex-shrink: 0;
+  }
+
+  &__feed {
+    padding: 0 28px;
   }
 }

@@ -11,7 +11,11 @@
             "instructions": "Small italic line above the name. e.g. \"hey hello, I'm\"",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "default_value": "hey hello, I'm",
             "maxlength": "",
             "placeholder": "hey hello, I'm",
@@ -27,7 +31,11 @@
             "instructions": "Displayed in burgundy italic. e.g. \"Carol Joy\"",
             "required": 1,
             "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "Carol Joy",
             "maxlength": "",
             "placeholder": "Carol Joy",
@@ -43,7 +51,11 @@
             "instructions": "Text after the name. e.g. \"finding the zing in everyday life\"",
             "required": 1,
             "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "finding the zing in everyday life",
             "maxlength": "",
             "placeholder": "",
@@ -55,16 +67,22 @@
             "label": "Subtitle",
             "name": "hero_subtitle",
             "aria-label": "",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "Short paragraph beneath the title.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
             "default_value": "Real recipes, honest money talk, and adventures you can actually afford. Welcome to my corner of the internet.",
-            "rows": 3,
-            "maxlength": "",
-            "placeholder": "",
-            "new_lines": "br"
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
         },
         {
             "key": "field_6627a014b2c3d",
@@ -75,7 +93,11 @@
             "instructions": "Portrait photo for the left panel.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "", "class": "", "id": "" },
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "library": "all",
             "min_width": "",
@@ -88,28 +110,392 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_6627a015b2c3d",
-            "label": "Primary CTA",
-            "name": "hero_cta_primary",
+            "key": "field_6627a01db2c3d",
+            "label": "Photo Position",
+            "name": "hero_photo_position",
             "aria-label": "",
-            "type": "link",
-            "instructions": "Main dark button. e.g. \"Start exploring\"",
+            "type": "select",
+            "instructions": "Controls which part of the photo stays visible when cropped.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
-            "return_format": "array"
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "center center": "Center (default)",
+                "top center": "Top",
+                "bottom center": "Bottom",
+                "center left": "Left",
+                "center right": "Right",
+                "top left": "Top Left",
+                "top right": "Top Right",
+                "bottom left": "Bottom Left",
+                "bottom right": "Bottom Right",
+                "custom": "Custom"
+            },
+            "default_value": "center center",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
-            "key": "field_6627a016b2c3d",
-            "label": "Ghost CTA",
-            "name": "hero_cta_ghost",
+            "key": "field_6627a01eb2c3d",
+            "label": "Photo Position X (%)",
+            "name": "hero_photo_position_x",
             "aria-label": "",
-            "type": "link",
-            "instructions": "Outlined secondary button. e.g. \"Read my story\"",
+            "type": "number",
+            "instructions": "Horizontal focus point. 0 = far left, 50 = center, 100 = far right.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6627a01db2c3d",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 50,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "prepend": "",
+            "append": "%",
+            "placeholder": ""
+        },
+        {
+            "key": "field_6627a01fb2c3d",
+            "label": "Photo Position Y (%)",
+            "name": "hero_photo_position_y",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Vertical focus point. 0 = top, 50 = center, 100 = bottom.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6627a01db2c3d",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 50,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "prepend": "",
+            "append": "%",
+            "placeholder": ""
+        },
+        {
+            "key": "field_6627a021b2c3d",
+            "label": "Photo Size",
+            "name": "hero_photo_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Controls the maximum height of the photo.",
             "required": 0,
             "conditional_logic": 0,
-            "wrapper": { "width": "50", "class": "", "id": "" },
-            "return_format": "array"
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "sm": "Small",
+                "md": "Medium",
+                "lg": "Large (default)",
+                "xl": "Extra Large",
+                "custom": "Custom"
+            },
+            "default_value": "lg",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_6627a022b2c3d",
+            "label": "Photo Max Height (px)",
+            "name": "hero_photo_size_custom",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Maximum height of the photo in pixels.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6627a021b2c3d",
+                        "operator": "==",
+                        "value": "custom"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 400,
+            "min": 100,
+            "max": 800,
+            "step": 10,
+            "prepend": "",
+            "append": "px",
+            "placeholder": ""
+        },
+        {
+            "key": "field_6627a020b2c3d",
+            "label": "Background Style",
+            "name": "hero_bg_style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Animation style for the dark left panel.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "none": "None — solid dark background",
+                "aurora": "Aurora — glowing colour orbs",
+                "particles": "Particles — floating colour dots",
+                "mesh": "Mesh — shifting gradient"
+            },
+            "default_value": "none",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_6627a017b2c3d",
+            "label": "Buttons",
+            "name": "buttons",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_6627a018b2c3d",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add Button",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6627a018b2c3d",
+                    "label": "Link",
+                    "name": "button_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Sets the button label, URL, and whether it opens in a new tab.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "return_format": "array",
+                    "allow_in_bindings": 1,
+                    "parent_repeater": "field_6627a017b2c3d"
+                },
+                {
+                    "key": "field_6627a019b2c3d",
+                    "label": "Style",
+                    "name": "button_style",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Button shape and interaction style. Leave blank to use a standard Bootstrap button with a Color selected below.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33.33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "choices": {
+                        "btn-lib-solid": "Solid — Filled Primary",
+                        "btn-lib-pill": "Pill — Rounded Solid",
+                        "btn-lib-ghost": "Ghost — Outlined",
+                        "btn-lib-icon": "Icon — Animated Arrow",
+                        "btn-lib-brutal": "Brutalist — Hard Shadow",
+                        "btn-lib-gradient-pill": "Gradient — Pill",
+                        "btn-lib-gradient-rounded": "Gradient — Rounded",
+                        "btn-lib-editorial": "Editorial — Serif Italic",
+                        "btn-lib-solid-secondary": "Solid — Dark (Secondary)",
+                        "btn-lib-text": "Text — Underline Link",
+                        "btn-lib-glass": "Glassmorphism",
+                        "btn-lib-accent-bar": "Accent Bar",
+                        "btn-lib-outline-pill": "Outline — Pill"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "allow_in_bindings": 1,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_6627a017b2c3d"
+                },
+                {
+                    "key": "field_6627a01ab2c3d",
+                    "label": "Color",
+                    "name": "button_color",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Brand color. When no Style is selected this sets the full Bootstrap button color. When a Style is selected this can be left blank (styles have their own built-in colors).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33.33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "choices": {
+                        "btn-joy-pink": "Joy Pink",
+                        "btn-bold-purple": "Bold Purple",
+                        "btn-money-teal": "Money Teal",
+                        "btn-warm-coral": "Warm Coral",
+                        "btn-burgundy-script": "Burgundy Script",
+                        "btn-zing-lime": "Zing Lime",
+                        "btn-warm-cream": "Warm Cream",
+                        "btn-outline-joy-pink": "Outline — Joy Pink",
+                        "btn-outline-bold-purple": "Outline — Bold Purple",
+                        "btn-outline-money-teal": "Outline — Money Teal",
+                        "btn-outline-warm-coral": "Outline — Warm Coral",
+                        "btn-outline-burgundy-script": "Outline — Burgundy Script",
+                        "btn-outline-zing-lime": "Outline — Zing Lime",
+                        "btn-outline-warm-cream": "Outline — Warm Cream"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "allow_in_bindings": 1,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_6627a017b2c3d"
+                },
+                {
+                    "key": "field_6627a01bb2c3d",
+                    "label": "Icon",
+                    "name": "button_icon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Bootstrap Icon class appended after the button label. Requires Bootstrap Icons to be loaded.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33.33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "choices": {
+                        "bi bi-arrow-right": "Arrow Right →",
+                        "bi bi-arrow-left": "Arrow Left ←",
+                        "bi bi-chevron-right": "Chevron Right ›",
+                        "bi bi-chevron-left": "Chevron Left ‹",
+                        "bi bi-download": "Download ↓",
+                        "bi bi-box-arrow-up-right": "External Link ↗",
+                        "bi bi-plus-lg": "Plus +",
+                        "bi bi-check-lg": "Checkmark ✓",
+                        "bi bi-play-fill": "Play ▶",
+                        "bi bi-star-fill": "Star ★",
+                        "bi bi-heart-fill": "Heart ♥",
+                        "bi bi-envelope": "Email ✉",
+                        "bi bi-telephone": "Phone ☎",
+                        "bi bi-cart": "Cart 🛒",
+                        "bi bi-search": "Search 🔍",
+                        "bi bi-share": "Share"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "allow_in_bindings": 1,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_6627a017b2c3d"
+                },
+                {
+                    "key": "field_6627a01cb2c3d",
+                    "label": "Custom Class",
+                    "name": "button_custom_class",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Extra CSS classes added to the <a> element, e.g. btn-lg rounded-pill fw-bold.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "",
+                        "id": ""
+                    },
+                    "relevanssi_exclude": 0,
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "e.g. btn-lg rounded-pill",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6627a017b2c3d"
+                }
+            ]
         }
     ],
     "location": [
@@ -117,7 +503,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "everyday-zing/hero"
+                "value": "everyday-zing\/hero"
             }
         ]
     ],
@@ -130,5 +516,8 @@
     "active": true,
     "description": "Fields for the Hero split-layout block.",
     "show_in_rest": 0,
-    "modified": 1745020800
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1777419568
 }

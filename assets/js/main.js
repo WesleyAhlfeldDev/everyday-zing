@@ -17,12 +17,22 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		} );
 
 		document.addEventListener( 'click', ( e ) => {
-			if ( nav.classList.contains( 'is-open' ) && ! nav.contains( e.target ) && e.target !== toggle ) {
+			if ( nav.classList.contains( 'is-open' ) && ! nav.contains( e.target ) && ! toggle.contains( e.target ) ) {
 				nav.classList.remove( 'is-open' );
 				toggle.setAttribute( 'aria-expanded', 'false' );
 			}
 		} );
 	}
+
+	// Mobile submenu toggles
+	document.querySelectorAll( '.site-header__nav .menu-item-has-children > a' ).forEach( ( link ) => {
+		link.addEventListener( 'click', ( e ) => {
+			if ( window.innerWidth <= 768 ) {
+				e.preventDefault();
+				link.closest( 'li' ).classList.toggle( 'is-open' );
+			}
+		} );
+	} );
 
 	// Instagram carousel dot indicators
 	const track = document.getElementById( 'ig-track' );

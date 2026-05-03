@@ -28,14 +28,14 @@
     display: block;
     font-family: $font-family-serif;
     font-style: italic;
-    font-size: 20px;
+    font-size: 1.538rem;
     color: #fff;
     line-height: 1;
   }
 
   &__logo-sub {
     display: block;
-    font-size: 8px;
+    font-size: 0.615rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #555;
@@ -44,14 +44,14 @@
   }
 
   &__tagline {
-    font-size: 12px;
+    font-size: 0.923rem;
     color: #555;
     line-height: 1.6;
     margin: 0;
   }
 
   &__col-label {
-    font-size: 10px;
+    font-size: 0.769rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #555;
@@ -67,7 +67,7 @@
     gap: 8px;
 
     a {
-      font-size: 12px;
+      font-size: 0.923rem;
       color: #888;
       text-decoration: none;
       transition: color $transition-base;
@@ -81,7 +81,7 @@
     margin-inline: auto;
     border-top: 0.5px solid #2A2A2A;
     padding-top: 14px;
-    font-size: 11px;
+    font-size: 0.846rem;
     color: #444;
     display: flex;
     justify-content: space-between;

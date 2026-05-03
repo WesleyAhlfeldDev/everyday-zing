@@ -15,14 +15,16 @@
 <header class="site-header" role="banner">
 	<div class="site-header__inner">
 
-		<a class="site-header__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-			<?php if ( has_custom_logo() ) : ?>
+		<?php if ( has_custom_logo() ) : ?>
+			<div class="site-header__brand">
 				<?php the_custom_logo(); ?>
-			<?php else : ?>
+			</div>
+		<?php else : ?>
+			<a class="site-header__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 				<span class="site-header__logo-name"><?php bloginfo( 'name' ); ?></span>
 				<small class="site-header__logo-sub"><?php bloginfo( 'description' ); ?></small>
-			<?php endif; ?>
-		</a>
+			</a>
+		<?php endif; ?>
 
 		<nav class="site-header__nav" id="site-nav" aria-label="<?php esc_attr_e( 'Primary', 'everyday-zing-theme' ); ?>">
 			<?php
@@ -37,13 +39,15 @@
 			?>
 		</nav>
 
-		<a href="#newsletter" class="site-header__cta"><?php esc_html_e( 'Subscribe', 'everyday-zing-theme' ); ?></a>
+		<div class="site-header__actions">
+			<a href="#newsletter" class="site-header__cta"><?php esc_html_e( 'Subscribe', 'everyday-zing-theme' ); ?></a>
 
-		<button class="site-header__toggle" aria-controls="site-nav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'everyday-zing-theme' ); ?>">
-			<span class="site-header__toggle-bar"></span>
-			<span class="site-header__toggle-bar"></span>
-			<span class="site-header__toggle-bar"></span>
-		</button>
+			<button class="site-header__toggle" aria-controls="site-nav" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle menu', 'everyday-zing-theme' ); ?>">
+				<span class="site-header__toggle-bar"></span>
+				<span class="site-header__toggle-bar"></span>
+				<span class="site-header__toggle-bar"></span>
+			</button>
+		</div>
 
 	</div>
 </header>

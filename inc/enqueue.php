@@ -6,10 +6,18 @@ function zing_enqueue_assets(): void {
 	$dist    = get_template_directory_uri() . '/assets/dist';
 	$dir     = get_template_directory() . '/assets/dist';
 
+	// Bootstrap Icons
+	wp_enqueue_style(
+		'bootstrap-icons',
+		'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css',
+		[],
+		'1.11.3'
+	);
+
 	// Google Fonts
 	wp_enqueue_style(
 		'zing-fonts',
-		'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap',
+		'https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;500;600;700;800&display=swap',
 		[],
 		null
 	);

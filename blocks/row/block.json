@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ahlfeld-solutions/row",
+  "title": "Row",
+  "description": "Bootstrap row with configurable alignment, gutters, and column-count classes.",
+  "category": "ahlfeld-solutions",
+  "icon": "columns",
+  "keywords": ["row", "grid", "columns", "layout"],
+  "supports": {
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "justify":     { "type": "string", "default": "" },
+    "alignItems":  { "type": "string", "default": "" },
+    "gutter":      { "type": "string", "default": "" },
+    "gutterX":     { "type": "string", "default": "" },
+    "gutterY":     { "type": "string", "default": "" },
+    "rowCols":     { "type": "string", "default": "" },
+    "rowColsSm":   { "type": "string", "default": "" },
+    "rowColsMd":   { "type": "string", "default": "" },
+    "rowColsLg":   { "type": "string", "default": "" },
+    "customPaddingTop":    { "type": "string", "default": "" },
+    "customPaddingRight":  { "type": "string", "default": "" },
+    "customPaddingBottom": { "type": "string", "default": "" },
+    "customPaddingLeft":   { "type": "string", "default": "" },
+    "customMarginTop":     { "type": "string", "default": "" },
+    "customMarginBottom":  { "type": "string", "default": "" }
+  },
+  "render": "file:./render.php",
+  "editorScript": "file:../../assets/dist/blocks/row/index.js"
+}
