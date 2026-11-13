@@ -3,8 +3,9 @@ import { chapterStyle } from '@/app/lib/chapters';
 import styles from './ChapterHeader.module.scss';
 
 // The coloured top of a page: a full-width field in the chapter's colour with
-// the page title large. `chips` lists the chapters as filters.
-export default function ChapterHeader({ chapter, title, text, aside, chips, current }) {
+// the page title large. `chips` lists the chapters as filters;
+// `children` sits under the side text (the search form uses it).
+export default function ChapterHeader({ chapter, title, text, aside, chips, current, children }) {
   return (
     <header className={`${styles.header} field`} style={chapter ? chapterStyle(chapter) : undefined}>
       <div className={`frame ${styles.grid}`}>
@@ -12,6 +13,7 @@ export default function ChapterHeader({ chapter, title, text, aside, chips, curr
         <div className={styles.side}>
           {text && <p className={styles.text} data-rise>{text}</p>}
           {aside && <p className={styles.aside} data-rise>{aside}</p>}
+          {children}
         </div>
       </div>
       {chips?.length > 0 && (

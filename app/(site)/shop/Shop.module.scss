@@ -1,0 +1,207 @@
+@use '../../styles/mixins' as *;
+
+.head {
+  font-size: var(--step-head) !important;
+}
+
+.lead {
+  max-width: 36ch;
+  font-size: var(--step-lead);
+  line-height: 1.3;
+}
+
+// ── Featured storefront ────────────────────────────────────
+
+.storefront {
+  padding-block: var(--section);
+  background: var(--paper);
+}
+
+.storefrontGrid {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+
+  @include lg { grid-template-columns: 6fr 5fr; gap: var(--gap); }
+}
+
+.storefrontCopy {
+  display: grid;
+  gap: 28px;
+  justify-items: start;
+}
+
+// Without a photo: a short lemon band, heading left, text and button right.
+.storefrontBand {
+  --field: var(--lemon);
+  --field-ink: var(--ink);
+  background: var(--field);
+  padding-block: clamp(56px, 7vw, 104px);
+
+  .storefrontGrid { align-items: end; }
+
+  .storefrontCopy {
+    @include lg {
+      grid-column: 1 / -1;
+      grid-template-columns: 7fr 5fr;
+      column-gap: var(--gap);
+      align-items: end;
+
+      .head { grid-row: 1 / span 2; }
+    }
+  }
+}
+
+.storefrontBand + .picks { padding-top: var(--section); }
+
+.storefrontPhoto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper-2);
+
+  img { object-fit: cover; }
+
+  @include lg { max-height: 640px; }
+}
+
+// ── Current picks ──────────────────────────────────────────
+
+.picks {
+  padding-block: var(--section);
+  background: var(--paper);
+}
+
+.storefront + .picks { padding-top: 0; }
+
+.pickGrid {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px var(--gap);
+
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+.pick {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+
+  &:hover .pickName { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  &:hover .pickPhoto img { transform: scale(1.04); }
+}
+
+.pickPhoto {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-bottom: 8px;
+
+  img { object-fit: cover; transition: transform 600ms var(--ease); }
+}
+
+.pickMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--step-small);
+  font-weight: 600;
+  color: var(--soft);
+}
+
+.pickName {
+  font-size: var(--step-lead);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.pickNote { color: var(--soft); }
+
+.pickGo {
+  font-weight: 600;
+  font-size: var(--step-small);
+}
+
+// ── Stores ─────────────────────────────────────────────────
+
+.stores {
+  --field: var(--aqua);
+  --field-ink: var(--ink);
+  padding-block: var(--section);
+}
+
+.storesGrid {
+  display: grid;
+  gap: 48px;
+
+  @include lg { grid-template-columns: 4fr 8fr; gap: var(--gap); align-items: start; }
+}
+
+.bands {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+
+  li:nth-child(odd) .band { background: var(--paper); }
+  li:nth-child(even) .band { background: var(--paper-2); }
+}
+
+.band {
+  display: grid;
+  grid-template-columns: minmax(150px, 2fr) 3fr auto;
+  align-items: center;
+  gap: 4px 24px;
+  min-height: 76px;
+  padding: 14px 22px;
+  color: var(--ink);
+
+  &:hover .bandName { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+}
+
+.bandName {
+  font-weight: 600;
+  font-size: var(--step-lead);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.bandSub { color: var(--soft); }
+
+.bandGo {
+  grid-column: 3;
+  font-weight: 600;
+  font-size: var(--step-small);
+  white-space: nowrap;
+}
+
+// ── Finds from the blog ────────────────────────────────────
+
+.finds {
+  padding-block: var(--section);
+  background: var(--paper);
+}
+
+.findsTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+@include phone {
+  .pickGrid { gap: 36px 12px; }
+  .pickName { font-size: 1.0625rem; }
+  .band { grid-template-columns: 1fr auto; padding: 16px; }
+  .bandSub { grid-column: 1; grid-row: 2; font-size: var(--step-small); }
+  .bandGo { grid-column: 2; grid-row: 1 / span 2; }
+}

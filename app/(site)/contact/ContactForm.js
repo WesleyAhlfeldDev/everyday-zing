@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from './Contact.module.scss';
 
 export default function ContactForm() {
@@ -56,6 +57,9 @@ export default function ContactForm() {
         <button type="submit" className="btn-zing" disabled={state.status === 'sending'}>
           {state.status === 'sending' ? 'Sending…' : 'Send message'}
         </button>
+        <p className={styles.fine}>
+          I only use your details to reply. See the <Link href="/privacy-policy">Privacy Policy</Link>.
+        </p>
         {state.status === 'error' && <p className={styles.error} role="alert">{state.message}</p>}
       </div>
     </form>

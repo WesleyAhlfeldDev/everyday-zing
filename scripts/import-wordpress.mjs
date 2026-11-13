@@ -351,6 +351,7 @@ const [menuRow] = await db.select().from(settings).where(eq(settings.key, 'main_
 if (!menuRow && !DRY_RUN) {
   const items = [
     { id: 1, label: 'Blog', url: '/blog' },
+    { id: 4, label: 'Shop', url: '/shop' },
     { id: 2, label: 'About', url: '/about' },
     { id: 3, label: 'Contact', url: '/contact' },
   ];

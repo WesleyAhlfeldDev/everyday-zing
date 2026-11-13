@@ -126,6 +126,7 @@ body {
   &:hover { text-underline-offset: 8px; }
 }
 
+.visually-hidden,
 .visually-hidden-focusable:not(:focus) {
   position: absolute !important;
   width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);

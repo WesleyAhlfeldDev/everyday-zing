@@ -10,6 +10,7 @@
     "lint": "eslint",
     "db:generate": "drizzle-kit generate --config drizzle.config.mjs",
     "db:migrate": "node --env-file-if-exists=.env.local scripts/db-migrate.mjs",
+    "seed:pages": "node --env-file-if-exists=.env.local scripts/seed-pages.mjs",
     "import:wordpress": "node --env-file-if-exists=.env.local scripts/import-wordpress.mjs",
     "admin:hash-password": "node scripts/hash-password.mjs"
   },

@@ -42,6 +42,51 @@ export const getPosts = cache(async () => {
   return rows.map(toPublic);
 });
 
+// Published posts matching every word of `query` in the title, excerpt or text,
+// best matches first (title hits outrank excerpt hits, which outrank body text).
+export const searchPosts = cache(async (query = '') => {
+  const words = searchWords(query);
+  if (!words.length) return [];
+  const db = await getDb();
+  const body = sql`regexp_replace(coalesce(${entries.fields}->>'content', ''), '<[^>]*>', ' ', 'g')`;
+  const excerpt = sql`coalesce(${entries.fields}->>'excerpt', '')`;
+  const per = words.map((w) => {
+    const like = likePattern(w);
+    return {
+      match: sql`(${entries.title} ilike ${like} or ${excerpt} ilike ${like} or ${body} ilike ${like})`,
+      score: sql`(case when ${entries.title} ilike ${like} then 4 else 0 end
+        + case when ${excerpt} ilike ${like} then 2 else 0 end
+        + case when ${body} ilike ${like} then 1 else 0 end)`,
+    };
+  });
+  const score = sql.join(per.map((p) => p.score), sql` + `);
+  const rows = await db.select({
+    id: entries.id, slug: entries.slug, title: entries.title,
+    publishedAt: entries.publishedAt, createdAt: entries.createdAt,
+    fields: sql`${entries.fields} - 'content'`,
+    score: sql`${score}`.mapWith(Number),
+  }).from(entries)
+    .where(and(eq(entries.type, 'post'), eq(entries.status, 'published'), ...per.map((p) => p.match)))
+    .orderBy(desc(sql`${score}`), desc(entries.publishedAt))
+    .limit(60);
+  return rows.map(toPublic);
+});
+
+// Up to six lower-cased words of two letters or more.
+export function searchWords(query) {
+  return String(query).toLowerCase().slice(0, 100)
+    .split(/[^\p{L}\p{N}'’&-]+/u)
+    .filter((w) => w.length >= 2)
+    .slice(0, 6);
+}
+
+// An ILIKE pattern for a word, with %, _ and \ escaped. Apostrophes match
+// either the straight or the curly kind.
+function likePattern(word) {
+  const escaped = word.replace(/[\\%_]/g, (c) => `\\${c}`).replace(/['’]/g, '_');
+  return `%${escaped}%`;
+}
+
 // Published categories in dashboard order, each with its chapter colour,
 // post count and a cover photo (its own, or its newest post's).
 export const getCategories = cache(async () => {

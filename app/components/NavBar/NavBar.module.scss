@@ -52,9 +52,25 @@
   min-height: 46px;
 }
 
-.toggle {
+.search {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  transition: background-color 160ms var(--ease);
+
+  &:hover,
+  &[aria-current='page'] { background: var(--lemon); }
+}
+
+.phoneTools {
   display: none;
   justify-self: end;
+  align-items: center;
+  gap: 4px;
+}
+
+.toggle {
   min-height: 44px;
   padding: 0 4px;
   border: 0;
@@ -92,7 +108,7 @@
   .inner { grid-template-columns: 1fr auto; min-height: 72px; }
   .left, .right { display: none; }
   .logo { width: 160px; }
-  .toggle { display: block; }
+  .phoneTools { display: flex; }
 }
 
 @include md {

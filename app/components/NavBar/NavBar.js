@@ -39,17 +39,21 @@ export default function NavBar({ menuItems = [] }) {
         </Link>
         <div className={styles.right}>
           <nav aria-label="More">{menuItems.slice(half).map(link)}</nav>
+          <SearchLink active={pathname === '/search'} />
           <Link href="#join" className={`btn-zing ${styles.join}`}>Become a Zinger</Link>
         </div>
-        <button
-          type="button"
-          className={styles.toggle}
-          aria-expanded={open}
-          aria-controls="phone-menu"
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? 'Close' : 'Menu'}
-        </button>
+        <div className={styles.phoneTools}>
+          <SearchLink active={pathname === '/search'} onClick={() => setOpen(false)} />
+          <button
+            type="button"
+            className={styles.toggle}
+            aria-expanded={open}
+            aria-controls="phone-menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? 'Close' : 'Menu'}
+          </button>
+        </div>
       </div>
 
       <div id="phone-menu" className={`${styles.sheet} ${open ? styles.sheetOpen : ''}`} hidden={!open}>
@@ -62,5 +66,17 @@ export default function NavBar({ menuItems = [] }) {
         </nav>
       </div>
     </header>
+  );
+}
+
+function SearchLink({ active, onClick }) {
+  return (
+    <Link href="/search" className={styles.search} aria-current={active ? 'page' : undefined} onClick={onClick}>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+        <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" strokeWidth="2.4" />
+        <path d="M15.5 15.5 21 21" stroke="currentColor" strokeWidth="2.4" strokeLinecap="square" />
+      </svg>
+      <span className="visually-hidden">Search</span>
+    </Link>
   );
 }

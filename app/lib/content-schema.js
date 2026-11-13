@@ -71,6 +71,38 @@ export const PAGE_SCHEMAS = {
     { name: 'body', label: 'Story', type: 'html' },
   ],
   blog: [hero],
+  shop: [
+    hero,
+    {
+      name: 'storefront', label: 'Featured storefront', type: 'group', fields: [
+        t('title', 'Title', { help: 'e.g. My Amazon Store.' }),
+        ta('text', 'Sentence'),
+        t('url', 'Link'),
+        t('cta_label', 'Button label', { help: 'Defaults to "Shop the storefront".' }),
+        { name: 'image', label: 'Photo', type: 'image' },
+      ],
+    },
+    {
+      name: 'picks', label: 'Current favourites', type: 'repeater', itemLabel: 'name',
+      help: 'Products you love right now. The section hides when this is empty.',
+      fields: [
+        t('name', 'Product'),
+        t('store', 'Store'),
+        ta('note', 'Why I love it'),
+        t('price', 'Price', { help: 'Optional, e.g. $24.' }),
+        { name: 'image', label: 'Photo', type: 'image' },
+        t('url', 'Link (affiliate links welcome)'),
+        { name: 'category', label: 'Chapter', type: 'select', optionsFrom: 'category', help: 'Optional: colours the card.' },
+      ],
+    },
+    {
+      name: 'stores', label: 'Where I shop', type: 'repeater', itemLabel: 'name',
+      help: 'Leave empty to use the list on the home page.',
+      fields: [t('name', 'Store'), t('note', 'What I buy there'), t('url', 'Link (affiliate links welcome)')],
+    },
+    { name: 'finds_category', label: 'Blog chapter shown at the bottom', type: 'select', optionsFrom: 'category', help: 'Defaults to Shopping Finds.' },
+    ta('disclosure', 'Affiliate note', { help: 'Shown in the header. Keep it plain and short.' }),
+  ],
   contact: [
     hero,
     t('email', 'Email address', { help: 'Shown as a link beside the form.' }),
@@ -80,21 +112,24 @@ export const PAGE_SCHEMAS = {
   'terms-and-conditions': legal,
   'cookie-policy': legal,
   'disclaimer-disclosure': legal,
+  'giveaway-rules': legal,
 };
 
 // Public URL of each page; also the fixed set of pages the dashboard lists.
 export const PAGE_PATHS = {
   home: '/',
   blog: '/blog',
+  shop: '/shop',
   about: '/about',
   contact: '/contact',
   'privacy-policy': '/privacy-policy',
   'terms-and-conditions': '/terms-and-conditions',
   'cookie-policy': '/cookie-policy',
   'disclaimer-disclosure': '/disclaimer-disclosure',
+  'giveaway-rules': '/giveaway-rules',
 };
 
-export const LEGAL_PAGES = ['privacy-policy', 'terms-and-conditions', 'cookie-policy', 'disclaimer-disclosure'];
+export const LEGAL_PAGES = ['privacy-policy', 'terms-and-conditions', 'cookie-policy', 'disclaimer-disclosure', 'giveaway-rules'];
 
 export const TYPE_SCHEMAS = {
   post: [

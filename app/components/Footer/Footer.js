@@ -7,6 +7,7 @@ const LEGAL = [
   ['Terms', '/terms-and-conditions'],
   ['Cookies', '/cookie-policy'],
   ['Disclosure', '/disclaimer-disclosure'],
+  ['Giveaway rules', '/giveaway-rules'],
 ];
 
 // A calm close: the logo and tagline, three short lists, and the legal line.
@@ -57,7 +58,7 @@ export default function Footer({ menuItems = [], categories = [] }) {
       </div>
 
       <div className={`frame ${styles.bottom}`}>
-        <p>© {year} Every Day Zing. Some links are affiliate links; I may earn a small commission at no cost to you.</p>
+        <p>© {year} Every Day Zing. Some links are affiliate links; I may earn a small commission at no cost to you. As an Amazon Associate I earn from qualifying purchases.</p>
         <ul className={styles.legal}>
           {LEGAL.map(([label, href]) => <li key={href}><Link href={href}>{label}</Link></li>)}
         </ul>

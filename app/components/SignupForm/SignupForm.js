@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './SignupForm.module.scss';
 
@@ -46,6 +47,10 @@ export default function SignupForm({ layout = 'row', idPrefix = 'join' }) {
       <button type="submit" className="btn-zing" disabled={state.status === 'sending'}>
         {state.status === 'sending' ? 'Joining…' : 'Count me in'}
       </button>
+      <p className={styles.fine}>
+        Emails about new posts, giveaways and partner deals. Unsubscribe any time.{' '}
+        <Link href="/privacy-policy">Privacy Policy</Link>
+      </p>
       {state.status === 'error' && <p className={styles.error} role="alert">{state.message}</p>}
     </form>
   );

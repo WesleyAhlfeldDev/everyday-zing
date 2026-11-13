@@ -67,6 +67,22 @@ export const PAGE_DEFAULTS = {
       subtext: 'Every post, newest first. Pick a chapter to narrow it down.',
     },
   },
+  shop: {
+    hero: {
+      title: 'Shop my favourites',
+      subtext: 'The stores I keep going back to, the things I love right now and everything I link, in one place.',
+    },
+    storefront: {
+      title: 'My Amazon Store',
+      text: 'Every product I’ve linked on the blog and on Instagram, sorted into lists you can browse.',
+      url: 'https://www.amazon.com/shop/everydayzing',
+      cta_label: 'Shop the storefront',
+    },
+    picks: [],
+    stores: [],
+    finds_category: 'shopping-finds',
+    disclosure: 'Some links are affiliate links: I may earn a small commission, at no cost to you. I only share what I actually use.',
+  },
   contact: {
     hero: {
       title: 'Say hello',

@@ -29,6 +29,14 @@
 
 .trap { position: absolute; left: -9999px; width: 0; height: 0; overflow: hidden; }
 
+.fine {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: var(--step-small);
+
+  a { text-decoration: underline; text-underline-offset: 3px; }
+}
+
 .error {
   grid-column: 1 / -1;
   font-weight: 600;
