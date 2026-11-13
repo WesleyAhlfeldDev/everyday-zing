@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './NavBar.module.scss';
 
-// Wordmark in the middle, the menu split either side of it, and one action.
+// Logo on the left; the menu, the sign-up button and search on the right.
 export default function NavBar({ menuItems = [] }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -16,7 +16,6 @@ export default function NavBar({ menuItems = [] }) {
     return () => { document.documentElement.style.overflow = ''; };
   }, [open]);
 
-  const half = Math.ceil(menuItems.length / 2);
   const isActive = (url) => (url === '/' ? pathname === '/' : pathname.startsWith(url));
   const link = (item) => (
     <Link
@@ -33,14 +32,13 @@ export default function NavBar({ menuItems = [] }) {
     <header className={styles.bar}>
       <a href="#main" className="visually-hidden-focusable">Skip to content</a>
       <div className={`frame ${styles.inner}`}>
-        <nav className={styles.left} aria-label="Main">{menuItems.slice(0, half).map(link)}</nav>
         <Link href="/" className={styles.logo} aria-label="Every Day Zing, home">
           <Image src="/brand/everyday-zing-logo.svg" alt="" width={340} height={60} unoptimized priority />
         </Link>
         <div className={styles.right}>
-          <nav aria-label="More">{menuItems.slice(half).map(link)}</nav>
-          <SearchLink active={pathname === '/search'} />
+          <nav aria-label="Main">{menuItems.map(link)}</nav>
           <Link href="#join" className={`btn-zing ${styles.join}`}>Become a Zinger</Link>
+          <SearchLink active={pathname === '/search'} />
         </div>
         <div className={styles.phoneTools}>
           <SearchLink active={pathname === '/search'} onClick={() => setOpen(false)} />
