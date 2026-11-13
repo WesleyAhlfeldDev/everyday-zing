@@ -100,32 +100,3 @@ export function ShopAndFollow({ shops = [], follows = [] }) {
     </section>
   );
 }
-
-// ── Instagram: prints either side of the handle ──
-
-export function InstaPrints({ fields = {}, fallback = [] }) {
-  const handle = fields.handle || 'everydayzing';
-  const prints = (fields.prints?.length ? fields.prints : fallback).filter((p) => p.image?.url).slice(0, 3);
-  const url = `https://www.instagram.com/${handle}/`;
-  return (
-    <section className={`${styles.insta} field`} aria-labelledby="insta-title">
-      <div className={`frame ${styles.instaInner}`}>
-        {prints.map((p, i) => (
-          <a
-            key={p.image.url}
-            href={p.url || url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${styles.instaPrint} ${styles[`ip${i}`]}`}
-          >
-            <Image src={p.image.url} alt={p.caption || p.image.alt || ''} fill sizes="(max-width: 768px) 46vw, 24vw" />
-          </a>
-        ))}
-        <h2 id="insta-title" className={styles.instaHead} data-rise>
-          <a href={url} target="_blank" rel="noopener noreferrer">Follow along<br />@{handle}</a>
-        </h2>
-        {fields.text && <p className={styles.instaText} data-rise>{fields.text}</p>}
-      </div>
-    </section>
-  );
-}

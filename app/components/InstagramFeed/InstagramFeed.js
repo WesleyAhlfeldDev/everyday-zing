@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { formatDate } from '@/app/lib/content';
 import styles from './InstagramFeed.module.scss';
 
@@ -6,7 +7,8 @@ const TYPE_LABEL = { video: 'Reel', carousel: 'Carousel' };
 
 // The newest Instagram posts on a lime field: the handle and a follow button
 // up top, then the newest post large beside four smaller ones. Every tile
-// opens the post on Instagram; hovering shows the start of its caption.
+// opens its post (on Instagram, or on the blog before the account is
+// connected); hovering shows the start of its caption.
 export default function InstagramFeed({ posts, handle = 'everydayzing', text }) {
   const profile = `https://www.instagram.com/${handle}/`;
 
@@ -26,30 +28,35 @@ export default function InstagramFeed({ posts, handle = 'everydayzing', text }) 
         </div>
 
         <ul className={styles.grid}>
-          {posts.map((post, i) => (
-            <li key={post.id} className={i === 0 ? styles.lead : undefined} data-rise>
-              <a href={post.url} target="_blank" rel="noopener noreferrer" className={styles.tile}>
-                <Image
-                  src={post.image}
-                  alt=""
-                  fill
-                  unoptimized
-                  sizes={i === 0 ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
-                />
-                {TYPE_LABEL[post.type] && (
-                  <span className={styles.badge}>
-                    <TypeIcon type={post.type} />
-                    <span className="visually-hidden">{TYPE_LABEL[post.type]}</span>
+          {posts.map((post, i) => {
+            const external = /^https?:/.test(post.url);
+            const Tile = external ? 'a' : Link;
+            const linkProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+            return (
+              <li key={post.id} className={i === 0 ? styles.lead : undefined} data-rise>
+                <Tile href={post.url} {...linkProps} className={styles.tile}>
+                  <Image
+                    src={post.image}
+                    alt=""
+                    fill
+                    unoptimized
+                    sizes={i === 0 ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
+                  />
+                  {TYPE_LABEL[post.type] && (
+                    <span className={styles.badge}>
+                      <TypeIcon type={post.type} />
+                      <span className="visually-hidden">{TYPE_LABEL[post.type]}</span>
+                    </span>
+                  )}
+                  <span className={styles.overlay}>
+                    <span className={styles.caption}>{shorten(post.caption, i === 0 ? 180 : 110)}</span>
+                    {post.date && <time dateTime={post.date}>{formatDate(post.date, 'short')}</time>}
                   </span>
-                )}
-                <span className={styles.overlay}>
-                  <span className={styles.caption}>{shorten(post.caption, i === 0 ? 180 : 110)}</span>
-                  {post.date && <time dateTime={post.date}>{formatDate(post.date, 'short')}</time>}
-                </span>
-                <span className="visually-hidden">Open on Instagram</span>
-              </a>
-            </li>
-          ))}
+                  <span className="visually-hidden">{external ? 'Open on Instagram' : 'Read the post'}</span>
+                </Tile>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>

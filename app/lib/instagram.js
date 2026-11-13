@@ -6,7 +6,8 @@ import 'server-only';
 // connected to a Meta app). Set INSTAGRAM_ACCESS_TOKEN to a long-lived token;
 // those last 60 days and are renewed with
 //   GET https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=<token>
-// Without a token this returns null and the home page keeps its photo section.
+// Without a token this returns null and the home page fills the feed with
+// blog photos instead (blogStandInPosts).
 
 const FIELDS = 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp';
 const TYPES = { IMAGE: 'image', VIDEO: 'video', CAROUSEL_ALBUM: 'carousel' };
@@ -40,6 +41,22 @@ function toPost(m) {
     date: m.timestamp,
     type: TYPES[m.media_type] || 'image',
   };
+}
+
+// Recent blog posts as feed tiles, each linking to its post. The home page
+// uses these until Instagram is connected.
+export function blogStandInPosts(blogPosts, limit = 5) {
+  return blogPosts
+    .filter((p) => p.fields.featured_image?.url)
+    .slice(0, limit)
+    .map((p) => ({
+      id: `post-${p.slug}`,
+      url: `/${p.slug}`,
+      image: p.fields.featured_image.url,
+      caption: p.title,
+      date: p.date,
+      type: 'image',
+    }));
 }
 
 // Sample posts for the mockup: the newest blog photos, shaped like Instagram

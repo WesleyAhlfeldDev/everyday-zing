@@ -2,8 +2,8 @@ import { getCategories, getPage, getPosts } from '@/app/lib/content';
 import { buildMetadata } from '@/app/lib/seo';
 import FeaturedHero from '@/app/components/FeaturedHero/FeaturedHero';
 import InstagramFeed from '@/app/components/InstagramFeed/InstagramFeed';
-import { getInstagramPosts } from '@/app/lib/instagram';
-import { ChapterTiles, InstaPrints, LatestTiles, ShopAndFollow, Welcome } from '@/app/components/Home/Home';
+import { blogStandInPosts, getInstagramPosts } from '@/app/lib/instagram';
+import { ChapterTiles, LatestTiles, ShopAndFollow, Welcome } from '@/app/components/Home/Home';
 
 export const revalidate = 3600;
 
@@ -25,7 +25,9 @@ export default async function HomePage() {
   const [featured, ...rest] = posts;
   const featuredCategory = categories.find((c) => c.slug === featured?.fields.category) || null;
 
-  const fallbackPrints = rest.slice(6, 9).map((p) => ({ image: p.fields.featured_image, caption: p.title }));
+  // Until Instagram is connected, recent blog photos not already shown above
+  // fill the feed and link to their posts.
+  const feed = instagram?.length >= 5 ? instagram : blogStandInPosts(rest.slice(6));
 
   return (
     <>
@@ -41,9 +43,9 @@ export default async function HomePage() {
       <LatestTiles posts={rest} categories={categories} total={posts.length} />
       <ChapterTiles categories={categories} total={posts.length} />
       <ShopAndFollow shops={f.shops} follows={f.follows} />
-      {instagram?.length >= 5
-        ? <InstagramFeed posts={instagram} handle={f.instagram?.handle || undefined} text={f.instagram?.text} />
-        : <InstaPrints fields={f.instagram} fallback={fallbackPrints} />}
+      {feed.length > 0 && (
+        <InstagramFeed posts={feed} handle={f.instagram?.handle || undefined} text={f.instagram?.text} />
+      )}
     </>
   );
 }

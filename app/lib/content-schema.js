@@ -51,12 +51,7 @@ export const PAGE_SCHEMAS = {
     {
       name: 'instagram', label: 'Instagram section', type: 'group', fields: [
         t('handle', 'Handle', { help: 'Without the @. Defaults to everydayzing.' }),
-        ta('text', 'Sentence'),
-        {
-          name: 'prints', label: 'Photos', type: 'repeater', itemLabel: 'caption',
-          help: 'Two or three photos. Leave empty to use the newest post photos.',
-          fields: [{ name: 'image', label: 'Photo', type: 'image' }, t('caption', 'Caption'), t('url', 'Link')],
-        },
+        ta('text', 'Sentence', { help: 'Shown beside the Follow on Instagram button.' }),
       ],
     },
     {
