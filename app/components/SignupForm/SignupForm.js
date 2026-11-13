@@ -48,7 +48,7 @@ export default function SignupForm({ layout = 'row', idPrefix = 'join' }) {
         {state.status === 'sending' ? 'Joining…' : 'Count me in'}
       </button>
       <p className={styles.fine}>
-        Emails about new posts, giveaways and partner deals. Unsubscribe any time.{' '}
+        Emails about new posts, specials and partner deals. Unsubscribe any time.{' '}
         <Link href="/privacy-policy">Privacy Policy</Link>
       </p>
       {state.status === 'error' && <p className={styles.error} role="alert">{state.message}</p>}

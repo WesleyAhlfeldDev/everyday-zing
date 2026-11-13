@@ -51,6 +51,14 @@ for (const slug of Object.keys(PAGE_PATHS)) {
   console.log(`  ✓ added ${slug}`);
 }
 
+// Legal pages dropped from the code (e.g. the giveaway rules) come out too.
+const RETIRED = ['giveaway-rules'];
+for (const slug of RETIRED) {
+  const gone = await db.delete(entries)
+    .where(and(eq(entries.type, 'page'), eq(entries.slug, slug))).returning({ id: entries.id });
+  if (gone.length) console.log(`  ✓ removed ${slug}`);
+}
+
 console.log('Menu');
 const [menuRow] = await db.select().from(settings).where(eq(settings.key, 'main_menu')).limit(1);
 const items = Array.isArray(menuRow?.value) ? [...menuRow.value] : [];

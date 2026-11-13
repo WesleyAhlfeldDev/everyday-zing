@@ -112,7 +112,6 @@ export const PAGE_SCHEMAS = {
   'terms-and-conditions': legal,
   'cookie-policy': legal,
   'disclaimer-disclosure': legal,
-  'giveaway-rules': legal,
 };
 
 // Public URL of each page; also the fixed set of pages the dashboard lists.
@@ -126,10 +125,9 @@ export const PAGE_PATHS = {
   'terms-and-conditions': '/terms-and-conditions',
   'cookie-policy': '/cookie-policy',
   'disclaimer-disclosure': '/disclaimer-disclosure',
-  'giveaway-rules': '/giveaway-rules',
 };
 
-export const LEGAL_PAGES = ['privacy-policy', 'terms-and-conditions', 'cookie-policy', 'disclaimer-disclosure', 'giveaway-rules'];
+export const LEGAL_PAGES = ['privacy-policy', 'terms-and-conditions', 'cookie-policy', 'disclaimer-disclosure'];
 
 export const TYPE_SCHEMAS = {
   post: [

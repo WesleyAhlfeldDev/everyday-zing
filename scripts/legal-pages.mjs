@@ -28,7 +28,6 @@ export const LEGAL_CONTENT = {
 <ul>
   <li><strong>Becoming a Zinger (newsletter):</strong> your first name, your email address and the page you signed up on.</li>
   <li><strong>The contact form:</strong> your first and last name, email address, subject and message.</li>
-  <li><strong>Giveaways:</strong> whatever the giveaway asks for (usually a name and email, and a mailing address if you win).</li>
 </ul>
 <h3>Information collected automatically</h3>
 <ul>
@@ -39,9 +38,8 @@ export const LEGAL_CONTENT = {
 
 <h2>How we use it</h2>
 <ul>
-  <li>To send the Zinger emails you asked for: new posts, giveaways, specials and partner deals.</li>
+  <li>To send the Zinger emails you asked for: new posts, specials and partner deals.</li>
   <li>To reply to your messages.</li>
-  <li>To run giveaways, contact winners and deliver prizes.</li>
   <li>To understand which posts people read, so we can write more of what’s useful.</li>
   <li>To keep the site secure and to meet legal obligations.</li>
 </ul>
@@ -52,7 +50,6 @@ export const LEGAL_CONTENT = {
   <li><strong>Vercel</strong> (hosting, analytics and image storage), United States.</li>
   <li><strong>Neon</strong> (the database that stores sign-ups and messages), hosted on Amazon Web Services in the United States.</li>
   <li><strong>An email service provider</strong> that sends the newsletter on our behalf.</li>
-  <li><strong>Giveaway partners</strong>, only when a brand ships a prize directly to a winner and only with the winner’s agreement.</li>
 </ul>
 <p>We may also disclose information if the law requires it, to protect our rights or someone’s safety, or as part of a sale or transfer of the business.</p>
 
@@ -66,7 +63,6 @@ export const LEGAL_CONTENT = {
 <ul>
   <li><strong>Newsletter:</strong> until you unsubscribe or ask us to delete it.</li>
   <li><strong>Messages:</strong> up to two years, unless we need them longer for an ongoing conversation or a legal reason.</li>
-  <li><strong>Giveaway entries:</strong> until the giveaway ends and the prize is delivered, then up to one year for our records (longer if tax rules require it).</li>
 </ul>
 
 <h2>Your choices and rights</h2>
@@ -114,16 +110,13 @@ export const LEGAL_CONTENT = {
 <p>Please ask first before republishing a whole post, using our photos, or using anything from the site commercially. Pinning or sharing a post through the share tools of Pinterest, Instagram or Facebook is fine.</p>
 
 <h2>What you send us</h2>
-<p>When you send us a message, sign up for the newsletter or enter a giveaway, you confirm that the information is yours and accurate. If you send us ideas, tips or feedback, we may use them without owing you anything; we’ll never publish your name or message without asking.</p>
+<p>When you send us a message, or sign up for the newsletter, you confirm that the information is yours and accurate. If you send us ideas, tips or feedback, we may use them without owing you anything; we’ll never publish your name or message without asking.</p>
 
 <h2>Acceptable use</h2>
 <p>Please don’t misuse the site: no attempts to break or overload it, no scraping or copying content in bulk, no spam through the forms, and nothing unlawful. We may block access for anyone who does.</p>
 
 <h2>Affiliate links, products and other websites</h2>
 <p>The site links to stores and other websites we don’t control, and some of those links earn us a commission. We aren’t responsible for other websites, their products, prices, shipping, returns or privacy practices. Any purchase is between you and the store. Prices and availability change, so always check the store before you buy.</p>
-
-<h2>Giveaways</h2>
-<p>Every giveaway follows our <a href="/giveaway-rules">Giveaway Official Rules</a> plus the details in that giveaway’s post. If the two disagree, the giveaway post wins for that giveaway.</p>
 
 <h2>No warranties</h2>
 <p>The site and everything on it are provided “as is”. We try to keep things accurate and up to date but make no promises that the content is complete, correct or current, or that the site will always be available or free of errors.</p>
@@ -181,9 +174,6 @@ export const LEGAL_CONTENT = {
 <h2>Sponsored posts and gifted products</h2>
 <p>Sometimes a brand pays for a post or sends a product for free. When that happens, the post says so clearly near the top (for example “Sponsored” or “Gifted”). Opinions are always my own, and a brand never gets to approve what I say about its product.</p>
 
-<h2>Giveaways</h2>
-<p>Giveaways follow our <a href="/giveaway-rules">Giveaway Official Rules</a>. If a brand provides the prize, the giveaway post names the brand.</p>
-
 <h2>Not professional advice</h2>
 <p>Everything on Every Day Zing is personal experience and opinion, shared to inspire and inform. It is not medical, health, nutritional, financial, tax, legal or other professional advice.</p>
 <ul>
@@ -202,56 +192,5 @@ export const LEGAL_CONTENT = {
 
 <h2>Questions</h2>
 <p>Email ${mail} if you have any questions about how the blog works with brands.</p>`,
-  },
-
-  'giveaway-rules': {
-    title: 'Giveaway Official Rules',
-    subtext: 'The standing rules for every Every Day Zing giveaway.',
-    body: `${updated}
-<p><strong>NO PURCHASE OR PAYMENT OF ANY KIND IS NECESSARY TO ENTER OR WIN. A PURCHASE WILL NOT INCREASE YOUR CHANCES OF WINNING. VOID WHERE PROHIBITED.</strong></p>
-<p>These rules apply to every giveaway run by ${BUSINESS} on ${SITE}, in our emails, or on our social media accounts (each a “Giveaway”). Each Giveaway also has an announcement (a blog post, email or social post) that gives its prize, dates and how to enter (the “Giveaway Details”). If the Giveaway Details and these rules disagree, the Giveaway Details win for that Giveaway.</p>
-
-<h2>1. Sponsor</h2>
-<p>The sponsor is ${BUSINESS}, ${STATE}, United States (“Sponsor”), unless the Giveaway Details name a brand partner as sponsor or co-sponsor.</p>
-
-<h2>2. Who can enter</h2>
-<p>Open to legal residents of the 50 United States and the District of Columbia who are 18 or older (or the age of majority where they live, if higher) when they enter. Not open to employees, contractors or immediate family members (spouse, parents, children, siblings and their spouses) or household members of Sponsor or of any brand partner supplying the prize.</p>
-
-<h2>3. Giveaway period</h2>
-<p>Each Giveaway starts and ends on the dates and times (US Central Time) stated in its Giveaway Details. Entries received outside that period are not counted.</p>
-
-<h2>4. How to enter</h2>
-<p>Enter as described in the Giveaway Details, for example by signing up for the newsletter or commenting on a post. Every Giveaway has a free way to enter. Unless the Giveaway Details say otherwise, the limit is one entry per person. Entries made with scripts, bots, multiple accounts or fake identities are void.</p>
-
-<h2>5. Choosing a winner</h2>
-<p>Within 7 days after the Giveaway ends, Sponsor will choose the winner(s) in a random drawing from all eligible entries. The odds of winning depend on the number of eligible entries received.</p>
-
-<h2>6. Telling the winner</h2>
-<p>Winners are contacted by the email address or social media account they used to enter. A winner must reply within 72 hours and may be asked to confirm eligibility and give a mailing address. If a winner does not reply in time, is not eligible, or the prize is returned undeliverable, the prize may be forfeited and another winner chosen.</p>
-<p><strong>Watch out for scams:</strong> we will never ask you to pay anything, buy anything, or share bank or card details to claim a prize. Impersonator accounts sometimes message giveaway entrants; we only contact winners from our official accounts.</p>
-
-<h2>7. Prizes</h2>
-<p>The prize and its approximate retail value (“ARV”) are stated in the Giveaway Details. Prizes are awarded “as is”, cannot be transferred or exchanged for cash, and may be replaced by a prize of equal or greater value if the original becomes unavailable. Product warranties, if any, come from the manufacturer. Winners are responsible for any taxes; if a winner’s prizes from Sponsor total $600 or more in a calendar year, the winner must provide a completed IRS Form W-9 and will receive a Form 1099.</p>
-
-<h2>8. Publicity</h2>
-<p>Except where prohibited by law, by accepting a prize a winner agrees that Sponsor may announce their first name, last initial and state, and share their prize photos if they send any, without further payment.</p>
-
-<h2>9. Social media</h2>
-<p>Giveaways run on social media are in no way sponsored, endorsed, administered by or associated with Instagram, Facebook (Meta) or any other platform. By entering, you release those platforms from any responsibility for the Giveaway.</p>
-
-<h2>10. General conditions</h2>
-<p>Sponsor may disqualify anyone who tampers with entries or breaks these rules. If a Giveaway can’t run as planned because of fraud, technical failures or anything else beyond Sponsor’s control, Sponsor may cancel, change or pause it and, where appropriate, choose a winner from eligible entries received before the problem. Sponsor’s decisions are final.</p>
-
-<h2>11. Release and limitation of liability</h2>
-<p>By entering, you agree to release and hold harmless Sponsor, any brand partner, and their owners, employees and agents from any claims, injury, loss or damage arising from the Giveaway or from accepting or using a prize, to the fullest extent the law allows. Sponsor is not responsible for lost, late or misdirected entries, or for prizes lost or damaged in shipping.</p>
-
-<h2>12. Disputes</h2>
-<p>These rules are governed by the laws of the State of ${STATE}. Any dispute will be resolved individually, without class actions, in the state or federal courts located in ${STATE}.</p>
-
-<h2>13. Privacy</h2>
-<p>Information collected for a Giveaway is handled under our <a href="/privacy-policy">Privacy Policy</a>. A brand partner receives a winner’s shipping details only to deliver the prize.</p>
-
-<h2>14. Winners list</h2>
-<p>For the name of a Giveaway’s winner, email ${mail} within 60 days after the Giveaway ends, with the Giveaway’s name in the subject line.</p>`,
   },
 };

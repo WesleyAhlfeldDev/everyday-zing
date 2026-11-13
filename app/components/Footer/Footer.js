@@ -7,7 +7,6 @@ const LEGAL = [
   ['Terms', '/terms-and-conditions'],
   ['Cookies', '/cookie-policy'],
   ['Disclosure', '/disclaimer-disclosure'],
-  ['Giveaway rules', '/giveaway-rules'],
 ];
 
 // A calm close: the logo and tagline, three short lists, and the legal line.
