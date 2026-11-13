@@ -13,12 +13,13 @@ export default async function LoginPage() {
     <div className={styles.loginWrap}>
       <div className={`card ${styles.loginCard}`}>
         <Image
-          src="/brand/everyday-zing-logo.png"
+          src="/brand/everyday-zing-logo.svg"
           alt="Every Day Zing"
-          width={200}
-          height={40}
+          width={240}
+          height={42}
           style={{ height: 'auto', marginBottom: 24 }}
           priority
+          unoptimized
         />
         <LoginForm />
       </div>

@@ -244,7 +244,23 @@ if (!BLOB) console.warn('BLOB_READ_WRITE_TOKEN is not set: images will keep thei
 async function existingFields(type, slug) {
   const [row] = await db.select({ fields: entries.fields }).from(entries)
     .where(and(eq(entries.type, type), eq(entries.slug, slug))).limit(1);
-  return row?.fields && Object.keys(row.fields).length ? row.fields : null;
+  return row?.fields && Object.keys(row.fields).length ? migrateKept(row.fields) : null;
+}
+
+// Fields kept from an earlier run may still point at WordPress (e.g. a run
+// without a Blob token): move any WordPress image they reference into Blob.
+async function migrateKept(value, key) {
+  if (typeof value === 'string') {
+    if (!value.includes('/wp-content/uploads/')) return value;
+    return key === 'url' ? migrateFile(value) : migrateHtml(value);
+  }
+  if (Array.isArray(value)) return Promise.all(value.map((v) => migrateKept(v)));
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(value)) out[k] = await migrateKept(v, k);
+    return out;
+  }
+  return value;
 }
 
 // Removes Elementor's inline <style> blocks and wrapper noise from page HTML.

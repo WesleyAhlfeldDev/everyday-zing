@@ -18,7 +18,7 @@ export default function Footer({ menuItems = [], categories = [] }) {
       <div className={`frame ${styles.top}`}>
         <div className={styles.brand}>
           <Link href="/" className={styles.logo} aria-label="Every Day Zing, home">
-            <Image src="/brand/everyday-zing-logo.png" alt="" width={559} height={106} />
+            <Image src="/brand/everyday-zing-logo.svg" alt="" width={340} height={60} unoptimized />
           </Link>
           <p className={styles.tagline}>Spreading a little zing into life, every day.</p>
         </div>

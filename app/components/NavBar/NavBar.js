@@ -35,7 +35,7 @@ export default function NavBar({ menuItems = [] }) {
       <div className={`frame ${styles.inner}`}>
         <nav className={styles.left} aria-label="Main">{menuItems.slice(0, half).map(link)}</nav>
         <Link href="/" className={styles.logo} aria-label="Every Day Zing, home">
-          <Image src="/brand/everyday-zing-logo.png" alt="" width={559} height={106} priority />
+          <Image src="/brand/everyday-zing-logo.svg" alt="" width={340} height={60} unoptimized priority />
         </Link>
         <div className={styles.right}>
           <nav aria-label="More">{menuItems.slice(half).map(link)}</nav>
