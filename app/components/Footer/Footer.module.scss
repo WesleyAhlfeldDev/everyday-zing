@@ -1,0 +1,77 @@
+@use '../../styles/mixins' as *;
+
+.footer {
+  background: var(--paper-2);
+  color: var(--ink);
+
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+
+  a { font-weight: 600; }
+
+  a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+}
+
+.top {
+  display: grid;
+  gap: 40px 24px;
+  padding-top: clamp(56px, 6vw, 88px);
+  padding-bottom: 48px;
+  grid-template-columns: 1fr 1fr;
+
+  @include lg { grid-template-columns: 4fr 2fr 3fr 2fr; }
+}
+
+.brand {
+  grid-column: 1 / -1;
+  @include lg { grid-column: auto; }
+}
+
+.logo {
+  display: block;
+  width: 220px;
+
+  img { width: 100%; height: auto; }
+}
+
+.tagline {
+  margin-top: 20px !important;
+  max-width: 22ch;
+  font-weight: 600;
+  font-size: var(--step-lead);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.label {
+  font-size: var(--step-small) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--soft) !important;
+  margin-bottom: 14px !important;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-top: 24px;
+  padding-bottom: 32px;
+  font-size: var(--step-small);
+
+  p { max-width: 70ch; }
+}
+
+.legal {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 4px 20px !important;
+}

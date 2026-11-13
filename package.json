@@ -1,17 +1,39 @@
 {
-  "name": "everyday-zing-theme",
-  "version": "1.0.0",
-  "description": "Custom WordPress theme for Every Day Zing",
+  "name": "everyday-zing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "start": "webpack --config webpack.config.js --mode development --watch",
-    "build": "webpack --config webpack.config.js --mode production",
-    "lint:js": "wp-scripts lint-js",
-    "lint:scss": "wp-scripts lint-style"
-  },
-  "devDependencies": {
-    "@wordpress/scripts": "^30.0.0"
+    "dev": "next dev",
+    "build": "node --env-file-if-exists=.env.local scripts/db-migrate.mjs && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:generate": "drizzle-kit generate --config drizzle.config.mjs",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/db-migrate.mjs",
+    "import:wordpress": "node --env-file-if-exists=.env.local scripts/import-wordpress.mjs",
+    "admin:hash-password": "node scripts/hash-password.mjs"
   },
   "dependencies": {
-    "bootstrap": "^5.3.0"
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-brands-svg-icons": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
+    "@fortawesome/react-fontawesome": "^3.2.0",
+    "@neondatabase/serverless": "^1.2.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/blob": "^2.8.1",
+    "bootstrap": "^5.3.8",
+    "drizzle-orm": "^0.45.4",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "19.2.3",
+    "sass": "^1.97.3",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "drizzle-kit": "^0.31.11",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6"
   }
 }

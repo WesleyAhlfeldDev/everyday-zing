@@ -1,0 +1,76 @@
+@use '../../styles/mixins' as *;
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px var(--gap);
+
+  @include lg { grid-template-columns: repeat(3, 1fr); gap: 64px var(--gap); }
+}
+
+.four {
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+.card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.photo {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  margin-bottom: 8px;
+
+  img { object-fit: cover; transition: transform 600ms var(--ease); }
+}
+
+.card:hover .photo img { transform: scale(1.04); }
+
+.title {
+  font-size: var(--step-lead) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.15 !important;
+
+  a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+}
+
+.card:hover .title a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  font-size: var(--step-small);
+  color: var(--soft);
+}
+
+.cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--ink) !important;
+
+  &:hover { text-decoration: underline; text-underline-offset: 3px; }
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+@include phone {
+  .grid { gap: 36px 12px; }
+  .title { font-size: 1.0625rem !important; }
+}

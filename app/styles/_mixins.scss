@@ -1,0 +1,5 @@
+// Breakpoints shared by the site modules.
+@mixin md { @media (min-width: 768px) { @content; } }
+@mixin lg { @media (min-width: 1024px) { @content; } }
+@mixin phone { @media (max-width: 767.98px) { @content; } }
+@mixin calm { @media (prefers-reduced-motion: reduce) { @content; } }

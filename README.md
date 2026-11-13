@@ -1,140 +1,52 @@
-# Everyday Zing Theme
+# Every Day Zing
 
-Custom WordPress theme for [Every Day Zing](https://everydayzing.com). Built with ACF Pro, custom Gutenberg blocks, Bootstrap 5, and SCSS.
+Next.js rebuild of the everyday-zing.com WordPress blog, with a built-in content dashboard at `/admin`. Content lives in Postgres (Neon), media in Vercel Blob. Same setup as `ahlfeld-solutions-theme`.
 
----
+## Design
 
-## Requirements
+"Colour chapters": every blog category is a chapter with its own flat colour (`app/lib/chapters.js`), chosen per category in the dashboard. One typeface (Schibsted Grotesk), one square button, pink for the main action. The home page opens on the newest post, large, beside a panel in its category colour.
 
-- WordPress 6.4+
-- PHP 8.1+
-- ACF Pro (required for custom blocks)
-- Node.js 18+
-- npm 9+
+| Route | What it is |
+| --- | --- |
+| `/` | Featured newest post, welcome, fresh posts grid, chapters, where I shop / who I follow, Instagram |
+| `/blog`, `/category/<slug>` | Photo grid of post cards, 12 per page |
+| `/<slug>` | A post with an about-me / chapters / sign-up sidebar, or a legal page (same URLs as WordPress) |
+| `/about`, `/contact` | About Carol Joy; contact form → dashboard Inbox |
+| `#join` on every page | "Become a Zinger" sign-up → dashboard Zingers (CSV export) |
 
----
+## How it fits together
 
-## Local Development Setup
+| Piece | Where |
+| --- | --- |
+| Public pages | `app/(site)/`, reading content through `app/lib/content.js` |
+| Dashboard | `app/admin/`: pages, posts, categories, inbox, Zingers (subscribers), menu, media |
+| Editable fields | `app/lib/content-schema.js`, one definition drives the dashboard forms and the import |
+| Database schema | `app/lib/db/schema.js`, migrations in `drizzle/` |
+| Auth | `app/lib/auth.js` (password + signed cookie), `proxy.js` guards `/admin` |
 
-1. Clone the repo into your theme directory:
-   ```bash
-   git clone https://github.com/WesleyAhlfeldDev/everyday-zing.git wp-content/themes/everyday-zing-theme
-   ```
+Every editable thing is a row in `entries` (`type` = page / post / category). Fields are JSON shaped by `content-schema.js`, so adding a field is a schema edit, not a migration.
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+## Environment variables
 
-3. Activate the theme in **WP Admin → Appearance → Themes**.
+| Variable | Notes |
+| --- | --- |
+| `DATABASE_URL` | Set by the Neon integration on Vercel. Leave unset locally to use an embedded database in `.data/`. |
+| `BLOB_READ_WRITE_TOKEN` | Set when a Blob store is connected. Without it, uploads are off and imported images keep their WordPress URLs. |
+| `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET` | Dashboard login; `npm run admin:hash-password` prints the last two. |
+| `DISCORD_WEBHOOK_URL` | Optional: notifications for messages and sign-ups. |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL base, defaults to `https://everyday-zing.com`. |
+| `NEXT_PUBLIC_WORDPRESS_URL`, `NEXT_PUBLIC_WORDPRESS_API_URL` | Only for the import. |
 
----
+## Local development
 
-## Dev Workflow
-
-| Command | What it does |
-|---|---|
-| `npm run start` | Watch mode — recompiles SCSS + JS on save |
-| `npm run build` | Production build — minified output to `assets/dist/` |
-| `npm run lint:js` | Lint JavaScript |
-| `npm run lint:scss` | Lint SCSS |
-
-Always run `npm run build` before committing if you were in watch mode — `start` outputs unminified files.
-
----
-
-## Project Structure
-
-```
-everyday-zing-theme/
-├── acf-json/               # ACF field group JSON — commit these!
-├── assets/
-│   ├── dist/               # Compiled output (git-ignored)
-│   ├── js/
-│   │   └── main.js         # JS entry point
-│   └── scss/
-│       ├── abstracts/
-│       │   ├── _variables.scss   # Bootstrap overrides + theme tokens
-│       │   └── _mixins.scss
-│       ├── base/
-│       │   └── _typography.scss
-│       ├── components/
-│       │   └── _cards.scss
-│       ├── layout/
-│       │   ├── _header.scss
-│       │   └── _footer.scss
-│       └── main.scss             # SCSS entry point
-├── blocks/                 # One folder per custom block
-│   └── hero/
-│       ├── block.json      # Block metadata
-│       ├── render.php      # Server-side output (reads ACF fields)
-│       ├── index.js        # Editor preview script
-│       └── style.scss      # Block-specific styles
-├── inc/
-│   ├── setup.php           # Theme support, image sizes
-│   ├── enqueue.php         # Enqueue compiled CSS/JS
-│   ├── menus.php           # Nav menus + widget areas
-│   ├── blocks.php          # Auto-registers all blocks in /blocks
-│   └── acf.php             # ACF local JSON save/load paths
-├── template-parts/
-│   └── post/               # Reusable post partials
-├── templates/              # Full-page templates
-├── functions.php           # Thin — requires inc/* files only
-├── style.css               # Theme header only (no styles here)
-└── webpack.config.js
+```bash
+npm install
+npm run import:wordpress   # fill the local database from everyday-zing.com
+npm run dev                # http://localhost:3000, dashboard at /admin
 ```
 
----
+The embedded database (PGlite) allows one process at a time: stop `npm run dev` before running the import or a build.
 
-## Adding a New Block
+## Import
 
-1. Create a folder under `blocks/your-block-name/`
-2. Add these four files:
-
-   **`block.json`** — copy from `blocks/hero/block.json` and update `name`, `title`, and `acf.renderTemplate`
-
-   **`render.php`** — read ACF fields with `get_field()` and output HTML
-
-   **`index.js`** — editor preview (import `block.json` and register with `registerBlockType`)
-
-   **`style.scss`** — block-specific styles
-
-3. Add the entry point to `webpack.config.js`:
-   ```js
-   'blocks/your-block-name/index': path.resolve(__dirname, 'blocks/your-block-name/index.js'),
-   ```
-
-4. Optionally import the block SCSS in `assets/scss/main.scss`:
-   ```scss
-   @import '../../blocks/your-block-name/style';
-   ```
-
-5. Create the ACF field group in WP Admin and set its location to your block — the JSON will auto-save to `acf-json/`.
-
-6. Run `npm run build`.
-
----
-
-## ACF Local JSON
-
-Field group changes are automatically saved as JSON to `acf-json/` whenever you save a field group in WP Admin. **Always commit these files** — they are the source of truth for field structure across environments.
-
-If you see a **"Sync available"** notice in ACF → Field Groups, it means the JSON is ahead of the database. Click Sync to update.
-
----
-
-## SCSS Architecture
-
-Bootstrap variables are overridden in `assets/scss/abstracts/_variables.scss` **before** Bootstrap is imported — this is how you customize colors, fonts, spacing, etc. without overriding compiled CSS.
-
-Theme tokens (colors, transitions, etc.) are defined as SCSS variables in the same file and used across all partials.
-
-Do not add styles directly to `style.css` — it contains only the WordPress theme header.
-
----
-
-## Git Ignored
-
-- `node_modules/`
-- `assets/dist/` (compiled output — regenerated by build)
-- Block `*.asset.php` files (generated by wp-scripts if used)
+`npm run import:wordpress` copies pages, categories and posts (with their category, featured image, excerpt and Yoast SEO). Elementor pages (home, about, blog, contact) start from `scripts/page-defaults.mjs`; fields already edited in the dashboard are kept on re-runs. With a Blob token it also copies every image into Blob.

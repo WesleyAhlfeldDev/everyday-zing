@@ -1,0 +1,153 @@
+@use 'styles/mixins' as *;
+
+// ————————————————————————————————————————————————————————————
+// Tokens. Colour chapters: one ink, one paper, and a flat field colour per
+// category (see app/lib/chapters.js). Pink is the action colour.
+// ————————————————————————————————————————————————————————————
+:root {
+  --ink: #1c1f1a;
+  --paper: #ffffff;
+  --paper-2: #f0f1ef;
+  --soft: #4a4e47;
+  --accent: #ec789f;
+  --accent-ink: #1c1f1a;
+
+  --pink: #ec789f;
+  --lemon: #ffd84a;
+  --orange: #f7913d;
+  --aqua: #8fd3c8;
+  --lime: #b8d84a;
+  --leaf: #2e6e46;
+  --night: #1c1f1a;
+
+  // Five type steps, no more.
+  --step-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.25rem, 1.3rem + 3.6vw, 4.5rem);
+  --step-display: clamp(3.5rem, 1rem + 10vw, 10rem);
+
+  --margin: clamp(16px, 3vw, 40px);
+  --gap: clamp(16px, 2vw, 24px);
+  --section: clamp(96px, 12vw, 200px);
+  --max: 1440px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --font-family--body: var(--font-site), system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--paper); }
+
+body {
+  margin: 0;
+  font-family: var(--font-site), system-ui, sans-serif;
+  font-size: var(--step-body);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+// Bootstrap is loaded for the dashboard; keep its defaults off the site.
+.site {
+  h1, h2, h3, h4 {
+    font-family: inherit;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+    margin: 0;
+    color: inherit;
+    text-wrap: balance;
+  }
+
+  p { margin: 0; }
+
+  // :where keeps this at zero specificity so .btn-zing and friends win.
+  :where(a) { color: inherit; text-decoration: none; }
+
+  img { display: block; max-width: 100%; }
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--lemon);
+  color: var(--ink);
+}
+
+// The page frame: one pair of margins everywhere.
+.frame {
+  width: 100%;
+  max-width: calc(var(--max) + var(--margin) * 2);
+  margin-inline: auto;
+  padding-inline: var(--margin);
+}
+
+// A chapter field: a flat colour floor to ceiling, set by --field / --field-ink.
+.field {
+  background: var(--field, var(--paper));
+  color: var(--field-ink, var(--ink));
+}
+
+// The one button shape: square, flat, solid.
+.btn-zing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 52px;
+  padding: 0.85em 1.4em;
+  border: 0;
+  border-radius: 0;
+  background: var(--btn-bg, var(--ink));
+  color: var(--btn-ink, var(--paper));
+  font: 600 var(--step-body) / 1 var(--font-site), sans-serif;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform 160ms var(--ease), background-color 160ms var(--ease), color 160ms var(--ease);
+
+  &:hover { transform: translateY(-2px); }
+  &:active { transform: translateY(1px); }
+}
+
+// Plain text link with a drawn underline that grows on hover.
+.text-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: text-underline-offset 160ms var(--ease);
+
+  &:hover { text-underline-offset: 8px; }
+}
+
+.visually-hidden-focusable:not(:focus) {
+  position: absolute !important;
+  width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
+}
+
+// ————————————————————————————————————————————————————————————
+// Motion: parts rise in, once, when their section enters. Content is only
+// hidden while the script is running (html.motion), never without it.
+// ————————————————————————————————————————————————————————————
+html.motion [data-rise] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+  transition-delay: calc(var(--d, 0) * 80ms);
+}
+
+html.motion [data-rise].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@include calm {
+  html.motion [data-rise] { opacity: 1; transform: none; transition: none; }
+  .btn-zing:hover, .btn-zing:active { transform: none; }
+}

@@ -1,0 +1,219 @@
+@use '../../styles/mixins' as *;
+
+// ── Header: the chapter's colour, title beside the cover photo ──
+
+.header {
+  padding-top: clamp(48px, 6vw, 96px);
+  padding-bottom: clamp(48px, 6vw, 96px);
+}
+
+.headerGrid {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+
+  @include lg { grid-template-columns: 7fr 5fr; gap: 56px; }
+}
+
+.title {
+  font-size: clamp(2.25rem, 1rem + 3.4vw, 4.5rem) !important;
+  line-height: 1 !important;
+}
+
+.meta {
+  margin-top: 28px !important;
+  font-weight: 600;
+}
+
+.cover {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper-2);
+
+  img { object-fit: cover; }
+}
+
+@include phone {
+  .cover { order: -1; aspect-ratio: 4 / 3; }
+  .title { font-size: 2rem !important; }
+}
+
+// ── Body ──
+
+.bodySection {
+  padding-block: clamp(56px, 7vw, 112px);
+  background: var(--paper);
+}
+
+.bodyGrid {
+  display: flex;
+  justify-content: center;
+}
+
+// Post body beside the sidebar.
+.postGrid {
+  display: grid;
+  gap: 64px;
+  align-items: start;
+
+  @include lg { grid-template-columns: minmax(0, 8fr) minmax(280px, 4fr); gap: clamp(48px, 5vw, 96px); }
+
+  .prose { max-width: 72ch; }
+}
+
+.prose {
+  max-width: 68ch;
+  font-size: var(--step-body);
+  line-height: 1.65;
+
+  width: 100%;
+
+  > * + * { margin-top: 1.1em !important; }
+
+  :global(h2), :global(h3), :global(h4), :global(h5) {
+    margin-top: 2em !important;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  :global(h2) { font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem); }
+  :global(h3) { font-size: var(--step-lead); }
+  :global(h4), :global(h5) { font-size: 1.25rem; }
+
+  :global(a) {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color 160ms var(--ease);
+
+    &:hover { text-decoration-color: currentColor; }
+  }
+
+  :global(strong) { font-weight: 600; }
+
+  :global(ul), :global(ol) { padding-left: 1.3em; }
+  :global(li + li) { margin-top: 0.4em; }
+
+  :global(img) {
+    height: auto;
+    max-width: 100%;
+  }
+
+  :global(figure) { margin-inline: 0; }
+  :global(.wp-block-image) { margin-block: 2em; }
+  :global(.aligncenter) { margin-inline: auto; text-align: center; }
+  :global(.aligncenter img) { margin-inline: auto; }
+
+  :global(figcaption) {
+    margin-top: 10px;
+    font-size: var(--step-small);
+    color: var(--soft);
+  }
+
+  :global(blockquote) {
+    margin-inline: 0;
+    padding: 24px 28px;
+    background: var(--lemon);
+    font-weight: 600;
+    font-size: var(--step-lead);
+    line-height: 1.3;
+  }
+
+  :global(.wp-block-buttons) { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  :global(.wp-block-button__link) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0.7em 1.2em;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    border-radius: 0;
+
+    &:hover { background: var(--pink); color: var(--ink); }
+  }
+
+  :global(.wp-block-columns) {
+    display: grid;
+    gap: 20px;
+
+    @include md { grid-auto-flow: column; grid-auto-columns: 1fr; }
+  }
+
+  :global(.wp-block-gallery) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  :global(iframe), :global(video) {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border: 0;
+  }
+
+  :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step-small);
+
+    :global(td), :global(th) { padding: 10px 12px; border-bottom: 1px solid var(--paper-2); text-align: left; }
+  }
+
+  :global(hr) { border: 0; height: 24px; }
+}
+
+// ── More from the chapter ──
+
+.more {
+  --btn-bg: var(--field-ink);
+  --btn-ink: var(--field);
+  padding-block: var(--section);
+}
+
+.moreHead { font-size: var(--step-head) !important; }
+
+.moreGrid {
+  list-style: none;
+  margin: 48px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 40px var(--gap);
+
+  @include md { grid-template-columns: repeat(3, 1fr); }
+}
+
+.moreCard { display: grid; gap: 8px; }
+
+.moreImg {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  margin-bottom: 8px;
+  background: var(--paper);
+
+  img { object-fit: cover; transition: transform 600ms var(--ease); }
+}
+
+.moreCard:hover .moreImg img { transform: scale(1.04); }
+.moreCard:hover .moreTitle { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+
+.moreTitle {
+  font-weight: 600;
+  font-size: var(--step-lead);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.moreDate { font-size: var(--step-small); }
+
+.moreAll { margin-top: 56px !important; }

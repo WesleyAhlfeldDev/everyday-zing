@@ -1,0 +1,61 @@
+@use '../../styles/mixins' as *;
+
+.header {
+  padding-top: clamp(56px, 8vw, 128px);
+  padding-bottom: clamp(40px, 5vw, 72px);
+}
+
+.grid {
+  display: grid;
+  gap: 28px;
+  align-items: end;
+
+  @include lg { grid-template-columns: 7fr 5fr; gap: var(--gap); }
+}
+
+.title {
+  font-size: clamp(3rem, 1rem + 6.4vw, 8rem) !important;
+}
+
+.text {
+  max-width: 40ch;
+  font-size: var(--step-lead);
+  line-height: 1.3;
+}
+
+.aside {
+  margin-top: 16px !important;
+  font-weight: 600;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--chip, var(--paper));
+  color: var(--chip-ink, var(--ink));
+  font-weight: 600;
+  font-size: var(--step-small);
+  transition: transform 160ms var(--ease);
+
+  &:hover { transform: translateY(-3px); }
+
+  &[aria-current='page'] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+@include phone {
+  .title { font-size: 15vw !important; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .chip { flex: none; }
+}

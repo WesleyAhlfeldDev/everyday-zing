@@ -1,0 +1,51 @@
+@use '../../styles/mixins' as *;
+
+.section {
+  padding-top: clamp(56px, 7vw, 104px);
+  padding-bottom: var(--section);
+  background: var(--paper);
+}
+
+.heading {
+  font-size: var(--step-lead) !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 28px !important;
+}
+
+.empty { font-size: var(--step-lead); }
+
+.pager {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin-top: 56px;
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+.num {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  background: var(--paper-2);
+  font-weight: 600;
+  transition: background-color 160ms var(--ease);
+
+  &:hover { background: var(--lemon); }
+  &[aria-current='page'] { background: var(--ink); color: var(--paper); }
+}
+
+@include phone {
+  .pager { grid-template-columns: 1fr 1fr; ol { grid-column: 1 / -1; grid-row: 1; } }
+  .pager :global(.btn-zing) { justify-content: center; }
+}
