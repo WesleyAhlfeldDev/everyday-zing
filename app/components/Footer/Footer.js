@@ -61,6 +61,10 @@ export default function Footer({ menuItems = [], categories = [] }) {
         <ul className={styles.legal}>
           {LEGAL.map(([label, href]) => <li key={href}><Link href={href}>{label}</Link></li>)}
         </ul>
+        <p className={styles.credit}>
+          Site by{' '}
+          <a href="https://www.ahlfeldsolutions.com" target="_blank" rel="noopener">Ahlfeld Solutions</a>
+        </p>
       </div>
     </footer>
   );

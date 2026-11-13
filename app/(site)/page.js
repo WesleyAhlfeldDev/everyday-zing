@@ -1,6 +1,8 @@
 import { getCategories, getPage, getPosts } from '@/app/lib/content';
 import { buildMetadata } from '@/app/lib/seo';
 import FeaturedHero from '@/app/components/FeaturedHero/FeaturedHero';
+import InstagramFeed from '@/app/components/InstagramFeed/InstagramFeed';
+import { getInstagramPosts } from '@/app/lib/instagram';
 import { ChapterTiles, InstaPrints, LatestTiles, ShopAndFollow, Welcome } from '@/app/components/Home/Home';
 
 export const revalidate = 3600;
@@ -15,7 +17,9 @@ export async function generateMetadata() {
 }
 
 export default async function HomePage() {
-  const [page, posts, categories] = await Promise.all([getPage('home'), getPosts(), getCategories()]);
+  const [page, posts, categories, instagram] = await Promise.all([
+    getPage('home'), getPosts(), getCategories(), getInstagramPosts(),
+  ]);
   const f = page?.fields || {};
   const hero = f.hero || {};
   const [featured, ...rest] = posts;
@@ -37,7 +41,9 @@ export default async function HomePage() {
       <LatestTiles posts={rest} categories={categories} total={posts.length} />
       <ChapterTiles categories={categories} total={posts.length} />
       <ShopAndFollow shops={f.shops} follows={f.follows} />
-      <InstaPrints fields={f.instagram} fallback={fallbackPrints} />
+      {instagram?.length >= 5
+        ? <InstagramFeed posts={instagram} handle={f.instagram?.handle || undefined} text={f.instagram?.text} />
+        : <InstaPrints fields={f.instagram} fallback={fallbackPrints} />}
     </>
   );
 }

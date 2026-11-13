@@ -70,6 +70,18 @@
   p { max-width: 70ch; }
 }
 
+.credit {
+  flex-basis: 100%;
+  color: var(--soft);
+
+  a {
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
 .legal {
   display: flex !important;
   flex-wrap: wrap;
