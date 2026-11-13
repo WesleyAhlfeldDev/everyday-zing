@@ -44,7 +44,7 @@ export const PAGE_DEFAULTS = {
       prints: [],
     },
     join: {
-      text: 'Giveaways, specials and partner deals by email, and nothing you don’t need.',
+      text: 'New posts, specials and partner deals by email, and nothing you don’t need.',
     },
   },
   about: {

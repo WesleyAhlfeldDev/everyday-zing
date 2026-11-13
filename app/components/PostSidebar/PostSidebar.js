@@ -41,7 +41,7 @@ export default function PostSidebar({ about, categories, current }) {
 
       <section className={`${styles.block} ${styles.join}`} aria-labelledby="side-join">
         <h2 id="side-join" className={styles.head}>Become a Zinger</h2>
-        <p>Giveaways, specials and partner deals by email.</p>
+        <p>New posts, specials and partner deals by email.</p>
         <SignupForm layout="stack" idPrefix="side" />
       </section>
     </aside>

@@ -3,7 +3,7 @@ import styles from './JoinBand.module.scss';
 
 // "Become a Zinger": a compact pink band with the sign-up form showing.
 export default function JoinBand({ text }) {
-  const sentence = text || 'Giveaways, specials and partner deals by email, and nothing you don’t need.';
+  const sentence = text || 'New posts, specials and partner deals by email, and nothing you don’t need.';
 
   return (
     <section id="join" className={styles.band} aria-labelledby="join-title">
