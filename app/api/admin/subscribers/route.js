@@ -1,5 +1,5 @@
 import { requireAdmin } from '@/app/lib/auth';
-import { listSubscribers } from '@/app/admin/data';
+import { listSubscribers } from '@/app/zing-hq-7k2m/data';
 
 const cell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
 

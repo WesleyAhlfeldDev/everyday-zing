@@ -8,6 +8,7 @@ import { getDb, schema } from '@/app/lib/db';
 import { checkCredentials, endSession, requireAdmin, startSession } from '@/app/lib/auth';
 import { TYPE_LABELS } from '@/app/lib/content-schema';
 import { serializeEntry } from './data';
+import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 const { entries, media, settings, submissions } = schema;
 
@@ -25,19 +26,20 @@ export async function login(_prev, formData) {
   const email = String(formData.get('email') || '');
   const password = String(formData.get('password') || '');
 
-  if (!(await checkCredentials(email, password))) {
+  const adminEmail = await checkCredentials(email, password);
+  if (!adminEmail) {
     // Slow down guessing.
     await new Promise((r) => setTimeout(r, 1000));
     return { error: 'Incorrect email or password.' };
   }
 
-  await startSession();
-  redirect('/admin');
+  await startSession(adminEmail);
+  redirect(ADMIN_PATH);
 }
 
 export async function logout() {
   await endSession();
-  redirect('/admin/login');
+  redirect(`${ADMIN_PATH}/login`);
 }
 
 // ── Entries ─────────────────────────────────────────────────────────────────
@@ -57,7 +59,7 @@ export async function createEntry(type) {
     type, slug, title: `Untitled ${TYPE_LABELS[type].singular.toLowerCase()}`, status: 'draft',
   }).returning({ id: entries.id });
 
-  redirect(`/admin/${TYPE_LABELS[type].path}/${row.id}`);
+  redirect(`${ADMIN_PATH}/${TYPE_LABELS[type].path}/${row.id}`);
 }
 
 export async function saveEntry(id, input) {
@@ -105,7 +107,7 @@ export async function deleteEntry(id) {
     .where(and(eq(entries.id, id), ne(entries.type, 'page')))
     .returning({ type: entries.type });
   refreshSite();
-  redirect(row ? `/admin/${TYPE_LABELS[row.type].path}` : '/admin');
+  redirect(row ? `${ADMIN_PATH}/${TYPE_LABELS[row.type].path}` : ADMIN_PATH);
 }
 
 // ── Menu ────────────────────────────────────────────────────────────────────
@@ -143,7 +145,7 @@ export async function recordMedia({ url, pathname, contentType, size, filename }
     size: Number.isFinite(size) ? size : null,
   }).onConflictDoNothing().returning();
 
-  revalidatePath('/admin/media');
+  revalidatePath(`${ADMIN_PATH}/media`);
   return { ok: true, item: row };
 }
 
@@ -151,7 +153,7 @@ export async function updateMediaAlt(id, alt) {
   await requireAdmin();
   const db = await getDb();
   await db.update(media).set({ alt: String(alt ?? '').slice(0, 500) }).where(eq(media.id, id));
-  revalidatePath('/admin/media');
+  revalidatePath(`${ADMIN_PATH}/media`);
   return { ok: true };
 }
 
@@ -162,7 +164,7 @@ export async function deleteMedia(id) {
   if (row && isBlobUrl(row.url)) {
     await del(row.url).catch((err) => console.error('[Blob delete error]', err));
   }
-  revalidatePath('/admin/media');
+  revalidatePath(`${ADMIN_PATH}/media`);
   return { ok: true };
 }
 
@@ -172,7 +174,7 @@ export async function setSubmissionRead(id, read) {
   await requireAdmin();
   const db = await getDb();
   await db.update(submissions).set({ read: Boolean(read) }).where(eq(submissions.id, id));
-  revalidatePath('/admin', 'layout');
+  revalidatePath(ADMIN_PATH, 'layout');
   return { ok: true };
 }
 
@@ -180,7 +182,7 @@ export async function deleteSubmission(id) {
   await requireAdmin();
   const db = await getDb();
   await db.delete(submissions).where(eq(submissions.id, id));
-  revalidatePath('/admin', 'layout');
+  revalidatePath(ADMIN_PATH, 'layout');
   return { ok: true };
 }
 

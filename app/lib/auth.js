@@ -4,12 +4,16 @@ import { promisify } from 'node:util';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import {
-  SESSION_COOKIE, SESSION_TTL_SECONDS, createSessionToken, verifySessionToken,
+  SESSION_COOKIE, SESSION_TTL_SECONDS, createSessionToken, getAdmins, verifySessionToken,
 } from './session';
+import { ADMIN_PATH } from './admin-path';
 
 const scryptAsync = promisify(scrypt);
 
-// ADMIN_PASSWORD_HASH format: "scrypt:<salt base64url>:<hash base64url>".
+// Compared against when the email isn't an admin, so the hash still runs.
+const DUMMY_HASH = `scrypt:${'A'.repeat(22)}:${'A'.repeat(86)}`;
+
+// Password hash format: "scrypt:<salt base64url>:<hash base64url>".
 // Generate one with `npm run admin:hash-password`. No "$" characters, because
 // Next.js expands "$VAR" inside .env files.
 export async function verifyPassword(password, stored) {
@@ -20,20 +24,22 @@ export async function verifyPassword(password, stored) {
   return timingSafeEqual(expected, actual);
 }
 
+// Returns the signed-in admin's email, or null.
 export async function checkCredentials(email, password) {
-  const adminEmail = process.env.ADMIN_EMAIL;
-  const adminHash = process.env.ADMIN_PASSWORD_HASH;
-  if (!adminEmail || !adminHash) {
-    throw new Error('ADMIN_EMAIL and ADMIN_PASSWORD_HASH must be set.');
+  const admins = getAdmins();
+  if (admins.size === 0) {
+    throw new Error('Set ADMIN_USERS (or ADMIN_EMAIL and ADMIN_PASSWORD_HASH).');
   }
-  // Always run the hash so response time doesn't reveal whether the email matched.
-  const passwordOk = await verifyPassword(password, adminHash);
-  return passwordOk && email.trim().toLowerCase() === adminEmail.toLowerCase();
+  const normalized = email.trim().toLowerCase();
+  // Always run the hash, even for an unknown email, so response time doesn't
+  // reveal which emails are admins.
+  const passwordOk = await verifyPassword(password, admins.get(normalized) ?? DUMMY_HASH);
+  return passwordOk && admins.has(normalized) ? normalized : null;
 }
 
-export async function startSession() {
+export async function startSession(email) {
   const store = await cookies();
-  store.set(SESSION_COOKIE, await createSessionToken(process.env.ADMIN_EMAIL), {
+  store.set(SESSION_COOKIE, await createSessionToken(email), {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
@@ -53,9 +59,9 @@ export async function getSession() {
 }
 
 // Call at the top of every admin page, server action and API route.
-// proxy.js also guards /admin, but it is only a first line of defence.
+// proxy.js also guards the dashboard, but it is only a first line of defence.
 export async function requireAdmin() {
   const session = await getSession();
-  if (!session) redirect('/admin/login');
+  if (!session) redirect(`${ADMIN_PATH}/login`);
   return session;
 }

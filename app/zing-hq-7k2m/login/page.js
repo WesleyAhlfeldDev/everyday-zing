@@ -3,11 +3,12 @@ import Image from 'next/image';
 import { getSession } from '@/app/lib/auth';
 import LoginForm from './LoginForm';
 import styles from '../admin.module.scss';
+import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 export const metadata = { title: { absolute: 'Sign in | Every Day Zing' } };
 
 export default async function LoginPage() {
-  if (await getSession()) redirect('/admin');
+  if (await getSession()) redirect(ADMIN_PATH);
 
   return (
     <div className={styles.loginWrap}>

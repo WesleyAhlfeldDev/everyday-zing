@@ -6,6 +6,7 @@ import { getOverview } from '../data';
 import { logout } from '../actions';
 import AdminNav from '../components/AdminNav';
 import styles from '../admin.module.scss';
+import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,7 +17,7 @@ export default async function DashboardLayout({ children }) {
   return (
     <div className={styles.shell}>
       <aside className={styles.sidebar}>
-        <Link href="/admin" className={styles.brand} aria-label="Dashboard home">
+        <Link href={ADMIN_PATH} className={styles.brand} aria-label="Dashboard home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/brand/zing-mark.svg" alt="" width={30} height={30} />
         </Link>

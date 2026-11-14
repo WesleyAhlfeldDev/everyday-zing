@@ -10,6 +10,7 @@ import { chapterFor } from '@/app/lib/chapters';
 import { listEntries } from '../../data';
 import { createEntry } from '../../actions';
 import styles from '../../admin.module.scss';
+import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 const ICONS = { page: faFileLines, post: faNewspaper, category: faFolderOpen };
 const TINTS = [styles.tint0, styles.tint1, styles.tint2, styles.tint3, styles.tint4];
@@ -41,7 +42,7 @@ export default async function CollectionPage({ params, searchParams }) {
           {FILTERS.map(([value, text]) => (
             <Link
               key={value}
-              href={value === 'all' ? `/admin/${collection}` : `/admin/${collection}?status=${value}`}
+              href={value === 'all' ? `${ADMIN_PATH}/${collection}` : `${ADMIN_PATH}/${collection}?status=${value}`}
               className={`${styles.chip} ${status === value ? styles.chipActive : ''}`}
             >
               {text}
@@ -78,7 +79,7 @@ export default async function CollectionPage({ params, searchParams }) {
               </div>
               <div className={styles.entryBody}>
                 <h2 className={styles.entryTitle}>
-                  <Link href={`/admin/${collection}/${row.id}`}>{row.title}</Link>
+                  <Link href={`${ADMIN_PATH}/${collection}/${row.id}`}>{row.title}</Link>
                 </h2>
                 <div className={styles.muted}>/{row.slug}{showOrder ? ` · order ${row.sortOrder}` : ''}</div>
                 <div className={styles.entryFoot}>
@@ -89,7 +90,7 @@ export default async function CollectionPage({ params, searchParams }) {
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                       </a>
                     )}
-                    <Link href={`/admin/${collection}/${row.id}`} className={styles.iconBtn} aria-label={`Edit ${row.title}`}>
+                    <Link href={`${ADMIN_PATH}/${collection}/${row.id}`} className={styles.iconBtn} aria-label={`Edit ${row.title}`}>
                       <FontAwesomeIcon icon={faPen} />
                     </Link>
                   </span>

@@ -7,21 +7,22 @@ import {
   faBars, faEnvelope, faFileLines, faFolderOpen, faHouse, faImage, faInbox, faNewspaper,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from '../admin.module.scss';
+import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 const GROUPS = [
-  [{ href: '/admin', label: 'Overview', icon: faHouse, exact: true }],
+  [{ href: ADMIN_PATH, label: 'Overview', icon: faHouse, exact: true }],
   [
-    { href: '/admin/pages', label: 'Pages', icon: faFileLines },
-    { href: '/admin/posts', label: 'Posts', icon: faNewspaper },
-    { href: '/admin/categories', label: 'Categories', icon: faFolderOpen },
+    { href: `${ADMIN_PATH}/pages`, label: 'Pages', icon: faFileLines },
+    { href: `${ADMIN_PATH}/posts`, label: 'Posts', icon: faNewspaper },
+    { href: `${ADMIN_PATH}/categories`, label: 'Categories', icon: faFolderOpen },
   ],
   [
-    { href: '/admin/submissions', label: 'Inbox', icon: faInbox, badge: 'unread' },
-    { href: '/admin/subscribers', label: 'Zingers', icon: faEnvelope },
+    { href: `${ADMIN_PATH}/submissions`, label: 'Inbox', icon: faInbox, badge: 'unread' },
+    { href: `${ADMIN_PATH}/subscribers`, label: 'Zingers', icon: faEnvelope },
   ],
   [
-    { href: '/admin/menu', label: 'Menu', icon: faBars },
-    { href: '/admin/media', label: 'Media', icon: faImage },
+    { href: `${ADMIN_PATH}/menu`, label: 'Menu', icon: faBars },
+    { href: `${ADMIN_PATH}/media`, label: 'Media', icon: faImage },
   ],
 ];
 

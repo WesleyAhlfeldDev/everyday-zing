@@ -8,6 +8,26 @@ export const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
 const encoder = new TextEncoder();
 
+// Admins come from ADMIN_USERS: one "email=hash" pair per admin, separated by
+// commas or new lines. Hashes come from `npm run admin:hash-password`.
+// The older single-admin ADMIN_EMAIL + ADMIN_PASSWORD_HASH pair still works too.
+// Returns a Map of lowercase email -> password hash.
+export function getAdmins() {
+  const admins = new Map();
+  for (const pair of (process.env.ADMIN_USERS || '').split(/[,\n]/)) {
+    const i = pair.indexOf('=');
+    if (i < 1) continue;
+    const email = pair.slice(0, i).trim().toLowerCase();
+    const hash = pair.slice(i + 1).trim();
+    if (email && hash) admins.set(email, hash);
+  }
+  const legacyEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  if (legacyEmail && process.env.ADMIN_PASSWORD_HASH && !admins.has(legacyEmail)) {
+    admins.set(legacyEmail, process.env.ADMIN_PASSWORD_HASH.trim());
+  }
+  return admins;
+}
+
 function b64url(bytes) {
   return btoa(String.fromCharCode(...new Uint8Array(bytes)))
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -50,7 +70,8 @@ export async function verifySessionToken(token) {
     if (!valid) return null;
     const data = JSON.parse(new TextDecoder().decode(fromB64url(payload)));
     if (!data.exp || data.exp < Date.now() / 1000) return null;
-    if (data.sub !== process.env.ADMIN_EMAIL) return null;
+    // Taking someone out of ADMIN_USERS signs them out on their next request.
+    if (!getAdmins().has(String(data.sub).toLowerCase())) return null;
     return data;
   } catch {
     return null;

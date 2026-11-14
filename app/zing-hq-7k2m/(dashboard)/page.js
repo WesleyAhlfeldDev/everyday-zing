@@ -6,6 +6,7 @@ import {
 import { chapterFor } from '@/app/lib/chapters';
 import { getOverview } from '../data';
 import styles from '../admin.module.scss';
+import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 const TINTS = [styles.tint0, styles.tint1, styles.tint2, styles.tint3, styles.tint4];
 
@@ -14,10 +15,10 @@ export default async function OverviewPage() {
   const posts = counts.post || { published: 0, draft: 0 };
 
   const stats = [
-    { href: '/admin/posts?status=published', label: 'Published posts', value: posts.published, icon: faNewspaper },
-    { href: '/admin/posts?status=draft', label: 'Drafts in progress', value: posts.draft, icon: faPenNib },
-    { href: '/admin/subscribers', label: newSubscribers ? `Zingers · ${newSubscribers} new this week` : 'Zingers', value: subscribers, icon: faEnvelope },
-    { href: '/admin/submissions', label: 'Unread messages', value: unread, icon: faInbox },
+    { href: `${ADMIN_PATH}/posts?status=published`, label: 'Published posts', value: posts.published, icon: faNewspaper },
+    { href: `${ADMIN_PATH}/posts?status=draft`, label: 'Drafts in progress', value: posts.draft, icon: faPenNib },
+    { href: `${ADMIN_PATH}/subscribers`, label: newSubscribers ? `Zingers · ${newSubscribers} new this week` : 'Zingers', value: subscribers, icon: faEnvelope },
+    { href: `${ADMIN_PATH}/submissions`, label: 'Unread messages', value: unread, icon: faInbox },
   ];
 
   const max = Math.max(1, ...categories.map((c) => c.posts));
@@ -31,9 +32,9 @@ export default async function OverviewPage() {
           <p>Posts, categories and readers across Every Day Zing.</p>
         </div>
         <div className={styles.chips}>
-          <Link href="/admin/posts" className={`${styles.chip} ${styles.chipActive}`}>Posts</Link>
-          <Link href="/admin/categories" className={styles.chip}>Categories</Link>
-          <Link href="/admin/subscribers" className={styles.chip}>Zingers</Link>
+          <Link href={`${ADMIN_PATH}/posts`} className={`${styles.chip} ${styles.chipActive}`}>Posts</Link>
+          <Link href={`${ADMIN_PATH}/categories`} className={styles.chip}>Categories</Link>
+          <Link href={`${ADMIN_PATH}/subscribers`} className={styles.chip}>Zingers</Link>
           <a href="/" target="_blank" rel="noopener noreferrer" className={styles.chip}>View site ↗</a>
         </div>
       </div>
@@ -52,7 +53,7 @@ export default async function OverviewPage() {
         <section>
           <div className={styles.panelHead}>
             <h2>Recently edited posts</h2>
-            <Link href="/admin/posts" className="small">View all</Link>
+            <Link href={`${ADMIN_PATH}/posts`} className="small">View all</Link>
           </div>
           {recentPosts.length ? (
             <div className={styles.cardGrid}>
@@ -73,7 +74,7 @@ export default async function OverviewPage() {
                     </div>
                     <div className={styles.entryBody}>
                       <h3 className={styles.entryTitle}>
-                        <Link href={`/admin/posts/${p.id}`}>{p.title}</Link>
+                        <Link href={`${ADMIN_PATH}/posts/${p.id}`}>{p.title}</Link>
                       </h3>
                       <div className={styles.muted}>{catTitle[p.fields?.category] || 'No category'}</div>
                       <div className={styles.entryFoot}>
@@ -94,13 +95,13 @@ export default async function OverviewPage() {
             <>
               <div className={`${styles.panelHead} mt-4`}>
                 <h2>Latest messages</h2>
-                <Link href="/admin/submissions" className="small">Open inbox</Link>
+                <Link href={`${ADMIN_PATH}/submissions`} className="small">Open inbox</Link>
               </div>
               <div className={`${styles.panel} ${styles.rise}`} style={{ '--i': 10 }}>
                 <ul className={styles.panelList}>
                   {recentMessages.map((m) => (
                     <li key={m.id}>
-                      <Link href="/admin/submissions" className={styles.panelItem}>
+                      <Link href={`${ADMIN_PATH}/submissions`} className={styles.panelItem}>
                         <span className={`${styles.panelIcon} ${m.read ? styles.tint3 : styles.tint2}`}>
                           <FontAwesomeIcon icon={faInbox} />
                         </span>
@@ -123,7 +124,7 @@ export default async function OverviewPage() {
         <aside className={`${styles.panel} ${styles.rise}`} style={{ '--i': 3 }}>
           <div className={styles.panelHead}>
             <h2>Categories</h2>
-            <Link href="/admin/categories" className={styles.iconBtn} aria-label="Open categories">
+            <Link href={`${ADMIN_PATH}/categories`} className={styles.iconBtn} aria-label="Open categories">
               <FontAwesomeIcon icon={faFolderOpen} />
             </Link>
           </div>
@@ -132,7 +133,7 @@ export default async function OverviewPage() {
               const chapter = chapterFor(c, i);
               return (
                 <li key={c.slug}>
-                  <Link href={`/admin/posts?category=${c.slug}`} className={styles.panelItem}>
+                  <Link href={`${ADMIN_PATH}/posts?category=${c.slug}`} className={styles.panelItem}>
                     <span className={styles.panelIcon} style={{ background: chapter.bg, color: chapter.ink }}>{c.posts}</span>
                     <span>
                       <span className={styles.panelLabel}>{c.title}</span>

@@ -6,6 +6,7 @@ import { entryPath } from '@/app/lib/content-schema';
 import { deleteEntry, saveEntry } from '../actions';
 import { FieldList, MediaContext } from './FieldEditor';
 import styles from '../admin.module.scss';
+import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 const SEO_FIELDS = [
   { name: 'title', label: 'Meta title', type: 'text', help: 'Leave blank to use the default title.' },
@@ -95,7 +96,7 @@ export default function EntryEditor({ entry: initial, schema, label, collection,
     <MediaContext.Provider value={{ media, blobEnabled, addMedia: (items) => setMedia((m) => [...items, ...m]) }}>
       <div className={styles.pageHeader}>
         <div>
-          <Link href={`/admin/${collection}`} className="small">← {label.plural}</Link>
+          <Link href={`${ADMIN_PATH}/${collection}`} className="small">← {label.plural}</Link>
           <h1 className="mt-1">Edit {label.singular.toLowerCase()}</h1>
         </div>
       </div>
