@@ -49,7 +49,7 @@ export const LEGAL_CONTENT = {
 <ul>
   <li><strong>Vercel</strong> (hosting, analytics and image storage), United States.</li>
   <li><strong>Neon</strong> (the database that stores sign-ups and messages), hosted on Amazon Web Services in the United States.</li>
-  <li><strong>An email service provider</strong> that sends the newsletter on our behalf.</li>
+  <li><strong>Mailchimp</strong> (Intuit Inc.), which stores the newsletter list and sends the newsletter on our behalf, United States.</li>
 </ul>
 <p>We may also disclose information if the law requires it, to protect our rights or someone’s safety, or as part of a sale or transfer of the business.</p>
 

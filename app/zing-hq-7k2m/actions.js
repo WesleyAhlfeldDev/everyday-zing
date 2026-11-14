@@ -7,6 +7,7 @@ import { del } from '@vercel/blob';
 import { getDb, schema } from '@/app/lib/db';
 import { checkCredentials, endSession, requireAdmin, startSession } from '@/app/lib/auth';
 import { TYPE_LABELS } from '@/app/lib/content-schema';
+import { mailchimpConfigured, syncAll, unsubscribe } from '@/app/lib/mailchimp';
 import { serializeEntry } from './data';
 import { ADMIN_PATH } from '@/app/lib/admin-path';
 
@@ -184,6 +185,40 @@ export async function deleteSubmission(id) {
   await db.delete(submissions).where(eq(submissions.id, id));
   revalidatePath(ADMIN_PATH, 'layout');
   return { ok: true };
+}
+
+// Takes someone off the newsletter: unsubscribed in Mailchimp first (so a later
+// sync doesn't bring them back), then removed from Zingers.
+export async function removeZinger(id) {
+  await requireAdmin();
+  const db = await getDb();
+  const [row] = await db.select().from(submissions)
+    .where(and(eq(submissions.id, id), eq(submissions.source, 'newsletter'))).limit(1);
+  if (!row) return { ok: true };
+  if (mailchimpConfigured()) {
+    try {
+      await unsubscribe(row.email);
+    } catch (err) {
+      console.error('[Mailchimp unsubscribe error]', err.message);
+      return { ok: false, error: 'Mailchimp didn\'t respond, so nothing was removed. Try again in a minute.' };
+    }
+  }
+  await db.delete(submissions).where(eq(submissions.id, id));
+  revalidatePath(ADMIN_PATH, 'layout');
+  return { ok: true };
+}
+
+export async function syncMailchimp() {
+  await requireAdmin();
+  if (!mailchimpConfigured()) return { ok: false, error: 'Mailchimp isn\'t connected yet.' };
+  try {
+    const result = await syncAll();
+    revalidatePath(ADMIN_PATH, 'layout');
+    return { ok: true, ...result };
+  } catch (err) {
+    console.error('[Mailchimp sync error]', err.message);
+    return { ok: false, error: err.status === 401 ? 'Mailchimp turned down the API key.' : 'Mailchimp didn\'t respond. Try again in a minute.' };
+  }
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────

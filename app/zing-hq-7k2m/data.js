@@ -2,6 +2,7 @@ import 'server-only';
 import { and, asc, count, desc, eq, gte, sql } from 'drizzle-orm';
 import { getDb, schema } from '@/app/lib/db';
 import { PAGE_PATHS } from '@/app/lib/content-schema';
+import { isSubscribed } from '@/app/lib/mailchimp';
 
 const { entries, media, settings, submissions } = schema;
 
@@ -71,8 +72,8 @@ export async function getOverview() {
     db.select({ category: categoryOf, n: count() }).from(entries)
       .where(and(eq(entries.type, 'post'), eq(entries.status, 'published')))
       .groupBy(categoryOf),
-    db.select({ n: count() }).from(submissions).where(eq(submissions.source, 'newsletter')),
-    db.select({ n: count() }).from(submissions).where(and(eq(submissions.source, 'newsletter'), gte(submissions.createdAt, weekAgo))),
+    db.select({ n: count() }).from(submissions).where(and(eq(submissions.source, 'newsletter'), isSubscribed)),
+    db.select({ n: count() }).from(submissions).where(and(eq(submissions.source, 'newsletter'), isSubscribed, gte(submissions.createdAt, weekAgo))),
     db.select().from(submissions).where(eq(submissions.source, 'contact')).orderBy(desc(submissions.createdAt)).limit(4),
   ]);
 

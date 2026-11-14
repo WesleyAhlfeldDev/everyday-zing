@@ -758,6 +758,10 @@
   text-decoration: none;
 }
 
+.mutedRow td {
+  color: var(--a-muted);
+}
+
 .unreadRow td {
   font-weight: 600;
 }

@@ -1,7 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import { and, eq } from 'drizzle-orm';
 import { getDb, schema } from '@/app/lib/db';
 import { EMAIL_RE, cleanStrings, saveLead } from '@/app/lib/leads';
+import { pushSignup } from '@/app/lib/mailchimp';
 
 const LIMITS = { firstName: 100, lastName: 100, email: 254, page: 200 };
 
@@ -42,6 +43,9 @@ export async function POST(request) {
         details: { page: entry.page },
       }, { title: '🍋 New Zinger' });
     }
+    // Also for someone already listed: signing up again re-subscribes them in
+    // Mailchimp if they had unsubscribed. Runs after the reply is sent.
+    after(() => pushSignup(entry.email));
   } catch (err) {
     console.error('[Subscribe error]', err);
     return NextResponse.json({ message: 'Sign-up failed. Please try again.' }, { status: 500 });
