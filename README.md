@@ -19,7 +19,7 @@ Next.js rebuild of the everyday-zing.com WordPress blog, with a built-in content
 | Piece | Where |
 | --- | --- |
 | Public pages | `app/(site)/`, reading content through `app/lib/content.js` |
-| Dashboard | `app/zing-hq-7k2m/` (the folder name is the URL): pages, posts, categories, inbox, Zingers (subscribers), menu, media |
+| Dashboard | `app/zing-hq-7k2m/` (the folder name is the URL): analytics, pages, posts, categories, inbox, Zingers (subscribers), menu, media |
 | Editable fields | `app/lib/content-schema.js`, one definition drives the dashboard forms and the import |
 | Database schema | `app/lib/db/schema.js`, migrations in `drizzle/` |
 | Auth | `app/lib/auth.js` (password + signed cookie), `proxy.js` guards the dashboard |
@@ -34,6 +34,7 @@ Every editable thing is a row in `entries` (`type` = page / post / category). Fi
 | `BLOB_READ_WRITE_TOKEN` | Set when a Blob store is connected. Without it, uploads are off and imported images keep their WordPress URLs. |
 | `ADMIN_USERS` | Dashboard logins, one `email=hash` pair per person, separated by commas, e.g. `a@x.com=scrypt:...,b@y.com=scrypt:...`. Each person runs `npm run admin:hash-password` to make their hash. Remove a pair to take away access. The older single `ADMIN_EMAIL` + `ADMIN_PASSWORD_HASH` pair still works. |
 | `SESSION_SECRET` | Signs login cookies; `npm run admin:hash-password` prints a fresh one. Changing it signs everyone out. |
+| `VERCEL_ANALYTICS_TOKEN`, `VERCEL_ANALYTICS_TEAM_ID` | Optional: the dashboard's Analytics page reads Vercel Web Analytics with these (a Vercel access token for the team, and the team's `team_…` id). `VERCEL_ANALYTICS_PROJECT_ID` overrides the project, which defaults to `everyday-zing`. |
 | `DISCORD_WEBHOOK_URL` | Optional: notifications for messages and sign-ups. |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL base, defaults to `https://everyday-zing.com`. |
 | `NEXT_PUBLIC_WORDPRESS_URL`, `NEXT_PUBLIC_WORDPRESS_API_URL` | Only for the import. |

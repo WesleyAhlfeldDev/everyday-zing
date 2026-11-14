@@ -4,13 +4,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBars, faEnvelope, faFileLines, faFolderOpen, faHouse, faImage, faInbox, faNewspaper,
+  faBars, faChartLine, faEnvelope, faFileLines, faFolderOpen, faHouse, faImage, faInbox, faNewspaper,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from '../admin.module.scss';
 import { ADMIN_PATH } from '@/app/lib/admin-path';
 
 const GROUPS = [
-  [{ href: ADMIN_PATH, label: 'Overview', icon: faHouse, exact: true }],
+  [
+    { href: ADMIN_PATH, label: 'Overview', icon: faHouse, exact: true },
+    { href: `${ADMIN_PATH}/analytics`, label: 'Analytics', icon: faChartLine },
+  ],
   [
     { href: `${ADMIN_PATH}/pages`, label: 'Pages', icon: faFileLines },
     { href: `${ADMIN_PATH}/posts`, label: 'Posts', icon: faNewspaper },
