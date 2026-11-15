@@ -87,3 +87,10 @@
   flex-wrap: wrap;
   gap: 4px 20px !important;
 }
+
+// Bigger tap targets on phones: the links were barely 20px tall.
+@include phone {
+  .footer ul a { display: inline-block; padding-block: 5px; }
+  .footer ul { gap: 4px; }
+  .legal { gap: 8px 20px !important; }
+}

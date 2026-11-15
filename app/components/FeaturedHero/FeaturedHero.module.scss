@@ -99,6 +99,7 @@
   .photo { aspect-ratio: 4 / 3; }
   .postTitle { font-size: 1.75rem !important; }
   .action :global(.btn-zing) { width: 100%; justify-content: center; }
-  .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
-  .chip { flex: none; }
+  // Wrap rather than scroll sideways: a scroller cut chips off at the edge.
+  .chips { gap: 6px; }
+  .chip { padding: 0 14px; font-size: var(--step-small); }
 }

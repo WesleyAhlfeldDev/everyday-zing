@@ -47,5 +47,6 @@
 
 @include phone {
   .pager { grid-template-columns: 1fr 1fr; ol { grid-column: 1 / -1; grid-row: 1; } }
-  .pager :global(.btn-zing) { justify-content: center; }
+  // Tighter sides so "Older posts" stays on one line in a half-width cell.
+  .pager :global(.btn-zing) { justify-content: center; padding-inline: 12px; white-space: nowrap; }
 }
