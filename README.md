@@ -36,6 +36,7 @@ Every editable thing is a row in `entries` (`type` = page / post / category). Fi
 | `SESSION_SECRET` | Signs login cookies; `npm run admin:hash-password` prints a fresh one. Changing it signs everyone out. |
 | `VERCEL_ANALYTICS_TOKEN`, `VERCEL_ANALYTICS_TEAM_ID` | Optional: the dashboard's Analytics page reads Vercel Web Analytics with these (a Vercel access token for the team, and the team's `team_…` id). `VERCEL_ANALYTICS_PROJECT_ID` overrides the project, which defaults to `everyday-zing`. |
 | `MAILCHIMP_API_KEY`, `MAILCHIMP_AUDIENCE_ID`, `MAILCHIMP_WEBHOOK_SECRET` | Optional: keeps Zingers and the Mailchimp audience in step (see Mailchimp below). Without them, sign-ups are only saved on the site. |
+| `ANTHROPIC_API_KEY` | Optional: powers the editor's **Generate SEO details** button, which drafts a meta title and description from the page content with Claude. Without it, the button says it isn't connected. |
 | `DISCORD_WEBHOOK_URL` | Optional: notifications for messages and sign-ups. |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL base, defaults to `https://everyday-zing.com`. |
 | `NEXT_PUBLIC_WORDPRESS_URL`, `NEXT_PUBLIC_WORDPRESS_API_URL` | Only for the import. |

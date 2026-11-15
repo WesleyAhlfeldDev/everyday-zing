@@ -3,7 +3,7 @@
 import { useEffect, useId, useState, useTransition } from 'react';
 import Link from 'next/link';
 import { entryPath } from '@/app/lib/content-schema';
-import { deleteEntry, saveEntry } from '../actions';
+import { deleteEntry, generateSeo, saveEntry } from '../actions';
 import { FieldList, MediaContext } from './FieldEditor';
 import styles from '../admin.module.scss';
 import { ADMIN_PATH } from '@/app/lib/admin-path';
@@ -47,6 +47,8 @@ export default function EntryEditor({ entry: initial, schema, label, collection,
   const [media, setMedia] = useState(initialMedia);
   const [message, setMessage] = useState(null);
   const [pending, startTransition] = useTransition();
+  const [generating, setGenerating] = useState(false);
+  const [seoMessage, setSeoMessage] = useState(null);
   const ids = { title: useId(), slug: useId(), status: useId(), date: useId(), order: useId() };
 
   const isPage = entry.type === 'page';
@@ -71,6 +73,32 @@ export default function EntryEditor({ entry: initial, schema, label, collection,
       setSavedJson(JSON.stringify(next));
       setMessage({ type: 'success', text: 'Saved. The live site has been refreshed.' });
     });
+  }
+
+  // Fills the meta title and description from the page's current content.
+  // Nothing is saved until Save is pressed.
+  async function generate() {
+    if ((draft.seo.title || draft.seo.description)
+      && !confirm('Replace the current meta title and description with new suggestions?')) return;
+    setSeoMessage(null);
+    setGenerating(true);
+    try {
+      const categoryDef = schema.find((d) => d.name === 'category' && d.options);
+      const categoryName = categoryDef?.options.find((o) => o.value && o.value === draft.fields.category)?.label;
+      const res = await generateSeo({
+        type: entry.type, slug: draft.slug, title: draft.title, fields: draft.fields, categoryName,
+      });
+      if (res?.error) {
+        setSeoMessage({ type: 'danger', text: res.error });
+        return;
+      }
+      set({ seo: { ...draft.seo, title: res.title, description: res.description } });
+      setSeoMessage({ type: 'info', text: `Suggested from the page content (title ${res.title.length} characters, description ${res.description.length}). Edit if you like, then save.` });
+    } catch {
+      setSeoMessage({ type: 'danger', text: 'Couldn\'t generate SEO details. Try again in a minute.' });
+    } finally {
+      setGenerating(false);
+    }
   }
 
   function remove() {
@@ -124,7 +152,13 @@ export default function EntryEditor({ entry: initial, schema, label, collection,
           <FieldList defs={schema} value={draft.fields} onChange={(fields) => set({ fields })} />
 
           <div className={styles.group}>
-            <div className={styles.groupTitle}>SEO</div>
+            <div className={`${styles.groupTitle} d-flex align-items-center justify-content-between gap-2`}>
+              <span>SEO</span>
+              <button type="button" className="btn btn-outline-primary btn-sm" onClick={generate} disabled={generating}>
+                {generating ? 'Writing…' : '✨ Generate SEO details'}
+              </button>
+            </div>
+            {seoMessage && <div className={`alert alert-${seoMessage.type} py-2 small`}>{seoMessage.text}</div>}
             <FieldList defs={SEO_FIELDS} value={draft.seo} onChange={(seo) => set({ seo })} />
           </div>
         </div>

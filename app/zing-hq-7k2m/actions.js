@@ -8,6 +8,8 @@ import { getDb, schema } from '@/app/lib/db';
 import { checkCredentials, endSession, requireAdmin, startSession } from '@/app/lib/auth';
 import { TYPE_LABELS } from '@/app/lib/content-schema';
 import { mailchimpConfigured, syncAll, unsubscribe } from '@/app/lib/mailchimp';
+import Anthropic from '@anthropic-ai/sdk';
+import { generateSeoDetails } from '@/app/lib/seo-generate';
 import { serializeEntry } from './data';
 import { ADMIN_PATH } from '@/app/lib/admin-path';
 
@@ -109,6 +111,32 @@ export async function deleteEntry(id) {
     .returning({ type: entries.type });
   refreshSite();
   redirect(row ? `${ADMIN_PATH}/${TYPE_LABELS[row.type].path}` : ADMIN_PATH);
+}
+
+// Drafts a meta title and description from the editor's current (unsaved)
+// content. Nothing is stored here; the editor fills the SEO fields.
+export async function generateSeo(input) {
+  await requireAdmin();
+  const type = String(input?.type ?? '');
+  if (!TYPE_LABELS[type]) return { error: 'Invalid type.' };
+  try {
+    return await generateSeoDetails({
+      type,
+      slug: String(input.slug ?? ''),
+      title: String(input.title ?? '').trim(),
+      fields: isPlainObject(input.fields) ? input.fields : {},
+      categoryName: input.categoryName ? String(input.categoryName) : null,
+    });
+  } catch (err) {
+    if (err instanceof Anthropic.AuthenticationError || /api key|apikey|credential/i.test(err?.message ?? '')) {
+      return { error: 'SEO generation isn\'t connected yet. Add ANTHROPIC_API_KEY to the site\'s environment variables.' };
+    }
+    if (err instanceof Anthropic.RateLimitError) {
+      return { error: 'The AI is busy right now. Try again in a minute.' };
+    }
+    console.error('[SEO generate error]', err?.message ?? err);
+    return { error: 'Couldn\'t generate SEO details. Try again in a minute.' };
+  }
 }
 
 // ── Menu ────────────────────────────────────────────────────────────────────
