@@ -5,6 +5,7 @@ import { formatDate, getCategories, getCategory, getPage, getPost, getPosts } fr
 import { LEGAL_PAGES } from '@/app/lib/content-schema';
 import { chapterStyle, CHAPTERS } from '@/app/lib/chapters';
 import { buildMetadata } from '@/app/lib/seo';
+import { bodyHtml } from '@/app/lib/body-html';
 import ChapterHeader from '@/app/components/ChapterHeader/ChapterHeader';
 import PostSidebar from '@/app/components/PostSidebar/PostSidebar';
 import styles from './Article.module.scss';
@@ -44,7 +45,7 @@ async function LegalPage({ slug }) {
       <ChapterHeader chapter={CHAPTERS.lemon} title={page.fields.hero?.title || page.title} text={page.fields.hero?.subtext} />
       <section className={styles.bodySection} aria-label="Content">
         <div className={`frame ${styles.bodyGrid}`}>
-          <div className={styles.prose} dangerouslySetInnerHTML={{ __html: page.fields.body || '' }} />
+          <div className={styles.prose} dangerouslySetInnerHTML={{ __html: bodyHtml(page.fields.body) }} />
         </div>
       </section>
     </>
@@ -74,8 +75,9 @@ async function PostPage({ slug }) {
           <div className={styles.headerCopy}>
             <h1 className={styles.title} data-rise>{post.title}</h1>
             <p className={styles.meta} data-rise>
-              {cat && <><Link href={`/category/${cat.slug}`} className="text-link">{cat.title}</Link> · </>}
-              <time dateTime={post.date}>{formatDate(post.date)}</time> · {readingTime(f.content)} min read
+              {cat && <Link href={`/category/${cat.slug}`} className="text-link">{cat.title}</Link>}
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <span>{readingTime(f.content)} min read</span>
             </p>
           </div>
           {image?.url && (
@@ -88,7 +90,8 @@ async function PostPage({ slug }) {
 
       <section className={styles.bodySection} aria-label="Post">
         <div className={`frame ${styles.postGrid}`}>
-          <div className={styles.prose} data-rise dangerouslySetInnerHTML={{ __html: f.content || '' }} />
+          {/* No data-rise: a whole post is taller than the screen and would stay hidden. */}
+          <div className={styles.prose} dangerouslySetInnerHTML={{ __html: bodyHtml(f.content) }} />
           <PostSidebar about={about} categories={categories} current={f.category} />
         </div>
       </section>

@@ -54,7 +54,12 @@
   padding: clamp(28px, 3.5vw, 56px);
 }
 
-.meta { font-weight: 600; }
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  font-weight: 600;
+}
 
 .postTitle {
   font-size: clamp(1.75rem, 0.8rem + 2vw, 3rem) !important;

@@ -39,7 +39,6 @@ export default async function SearchPage({ searchParams }) {
             placeholder="Try “chicken” or “Nordstrom”"
             autoComplete="off"
             enterKeyHint="search"
-            autoFocus={!query}
             className={styles.input}
           />
           <button type="submit" className="btn-zing">Search</button>

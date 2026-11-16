@@ -32,8 +32,13 @@ export default function MotionLayer() {
       }
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
 
+    // On the first page load, parts already on screen are shown as they are:
+    // hiding them to fade back in delays Largest Contentful Paint by about a second.
+    if (!root.classList.contains('motion')) {
+      for (const el of els) if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('is-in');
+    }
     root.classList.add('motion');
-    els.forEach((el) => io.observe(el));
+    els.forEach((el) => { if (!el.classList.contains('is-in')) io.observe(el); });
     return () => io.disconnect();
   }, [pathname]);
 

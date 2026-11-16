@@ -24,7 +24,6 @@ export default function FeaturedHero({ title, subtext, ctaLabel, post, category,
           <div className={`${styles.panel} field`} style={category ? chapterStyle(category.chapter) : undefined} data-rise>
             <p className={styles.meta}>
               {category && <Link href={`/category/${category.slug}`} className="text-link">{category.title}</Link>}
-              <span> · </span>
               <time dateTime={post.date}>{formatDate(post.date)}</time>
             </p>
             <h2 className={styles.postTitle}>

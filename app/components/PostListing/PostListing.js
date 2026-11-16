@@ -17,7 +17,7 @@ export default function PostListing({ posts, categories, page, basePath, heading
           {heading}{pages > 1 ? `, page ${page} of ${pages}` : ''}
         </h2>
         {slice.length
-          ? <PostGrid posts={slice} categories={categories} />
+          ? <PostGrid posts={slice} categories={categories} priority />
           : <p className={styles.empty}>Nothing here yet. New posts are on the way.</p>}
         {pages > 1 && (
           <nav className={styles.pager} aria-label="Pages">

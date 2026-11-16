@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getCategories, getPage } from '@/app/lib/content';
 import { buildMetadata } from '@/app/lib/seo';
+import { bodyHtml } from '@/app/lib/body-html';
 import styles from './About.module.scss';
 
 export const revalidate = 3600;
@@ -38,7 +39,7 @@ export default async function AboutPage() {
 
       <section className={styles.story} aria-label="My story">
         <div className={`frame ${styles.storyGrid}`}>
-          <div className={styles.prose} dangerouslySetInnerHTML={{ __html: f.body || '' }} />
+          <div className={styles.prose} dangerouslySetInnerHTML={{ __html: bodyHtml(f.body) }} />
           <aside className={styles.side} aria-labelledby="about-chapters">
             <h2 id="about-chapters" className={styles.sideHead}>What I write about</h2>
             <ul>

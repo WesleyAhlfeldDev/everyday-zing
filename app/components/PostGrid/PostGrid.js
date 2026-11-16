@@ -5,13 +5,14 @@ import styles from './PostGrid.module.scss';
 
 // An even grid of post cards: photo, title, then category and date.
 // `categories` (from getCategories) supplies each card's chapter colour.
-export default function PostGrid({ posts, categories, columns = 3, headingLevel = 'h3' }) {
+// `priority` loads the first row's photos eagerly, for grids that open a page (LCP).
+export default function PostGrid({ posts, categories, columns = 3, headingLevel = 'h3', priority = false }) {
   const cat = Object.fromEntries(categories.map((c) => [c.slug, c]));
   const Title = headingLevel;
 
   return (
     <ul className={`${styles.grid} ${columns === 4 ? styles.four : ''}`}>
-      {posts.map((post) => {
+      {posts.map((post, i) => {
         const c = cat[post.fields.category];
         const img = post.fields.featured_image;
         return (
@@ -24,6 +25,7 @@ export default function PostGrid({ posts, categories, columns = 3, headingLevel 
                     alt=""
                     fill
                     sizes={columns === 4 ? '(max-width: 768px) 50vw, 25vw' : '(max-width: 768px) 50vw, 33vw'}
+                    priority={priority && i < 2}
                   />
                 )}
               </Link>

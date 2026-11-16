@@ -34,7 +34,8 @@ export default function ShopTabs({ shops, follows }) {
       </div>
       <div>
         {lists.map((l) => (
-          <ul
+          // role="tabpanel" sits on a wrapper: on the <ul> it would replace the list role.
+          <div
             key={l.id}
             id={`panel-${l.id}`}
             role="tabpanel"
@@ -42,16 +43,18 @@ export default function ShopTabs({ shops, follows }) {
             className={styles.bands}
             data-active={current === l.id}
           >
-            {l.rows.map((row) => (
-              <li key={row.name}>
-                <a href={row.url} target="_blank" rel="noopener noreferrer sponsored" className={styles.band}>
-                  <span className={styles.bandName}>{row.name}</span>
-                  <span className={styles.bandSub}>{row.sub}</span>
-                  <span className={styles.bandAside}>{row.aside || 'Visit'} <span aria-hidden="true">↗</span></span>
-                </a>
-              </li>
-            ))}
-          </ul>
+            <ul>
+              {l.rows.map((row) => (
+                <li key={row.name}>
+                  <a href={row.url} target="_blank" rel="noopener noreferrer sponsored" className={styles.band}>
+                    <span className={styles.bandName}>{row.name}</span>
+                    <span className={styles.bandSub}>{row.sub}</span>
+                    <span className={styles.bandAside}>{row.aside || 'Visit'} <span aria-hidden="true">↗</span></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
       </div>
     </div>

@@ -21,6 +21,9 @@
 }
 
 .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
   margin-top: 28px !important;
   font-weight: 600;
 }
