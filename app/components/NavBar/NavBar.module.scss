@@ -1,10 +1,19 @@
 @use '../../styles/mixins' as *;
 
 .bar {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 30;
   background: var(--paper);
   color: var(--ink);
+  transition: translate 240ms var(--ease);
+
+  @include calm { transition: none; }
+}
+
+// Hidden while scrolling down, unless it holds keyboard focus or the menu is open.
+:global(html.nav-hidden) .bar:not(:focus-within):not(:has([aria-expanded='true'])) {
+  translate: 0 -100%;
 }
 
 .inner {

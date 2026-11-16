@@ -34,7 +34,13 @@
 
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --font-family--body: var(--font-site), system-ui, sans-serif;
+
+  // Height of the sticky nav bar while it's showing; other sticky things sit below it.
+  --nav-h: 84px;
+  @include phone { --nav-h: 72px; }
 }
+
+html.nav-hidden { --nav-h: 0px; }
 
 *, *::before, *::after { box-sizing: border-box; }
 

@@ -16,6 +16,20 @@ export default function NavBar({ menuItems = [] }) {
     return () => { document.documentElement.style.overflow = ''; };
   }, [open]);
 
+  // Slide the bar away while reading down the page; bring it back on any scroll up.
+  useEffect(() => {
+    const root = document.documentElement;
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - last) < 8) return; // ignore trackpad jitter
+      root.classList.toggle('nav-hidden', y > last && y > 120);
+      last = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); root.classList.remove('nav-hidden'); };
+  }, []);
+
   const isActive = (url) => (url === '/' ? pathname === '/' : pathname.startsWith(url));
   const link = (item) => (
     <Link

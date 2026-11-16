@@ -179,7 +179,9 @@
   gap: 6px;
   align-content: start;
 
-  @include lg { position: sticky; top: 24px; }
+  transition: top 240ms var(--ease);
+
+  @include lg { position: sticky; top: calc(var(--nav-h) + 24px); }
 }
 
 .shopTab {
@@ -251,7 +253,7 @@
 }
 
 @include phone {
-  .shopTabs { grid-template-columns: 1fr 1fr; position: sticky; top: 0; z-index: 2; }
+  .shopTabs { grid-template-columns: 1fr 1fr; position: sticky; top: var(--nav-h); z-index: 2; }
   .shopTab { min-height: 56px; padding: 0 14px; font-size: 1rem; }
   .band { grid-template-columns: 1fr auto; padding: 16px; }
   .bandSub { grid-column: 1; grid-row: 2; font-size: var(--step-small); }
